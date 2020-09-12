@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.log_in);
 
-
+int test ; 
 
 
    }
