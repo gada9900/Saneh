@@ -13,7 +13,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    tools:context=".Login">
 
     <RelativeLayout
         android:id="@+id/login"
@@ -32,25 +32,15 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp">
 
-            <TextView
-                android:id="@+id/sign_up_ek1"
-                android:layout_width="61dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_horizontal|center"
-                android:layout_marginLeft="157dp"
-                android:layout_marginTop="14dp"
-                android:fontFamily="Arial"
-                android:gravity="center"
-                android:text="@string/sign_up_ek1_string"
-                android:textColor="@color/email_ek1_color"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
-            <View
-                android:id="@+id/rectangle_120"
+
+
+            <Button
+                android:id="@+id/SIGNUPbutton"
                 android:layout_width="409dp"
                 android:layout_height="48dp"
-                android:background="@drawable/rectangle_120_shape" />
+                android:background="@drawable/rectangle_120_shape"
+                android:text="@string/sign_up_string" />
 
         </RelativeLayout>
 
@@ -61,10 +51,20 @@
         android:id="@+id/continue_ek1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_ek3">
+
+        <Button
+            android:id="@+id/LOGINbutton"
+            android:layout_width="327dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/rectangle_119_ek1_shape"
+            android:text="@string/log_in_string" />
 
         <TextView
             android:id="@+id/log_in"
@@ -75,19 +75,11 @@
             android:layout_marginTop="14dp"
             android:fontFamily="Arial"
             android:gravity="center"
-            android:text="@string/log_in_string"
+            android:text="Log in"
             android:textColor="@color/sign_up_color"
             android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/rectangle_119_ek1"
-            android:layout_width="327dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/rectangle_119_ek1_shape" />
+            android:textStyle="bold"
+            tools:text="Log in" />
 
     </RelativeLayout>
 
@@ -95,15 +87,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginLeft="167dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="70dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginRight="150dp"
+
+
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:text="@string/new_to_saneh__string"
-        android:textColor="@color/email_ek1_color"
-
-
+        android:textColor="#393A3A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/continue_ek1" />
@@ -158,17 +150,25 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/________"
-            android:layout_width="64dp"
-            android:layout_height="19dp"
+        <EditText
+            android:id="@+id/passwordLOGIN"
+            android:layout_width="264dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="36dp"
             android:layout_marginTop="0dp"
             android:alpha="0.5"
             android:fontFamily="Arial"
+            android:hint="password"
             android:text="@string/_________string"
             android:textColor="@color/email_ek1_color"
-            android:textSize="14sp" />
+            android:textColorHighlight="#040F54"
+            android:textColorLink="#040F54"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:inputType="textPassword"
+            app:backgroundTint="@color/log_out_color"
+
+            />
 
 
         <View
@@ -186,10 +186,27 @@
         android:id="@+id/email_ek2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigation_bar_ek1">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <EditText
+            android:id="@+id/emailLOGIN"
+            android:layout_width="264dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="0dp"
+            android:alpha="0.5"
+            android:fontFamily="Arial"
+            android:hint="Email"
+            android:text=""
+            android:textColor="@color/email_ek1_color"
+            android:textColorHighlight="#040F54"
+            android:textColorLink="#040F54"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            app:backgroundTint="@color/log_out_color" />
 
         <RelativeLayout
             android:id="@+id/mail_ek1"
@@ -210,18 +227,6 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/johndoe_mail_com"
-            android:layout_width="126dp"
-            android:layout_height="19dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="0dp"
-            android:alpha="0.5"
-            android:fontFamily="Arial"
-            android:text="@string/johndoe_mail_com_string"
-            android:textColor="@color/email_ek1_color"
-            android:textSize="14sp" />
-
 
         <View
             android:id="@+id/rectangle_115_ek1"
@@ -236,10 +241,14 @@
 
     <RelativeLayout
         android:id="@+id/navigation_bar_ek1"
-        android:layout_width="wrap_content"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
@@ -258,7 +267,6 @@
                 android:layout_marginTop="0dp"
                 android:contentDescription="path_10_ek1"
                 android:src="@drawable/path_10_ek1" />
-
 
 
         </RelativeLayout>
@@ -285,6 +293,44 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="369dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_bar_ek1"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/navigation_bar_ek1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/path_10" />
+
+    <ProgressBar
+        android:id="@+id/progressBarLOGIN"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="181dp"
+        android:layout_marginLeft="181dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="183dp"
+        android:layout_marginRight="183dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_ek3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
