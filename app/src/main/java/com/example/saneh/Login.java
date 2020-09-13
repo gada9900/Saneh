@@ -80,8 +80,8 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                           // startActivity(new Intent(getApplicationContext(),Login.this));
-
+                            Intent intent = new Intent (getApplicationContext(), profile.class);
+                            startActivity(intent);
                         }else {
                             Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -96,7 +96,8 @@ public class Login extends AppCompatActivity {
         mSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           //     startActivity(new Intent(getApplicationContext(),Register.class));
+                Intent intent = new Intent (Login.this, sign_up.class);
+                startActivity(intent);
             }
         });
 /*
