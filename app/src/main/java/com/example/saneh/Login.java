@@ -45,6 +45,14 @@ public class Login extends AppCompatActivity {
 
         progressBar.setVisibility(View.GONE);
 
+        mSignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getApplicationContext(), sign_up.class);
+                startActivity(intent);
+            }
+        });
+
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,13 +101,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        mSignupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (Login.this, sign_up.class);
-                startActivity(intent);
-            }
-        });
+
 /*
         forgotTextLink.setOnClickListener(new View.OnClickListener() {
             @Override

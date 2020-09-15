@@ -253,6 +253,7 @@
         app:srcCompat="@drawable/logo" />
 
     <ProgressBar
+        android:indeterminateDrawable="@drawable/progress"
         android:id="@+id/progressBarLOGIN"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
