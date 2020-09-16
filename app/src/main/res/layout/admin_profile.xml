@@ -179,6 +179,8 @@
         app:layout_constraintStart_toEndOf="@+id/imageView29"
         app:srcCompat="@drawable/settin" />
 
+
+
     <ImageView
         android:id="@+id/imageView32"
         android:layout_width="31dp"

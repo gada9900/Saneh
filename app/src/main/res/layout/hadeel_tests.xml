@@ -7,6 +7,65 @@
     android:background="@drawable/background"
     tools:context=".Login">
 
+    <RelativeLayout
+        android:id="@+id/email_ek2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <EditText
+            android:id="@+id/emailLOGIN"
+            android:layout_width="264dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="0dp"
+            android:alpha="0.5"
+            android:fontFamily="Arial"
+            android:hint="Email"
+            android:text=""
+            android:textColor="@color/email_ek1_color"
+            android:textColorHighlight="#040F54"
+            android:textColorLink="#040F54"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            app:backgroundTint="@color/log_out_color" />
+
+        <RelativeLayout
+            android:id="@+id/mail_ek1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="3dp">
+
+            <ImageView
+                android:id="@+id/path_642_ek1"
+                android:layout_width="16dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="path_642_ek1"
+                android:src="@drawable/path_642_ek1" />
+
+        </RelativeLayout>
+
+        <!--
+        <View
+            android:id="@+id/rectangle_115_ek1"
+            android:layout_width="295dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/rectangle_115_ek1_shape" />
+-->
+    </RelativeLayout>
+
     <Button
         android:id="@+id/buttonSignup"
         android:layout_width="178dp"
