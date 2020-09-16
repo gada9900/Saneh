@@ -108,19 +108,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="3dp">
-
-                    <ImageView
-                        android:id="@+id/path_642_ek1"
-                        android:layout_width="16dp"
-                        android:layout_height="12dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="0dp"
-                        android:contentDescription="path_642_ek1"
-                        android:src="@drawable/path_642_ek1" />
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="0dp">
 
                 </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/path_642_ek1"
+                    android:layout_width="16dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="path_642_ek1"
+                    android:src="@drawable/path_642_ek1"
+                    app:srcCompat="@drawable/wr" />
 
                 <!--
         <View
@@ -150,7 +152,7 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="0dp"
-                    android:background="@drawable/rectangle_119_ek1_shape"
+                    android:background="@drawable/rectangle_2003_shape"
                     android:text="@string/log_in_string" />
 
                 <TextView
@@ -212,7 +214,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp">
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp">
 
 
 
@@ -227,9 +230,9 @@
 
                     <ImageView
                         android:id="@+id/imageView25"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/path_49_ek3" />
+                        android:layout_width="18dp"
+                        android:layout_height="12dp"
+                        app:srcCompat="@drawable/loc" />
 
                 </RelativeLayout>
 
