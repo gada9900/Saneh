@@ -31,6 +31,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -63,6 +64,7 @@ public class sign_up extends AppCompatActivity {
     RadioButton mStudentRadio, mInstructorRadio;
     String userType;
     ProgressBar progressBar ;
+    ImageView gotologin;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
@@ -77,14 +79,14 @@ public class sign_up extends AppCompatActivity {
         mPassword1 = findViewById(R.id.password1);
         mPassword2 = findViewById(R.id.password2);
         mSignupBtn = findViewById(R.id.signupBtn);
-        mRadioGroup = findViewById(R.id.radioGroup);
-        mStudentRadio = findViewById(R.id.studentRadio);
-        mInstructorRadio = findViewById(R.id.instructorRadio);
+
+        gotologin = findViewById(R.id.gotologin);
+
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        progressBar = findViewById(R.id.progressBar);
 
+        progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 /*
         //if the user already has an account
@@ -102,8 +104,13 @@ public class sign_up extends AppCompatActivity {
                 String password1 = mPassword1.getText().toString().trim();
                 String password2 = mPassword2.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
-                RadioButton typeRadioGroup =findViewById(mRadioGroup.getCheckedRadioButtonId());
-                userType = typeRadioGroup.getText().toString();
+
+
+
+                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) radioGroup.findViewById(radioButtonID);
+                final  String selectedText = (String) radioButton.getText();
 
                 if (TextUtils.isEmpty(fullName)){
                     mFullName.setError("Full Name is required!");
@@ -129,7 +136,7 @@ public class sign_up extends AppCompatActivity {
                     mPassword1.setError("Password must be >= 6 characters");
                     return;
                 }
-                // check Radio
+
                 progressBar.setVisibility(View.VISIBLE);
 
 
@@ -145,15 +152,16 @@ public class sign_up extends AppCompatActivity {
                             Map<String, Object> user = new HashMap<>();
                             user.put("fName", fullName);
                             user.put("email", email);
-                            // Radio
-                            //user.put("type", )
+                            user.put("userType",selectedText);
+
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Log.d(TAG, "onSuccess: user account created for " + userId);
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(), sign_up.class));
+                            startActivity(new Intent(getApplicationContext(), profile.class));
+                            finish();
 
                         }else {
                             Toast.makeText(sign_up.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -161,6 +169,14 @@ public class sign_up extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        gotologin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(sign_up.this, Login.class));
+                finish();
             }
         });
 

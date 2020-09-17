@@ -2,9 +2,9 @@
 <resources>
 	<!-- iphone_6_7_8___2 colors -->
 
-	<color name="colorPrimary">#2699fb</color>
-	<color name="colorPrimaryDark">#0060b4</color>
-	<color name="colorAccent">#D81B60</color>
+	<color name="colorPrimary">#009da8</color>
+	<color name="colorPrimaryDark">#009da8</color>
+	<color name="colorAccent">#0060b4</color>
 
 	<color name="_bg__iphone_6_7_8___2_ek2_color">#ffffff</color>
 	<color name="rectangle_119_color">#2699fb</color>
