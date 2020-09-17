@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
     EditText mEmail,mPassword;
@@ -28,7 +33,9 @@ public class Login extends AppCompatActivity {
     TextView mSignupBtn,forgotTextLink;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
-
+    public static final String TAG = "TAG";
+    String type = null ;
+    String id ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +48,17 @@ public class Login extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn = findViewById(R.id.LOGINbutton);
         mSignupBtn = findViewById(R.id.SIGNUPbutton);
-      //  forgotTextLink = findViewById(R.id.forgotPassword);
+        forgotTextLink = findViewById(R.id.forgotPassword);
 
         progressBar.setVisibility(View.GONE);
+
+        mSignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getApplicationContext(), sign_up.class);
+                startActivity(intent);
+            }
+        });
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,9 +94,57 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent (getApplicationContext(), profile.class);
-                            startActivity(intent);
+
+                            FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                 id = user.getUid();
+                            DocumentReference docRef = fStore.collection("users").document(id);
+                            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                            type = document.getString("userType");
+
+                                            Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+
+                                            if(!type.equals("Admin")) {
+                                                Intent intent = new Intent(getApplicationContext(), profile.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }else{
+
+                                                Intent intent = new Intent(getApplicationContext(), admin_settings.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
+
+
+                                        } else {
+                                            Log.d(TAG, "No such document");
+                                            Toast.makeText(Login.this, "your account very old please create a new acount ", Toast.LENGTH_SHORT).show();
+                                            progressBar.setVisibility(View.GONE);
+
+                                        }
+                                    } else {
+                                        Log.d(TAG, "get failed with ", task.getException());
+                                        Toast.makeText(Login.this, "wrong log in try again later ", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+
+                                    }
+                                }
+                            });
+
+
+
+
+
+
+
+
                         }else {
                             Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -93,14 +156,8 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        mSignupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (Login.this, sign_up.class);
-                startActivity(intent);
-            }
-        });
-/*
+
+
         forgotTextLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,12 +176,12 @@ public class Login extends AppCompatActivity {
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(MainActivity.this, "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this, "Error ! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Error ! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -142,7 +199,7 @@ public class Login extends AppCompatActivity {
 
             }
         });
-*/
+
 
     }
 }
