@@ -76,7 +76,73 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
                 app:layout_constraintTop_toBottomOf="@+id/passwordLOGIN" />
+=======
+                app:layout_constraintTop_toBottomOf="@+id/password_ek3" />
+
+
+            <RelativeLayout
+                android:id="@+id/email_ek2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+                <EditText
+                    android:id="@+id/emailLOGIN"
+                    android:layout_width="264dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="0dp"
+                    android:alpha="0.5"
+                    android:fontFamily="Arial"
+                    android:hint="Email"
+                    android:text=""
+                    android:textColor="@color/email_ek1_color"
+                    android:textColorHighlight="#040F54"
+                    android:textColorLink="#040F54"
+                    android:textCursorDrawable="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    app:backgroundTint="@color/log_out_color" />
+
+                <RelativeLayout
+                    android:id="@+id/mail_ek1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="0dp">
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/path_642_ek1"
+                    android:layout_width="16dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="path_642_ek1"
+                    android:src="@drawable/path_642_ek1"
+                    app:srcCompat="@drawable/wr" />
+
+                <!--
+        <View
+            android:id="@+id/rectangle_115_ek1"
+            android:layout_width="295dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/rectangle_115_ek1_shape" />
+-->
+            </RelativeLayout>
+>>>>>>> 8b821f47ab894103eb900c9fcf8c4fad12e1e89a
 
             <RelativeLayout
                 android:id="@+id/continue_ek1"
@@ -94,11 +160,108 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="0dp"
+<<<<<<< HEAD
                     android:background="@drawable/rectangle_2004_shape"
                     android:text="@string/log_in_string"
                     android:textColor="#FDFCFC"
                     android:textSize="18sp" />
 
+=======
+                    android:background="@drawable/rectangle_2003_shape"
+                    android:text="@string/log_in_string" />
+
+                <TextView
+                    android:id="@+id/log_in"
+                    android:layout_width="49dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_marginLeft="139dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="Arial"
+                    android:gravity="center"
+                    android:text="Log in"
+                    android:textColor="@color/sign_up_color"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Log in" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/password_ek3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_ek2">
+
+                <EditText
+                    android:id="@+id/passwordLOGIN"
+                    android:layout_width="264dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginTop="0dp"
+                    android:alpha="0.5"
+                    android:fontFamily="Arial"
+                    android:hint="password"
+                    android:inputType="textPassword"
+                    android:text="@string/_________string"
+                    android:textColor="@color/email_ek1_color"
+                    android:textColorHighlight="#040F54"
+                    android:textColorLink="#040F54"
+                    android:textCursorDrawable="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    app:backgroundTint="@color/log_out_color"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/imageView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/path_49_ek3" />
+
+                <RelativeLayout
+                    android:id="@+id/lock_ek3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp">
+
+
+
+                    <View
+                        android:id="@+id/rectangle_118_ek3"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@drawable/rectangle_118_ek3_shape" />
+
+                    <ImageView
+                        android:id="@+id/imageView25"
+                        android:layout_width="18dp"
+                        android:layout_height="12dp"
+                        app:srcCompat="@drawable/loc" />
+
+                </RelativeLayout>
+
+                <!--
+        <View
+            android:id="@+id/rectangle_116_ek3"
+            android:layout_width="295dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/rectangle_116_ek3_shape" />
+-->
+>>>>>>> 8b821f47ab894103eb900c9fcf8c4fad12e1e89a
             </RelativeLayout>
 
             <TextView
