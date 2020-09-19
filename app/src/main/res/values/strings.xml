@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- iphone_6_7_8___2 strings -->
+
+	<string name="app_name">iPhone 6/7/8  2</string>
+	<string name="ek_img_content">ExportKit Image</string>
+	<string name="sign_up_string">Sign Up</string>
+	<string name="email_ek1_string">Email</string>
+	<string name="full_name_string">Full name</string>
+	<string name="instructor_string">Instructor</string>
+	<string name="student_string">Student</string>
+	<string name="password__string">Password </string>
+	<string name="confirm_password_string">Confirm Password</string>
+	<string name="sign_up_ek1_string">SIGN UP</string>
+	<string name="new_to_saneh__string">New to Saneh? Sign up here .</string>
+	<string name="log_in_string">Log in</string>
+	<string name="_________string"></string>
+	<string name="johndoe_mail_com_string">johndoe@mail.com</string>
+	<string name="profile_string">PROFILE</string>
+	<string name="john_doe_string">John Doe</string>
+	<string name="john_mail_com_string">John@mail.com</string>
+	<string name="edit_string">EDIT</string>
+	<string name="notifications_string">Notifications</string>
+	<string name="help_string">Help</string>
+	<string name="log_out_string">Log out</string>
+	<string name="room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__string">Room type: study roomFloor: secondRoomNo: 2Time: 10:00 AM - 12:00 PM</string>
+	<string name="_07_09_2020_string">07/09/2020</string>
+	<string name="upcoming_reservations_string">UPCOMING RESERVATIONS</string>
+	<string name="confirm_string">CONFIRM</string>
+	<string name="room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__ek1_string">Room type: study roomFloor: secondRoomNo: 2Time: 10:00 AM - 12:00 PM</string>
+	<string name="_07_09_2020_ek1_string">07/09/2020</string>
+	<string name="upcoming_reservations_ek1_string">UPCOMING RESERVATIONS</string>
+	<string name="confirm_ek1_string">CONFIRM</string>
+	<string name="are_you_sure_that_you_are_at_the_booked_room__string">Are you sure that you areat the booked room?</string>
+	<string name="search_ek8_string">SEARCH</string>
+	<string name="dd_mm_yy_string">DD/MM/YY</string>
+	<string name="hh_mm_string">HH:MM</string>
+	<string name="search_ek9_string">SEARCH</string>
+</resources>

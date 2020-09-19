@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "589526712395",
+    "firebase_url": "https://saneh-cc1af.firebaseio.com",
+    "project_id": "saneh-cc1af",
+    "storage_bucket": "saneh-cc1af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589526712395:android:b2b234fc018d34ded98dce",
+        "android_client_info": {
+          "package_name": "com.example.saneh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589526712395-lb9ouiggp7kh3bf0krdk28t9eki8gfs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEPLgMgwFxKMEgjc_LI8fEJUWSBlO1ZBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589526712395-lb9ouiggp7kh3bf0krdk28t9eki8gfs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

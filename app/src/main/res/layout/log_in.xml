@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content" >
+
+    <ScrollView android:id="@+id/iphone_6_7_8___1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="412dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background"
+            tools:context=".Login">
+            <!--
+    <RelativeLayout
+        android:id="@+id/login"
+        android:layout_width="389dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+
+        <RelativeLayout
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp">
+
+
+
+
+            <Button
+                android:id="@+id/SIGNUPbutton"
+                android:layout_width="409dp"
+                android:layout_height="48dp"
+                android:background="@drawable/rectangle_120_shape"
+                android:text="@string/sign_up_string" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+-->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="409dp"
+                android:layout_height="162dp"
+                android:layout_marginTop="80dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo" />
+
+
+            <ProgressBar
+                android:id="@+id/progressBarLOGIN"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="181dp"
+                android:layout_marginLeft="181dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="183dp"
+                android:layout_marginRight="183dp"
+                android:layout_marginBottom="3dp"
+                android:indeterminateDrawable="@drawable/progress"
+                app:layout_constraintBottom_toTopOf="@+id/continue_ek1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordLOGIN" />
+
+            <RelativeLayout
+                android:id="@+id/continue_ek1"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/SIGNUPbutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/LOGINbutton"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/rectangle_2004_shape"
+                    android:text="@string/log_in_string"
+                    android:textColor="#FDFCFC"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/SIGNUPbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="30dp"
+
+
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/new_to_saneh__string"
+                android:textColor="#1E88E5"
+                app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+              />
+
+            <TextView
+                android:id="@+id/forgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="160dp"
+                android:text="Forgot Password ?"
+                android:textColor="#1E88E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/emailLOGIN"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/passwordLOGIN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintVertical_bias="0.583" />
+
+            <EditText
+                android:id="@+id/passwordLOGIN"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/continue_ek1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/passwordLOGIN"
+                app:layout_constraintEnd_toStartOf="@+id/passwordLOGIN"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/passwordLOGIN"
+                app:srcCompat="@drawable/loc" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/emailLOGIN"
+                app:layout_constraintEnd_toStartOf="@+id/emailLOGIN"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/emailLOGIN"
+                app:srcCompat="@drawable/wr" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</HorizontalScrollView>
