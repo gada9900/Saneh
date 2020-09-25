@@ -12,7 +12,8 @@
         <activity android:name=".admin_settings" />
         <activity android:name=".sign_up" />
         <activity android:name=".profile" />
-        <activity android:name=".Login">
+        <activity android:name=".Login"/>
+        <activity android:name=".editClassInfo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
