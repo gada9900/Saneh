@@ -195,7 +195,7 @@
         app:layout_constraintBottom_toTopOf="@+id/switch2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.111"
 
     <Switch
         android:id="@+id/switch2"
@@ -207,7 +207,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318" />
+        app:layout_constraintVertical_bias="0.318"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <RadioGroup
         android:layout_width="352dp"
