@@ -238,4 +238,17 @@
 
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="39dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView25"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="@+id/imageView25"
+        app:layout_constraintTop_toTopOf="@+id/imageView25"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/sett" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
