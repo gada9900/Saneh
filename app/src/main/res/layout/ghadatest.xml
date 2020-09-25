@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:ignore="ExtraText">
 
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="293dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/rectangle_2001_color"
+        android:gravity="center"
+        android:text="F-10"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
     <EditText
         android:id="@+id/searchClass"
         android:layout_width="249dp"
@@ -35,7 +48,6 @@
         android:id="@+id/textView13"
         android:layout_width="293dp"
         android:layout_height="60dp"
-        android:layout_marginTop="56dp"
         android:background="@color/rectangle_2001_color"
         android:gravity="center"
         android:text="G-54"
@@ -53,31 +65,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/edit" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="293dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/rectangle_2001_color"
-        android:gravity="center"
-        android:text="F-10"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="58dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="@+id/textView17"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView17"
         app:srcCompat="@drawable/edit" />
 
     <ImageView
@@ -87,5 +74,16 @@
         app:srcCompat="@drawable/edit"
         tools:layout_editor_absoluteX="294dp"
         tools:layout_editor_absoluteY="334dp" />
+
+    <ImageView
+        android:id="@+id/imageView38"
+        android:layout_width="58dp"
+        android:layout_height="62dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="@+id/textView17"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toTopOf="@+id/textView17"
+        app:srcCompat="@drawable/edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
