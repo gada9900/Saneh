@@ -115,7 +115,7 @@ public class Login extends AppCompatActivity {
                                             Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_LONG).show();
 
                                             if(!type.equals("Admin")) {
-                                                Intent intent = new Intent(getApplicationContext(), profile.class);
+                                                Intent intent = new Intent(getApplicationContext(), search.class);
                                                 startActivity(intent);
                                                 finish();
                                             }else{

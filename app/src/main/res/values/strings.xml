@@ -36,4 +36,14 @@
 	<string name="dd_mm_yy_string">DD/MM/YY</string>
 	<string name="hh_mm_string">HH:MM</string>
 	<string name="search_ek9_string">SEARCH</string>
+	<string-array name="time">
+		<item> 8:00 AM</item>
+		<item> 9:00 AM</item>
+		<item> 10:00 AM</item>
+		<item> 11:00 AM</item>
+		<item> 12:00 PM</item>
+		<item> 1:00 PM</item>
+		<item> 2:00 PM</item>
+		<item> 3:00 PM</item>
+	</string-array>
 </resources>

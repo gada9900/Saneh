@@ -164,7 +164,7 @@ public class sign_up extends AppCompatActivity {
                                     Log.d(TAG, "onSuccess: user account created for " + userId);
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(), profile.class));
+                            startActivity(new Intent(getApplicationContext(), search.class));
                             finish();
 
                         }else {

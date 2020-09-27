@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,15 @@ public class profile  extends AppCompatActivity {
             }
         });
 
+        final ImageView search = findViewById(R.id.imageView13);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),search.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
