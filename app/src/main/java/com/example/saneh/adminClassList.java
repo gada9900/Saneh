@@ -29,7 +29,7 @@ public class adminClassList extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         mClassList = findViewById(R.id.classList);
 
-        Query query = firebaseFirestore.collection("classes");
+        Query query = firebaseFirestore.collection("classes2");
 
         FirestoreRecyclerOptions<classInfo> options = new FirestoreRecyclerOptions.Builder<classInfo>()
                 .setQuery(query, classInfo.class)

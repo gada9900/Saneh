@@ -9,15 +9,24 @@ public class classInfo {
     private long capacity;
     private boolean interactive;
     private boolean projector;
-    boolean[][] schedule = new boolean[5][7];
+    boolean[] s;
+    boolean[] m;
+    boolean[] t;
+    boolean[] w;
+    boolean[] th;
 
-    private classInfo(){}
-    private classInfo(String name, long capacity, boolean interactive, boolean projector, boolean[][] schedule){
+    public classInfo(){}
+
+    public classInfo(String name, long capacity, boolean interactive, boolean projector ,boolean[] s,boolean[] m,boolean[] t,boolean[] w,boolean[] th ){
         this.name = name;
         this.capacity = capacity;
         this.interactive = interactive;
         this.projector = projector;
-        //schedule[0][0] = true;
+        this.s=s;
+        this.m=m;
+        this.t=t;
+        this.w=w;
+        this.th=th;
     }
 
     public long getCapacity() {
