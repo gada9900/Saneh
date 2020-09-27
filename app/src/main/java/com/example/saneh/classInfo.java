@@ -12,17 +12,12 @@ public class classInfo {
     //boolean[][] schedule = new boolean[5][7];
 
     private classInfo(){}
-    /*private classInfo(String name, long capacity, boolean interactive, boolean projector, boolean[][] schedule){
-        this.name = name;
-        this.capacity = capacity;
-        this.interactive = interactive;
-        this.projector = projector;
-        //schedule[0][0] = true;
-    }*/
+
     private classInfo(long capacity, boolean interactive, boolean projector){
         this.capacity = capacity;
         this.interactive = interactive;
         this.projector = projector;
+
     }
 
     public long getCapacity() {

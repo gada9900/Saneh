@@ -10,7 +10,9 @@
         android:id="@+id/class_capacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#03A9F4"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,7 +20,9 @@
         android:id="@+id/class_interactive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#009688"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/class_capacity" />
 
@@ -26,7 +30,9 @@
         android:id="@+id/class_projector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFC107"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/class_interactive" />

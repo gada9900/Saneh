@@ -32,6 +32,7 @@ public class adminClassList extends AppCompatActivity {
         //Query
         Query query = firebaseFirestore.collection("classesTest");
         //RecyclerOptions
+
         FirestoreRecyclerOptions<classInfo> options = new FirestoreRecyclerOptions.Builder<classInfo>()
                 .setQuery(query, classInfo.class)
                 .build();
@@ -46,9 +47,10 @@ public class adminClassList extends AppCompatActivity {
 
              @Override
              protected void onBindViewHolder(@NonNull classViewHolder holder, int position, @NonNull classInfo model) {
-                holder.class_capacity.setText(model.getCapacity()+"");
-                holder.class_interactive.setText(model.isInteractive()+"");
-                holder.class_projector.setText(model.isProjector()+"");
+                 //model.getCapacity()+""
+                holder.class_capacity.setText("Capacity");
+                holder.class_interactive.setText("Interactive");
+                holder.class_projector.setText("Projector");
              }
          };
 
