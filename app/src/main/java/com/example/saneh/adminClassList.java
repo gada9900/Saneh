@@ -28,26 +28,30 @@ public class adminClassList extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         mClassList = findViewById(R.id.classList);
-
-        Query query = firebaseFirestore.collection("classes");
-
+        //"classes"
+        //Query
+        Query query = firebaseFirestore.collection("classesTest");
+        //RecyclerOptions
         FirestoreRecyclerOptions<classInfo> options = new FirestoreRecyclerOptions.Builder<classInfo>()
                 .setQuery(query, classInfo.class)
                 .build();
 
          adapter= new FirestoreRecyclerAdapter<classInfo, classViewHolder>(options) {
-            @NonNull
-            @Override
-            public classViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.classlist, parent, false);
-                return new classViewHolder(view);
-            }
+             @NonNull
+             @Override
+             public classViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.classlist, parent, false);
+                 return new classViewHolder(view);
+             }
 
-            @Override
-            protected void onBindViewHolder(@NonNull classViewHolder holder, int position, @NonNull classInfo model) {
-            holder.className.setText(model.getName());
-            }
-        };
+             @Override
+             protected void onBindViewHolder(@NonNull classViewHolder holder, int position, @NonNull classInfo model) {
+                holder.class_capacity.setText(model.getCapacity()+"");
+                holder.class_interactive.setText(model.isInteractive()+"");
+                holder.class_projector.setText(model.isProjector()+"");
+             }
+         };
+
 
          mClassList.setHasFixedSize(true);
          mClassList.setLayoutManager(new LinearLayoutManager(this));
@@ -56,10 +60,15 @@ public class adminClassList extends AppCompatActivity {
 
     private class classViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView className;
+        private TextView class_capacity;
+        private TextView class_interactive;
+        private TextView class_projector;
+
         public classViewHolder(@NonNull View itemView) {
             super(itemView);
-            className = itemView.findViewById(R.id.className);
+            class_capacity = itemView.findViewById(R.id.class_capacity);
+            class_interactive = itemView.findViewById(R.id.class_interactive);
+            class_projector = itemView.findViewById(R.id.class_projector);
         }
     }
 

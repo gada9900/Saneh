@@ -1,91 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="ExtraText">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/searchClass"
-        android:layout_width="249dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:hint='Search for class, e.g "G54"'
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.364"
+    <TextView
+        android:id="@+id/class_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/searchClass"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/class_interactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/class_capacity" />
 
     <TextView
-        android:id="@+id/className"
-        android:layout_width="293dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="56dp"
-        android:background="@color/rectangle_2001_color"
-        android:gravity="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchClass" />
-
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="58dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toBottomOf="@+id/className"
-        app:layout_constraintEnd_toEndOf="@+id/className"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/className"
-        app:layout_constraintTop_toTopOf="@+id/className"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/edit" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="293dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/rectangle_2001_color"
-        android:gravity="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/className" />
-
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="58dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="@+id/textView17"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView17"
-        app:srcCompat="@drawable/edit" />
-
-    <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="58dp"
-        android:layout_height="62dp"
+        android:id="@+id/class_projector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:srcCompat="@drawable/edit" />
-
+        app:layout_constraintTop_toBottomOf="@+id/class_interactive" />
 </androidx.constraintlayout.widget.ConstraintLayout>

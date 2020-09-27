@@ -5,19 +5,24 @@ import java.util.*;
 
 
 public class classInfo {
-    private String name;
+    //private String name;
     private long capacity;
     private boolean interactive;
     private boolean projector;
-    boolean[][] schedule = new boolean[5][7];
+    //boolean[][] schedule = new boolean[5][7];
 
     private classInfo(){}
-    private classInfo(String name, long capacity, boolean interactive, boolean projector, boolean[][] schedule){
+    /*private classInfo(String name, long capacity, boolean interactive, boolean projector, boolean[][] schedule){
         this.name = name;
         this.capacity = capacity;
         this.interactive = interactive;
         this.projector = projector;
         //schedule[0][0] = true;
+    }*/
+    private classInfo(long capacity, boolean interactive, boolean projector){
+        this.capacity = capacity;
+        this.interactive = interactive;
+        this.projector = projector;
     }
 
     public long getCapacity() {
@@ -44,11 +49,11 @@ public class classInfo {
         this.projector = projector;
     }
 
-    public String getName() {
+    /*public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 }

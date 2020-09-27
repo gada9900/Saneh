@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "589526712395",
+    "firebase_url": "https://saneh-cc1af.firebaseio.com",
+    "project_id": "saneh-cc1af",
+    "storage_bucket": "saneh-cc1af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589526712395:android:a29bdf2d664d5729d98dce",
+        "android_client_info": {
+          "package_name": "com.example.fortesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589526712395-lb9ouiggp7kh3bf0krdk28t9eki8gfs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEPLgMgwFxKMEgjc_LI8fEJUWSBlO1ZBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589526712395-lb9ouiggp7kh3bf0krdk28t9eki8gfs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589526712395:android:b2b234fc018d34ded98dce",
+        "android_client_info": {
+          "package_name": "com.example.saneh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589526712395-hes8lbtac15mnko71isjskrtk258i64l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saneh",
+            "certificate_hash": "b0e77733d23a93ba3121be08ca9f3dcb9a21bc7a"
+          }
+        },
+        {
+          "client_id": "589526712395-qff4hf0ju3406u8pg0gtau2t6k15bvuu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saneh",
+            "certificate_hash": "3aa3ab5ce90447fbf29b4c49d9f18bde6b5c4e15"
+          }
+        },
+        {
+          "client_id": "589526712395-0sk710ivt68ta0qqmmf2cvthgnfppnlp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saneh",
+            "certificate_hash": "3e16066de0aa8cd62cebbfe91979276e976cbd71"
+          }
+        },
+        {
+          "client_id": "589526712395-lb9ouiggp7kh3bf0krdk28t9eki8gfs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEPLgMgwFxKMEgjc_LI8fEJUWSBlO1ZBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589526712395-lb9ouiggp7kh3bf0krdk28t9eki8gfs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
