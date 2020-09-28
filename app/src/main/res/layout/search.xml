@@ -109,6 +109,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F56"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toBottomOf="@+id/floor1"
                         app:layout_constraintEnd_toEndOf="@+id/floor1"
                         app:layout_constraintHorizontal_bias="0.509"
@@ -123,6 +124,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F55"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toBottomOf="@+id/class6F56"
                         app:layout_constraintEnd_toStartOf="@+id/class6F56" />
 
@@ -135,18 +137,20 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F54"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toBottomOf="@+id/class6F55"
                         app:layout_constraintEnd_toStartOf="@+id/class6F55" />
 
                     <TextView
                         android:id="@+id/class6F1"
-                        android:layout_width="45dp"
+                        android:layout_width="42dp"
                         android:layout_height="41dp"
                         android:layout_marginStart="49dp"
                         android:layout_marginLeft="49dp"
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F1"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toBottomOf="@+id/class6F56"
                         app:layout_constraintStart_toEndOf="@+id/class6F56" />
 
@@ -154,11 +158,12 @@
                         android:id="@+id/class6F2"
                         android:layout_width="42dp"
                         android:layout_height="41dp"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginLeft="3dp"
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F2"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toBottomOf="@+id/class6F1"
                         app:layout_constraintStart_toEndOf="@+id/class6F1" />
 
@@ -170,28 +175,43 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F9"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toTopOf="@+id/class6F8"
                         app:layout_constraintEnd_toEndOf="@+id/class6F8" />
 
                     <TextView
                         android:id="@+id/class6F8"
                         android:layout_width="35dp"
-                        android:layout_height="28dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="17dp"
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F8"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toTopOf="@+id/class6F7"
                         app:layout_constraintEnd_toEndOf="@+id/class6F7" />
 
                     <TextView
                         android:id="@+id/class6F7"
                         android:layout_width="38dp"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="30dp"
+                        android:layout_height="27dp"
+                        android:layout_marginBottom="2dp"
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F7"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6F5"
+                        app:layout_constraintEnd_toEndOf="@+id/class6F5" />
+
+                    <TextView
+                        android:id="@+id/class6F5"
+                        android:layout_width="38dp"
+                        android:layout_height="27dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F5"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toTopOf="@+id/class6F4"
                         app:layout_constraintEnd_toEndOf="@+id/class6F4" />
 
@@ -199,14 +219,13 @@
                         android:id="@+id/class6F4"
                         android:layout_width="38dp"
                         android:layout_height="21dp"
-                        android:layout_marginStart="49dp"
-                        android:layout_marginLeft="49dp"
-                        android:layout_marginBottom="48dp"
+                        android:layout_marginBottom="7dp"
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F4"
-                        app:layout_constraintBottom_toBottomOf="@+id/class6F2"
-                        app:layout_constraintStart_toStartOf="@+id/class6F2" />
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6F3"
+                        app:layout_constraintEnd_toEndOf="@+id/class6F3" />
 
                     <TextView
                         android:id="@+id/class6F53"
@@ -216,6 +235,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F53"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toTopOf="@+id/class6F54"
                         app:layout_constraintStart_toStartOf="@+id/class6F54" />
 
@@ -229,17 +249,19 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F19"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toEndOf="@+id/floor1"
                         app:layout_constraintTop_toTopOf="@+id/floor1" />
 
                     <TextView
-                        android:id="@+id/class6F13"
+                        android:id="@+id/class6F14"
                         android:layout_width="35dp"
                         android:layout_height="22dp"
-                        android:layout_marginTop="26dp"
+                        android:layout_marginTop="2dp"
                         android:background="#3EBB49"
                         android:gravity="center"
-                        android:text="6F13"
+                        android:text="6F14"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toEndOf="@+id/class6F16"
                         app:layout_constraintTop_toBottomOf="@+id/class6F16" />
 
@@ -252,6 +274,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F26"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toStartOf="@+id/class6F19"
                         app:layout_constraintTop_toTopOf="@+id/class6F19" />
 
@@ -264,6 +287,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F27"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toStartOf="@+id/class6F26"
                         app:layout_constraintTop_toTopOf="@+id/class6F26" />
 
@@ -275,6 +299,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F37"
+                        android:textColor="#040404"
                         app:layout_constraintStart_toStartOf="@+id/class6F36"
                         app:layout_constraintTop_toBottomOf="@+id/class6F36" />
 
@@ -286,6 +311,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F16"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toEndOf="@+id/class6F19"
                         app:layout_constraintTop_toBottomOf="@+id/class6F19" />
 
@@ -297,6 +323,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F52"
+                        android:textColor="#040404"
                         app:layout_constraintBottom_toTopOf="@+id/class6F53"
                         app:layout_constraintStart_toStartOf="@+id/class6F53" />
 
@@ -308,6 +335,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F36"
+                        android:textColor="#040404"
                         app:layout_constraintStart_toStartOf="@+id/class6F27"
                         app:layout_constraintTop_toBottomOf="@+id/class6F27" />
 
@@ -320,19 +348,21 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F51"
+                        android:textColor="#040404"
                         app:layout_constraintStart_toEndOf="@+id/class6F53"
                         app:layout_constraintTop_toTopOf="@+id/class6F52" />
 
                     <TextView
                         android:id="@+id/class6F15"
                         android:layout_width="37dp"
-                        android:layout_height="23dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginEnd="13dp"
                         android:layout_marginRight="13dp"
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F15"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toStartOf="@+id/class6F13"
                         app:layout_constraintTop_toBottomOf="@+id/class6F17" />
 
@@ -345,6 +375,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F35"
+                        android:textColor="#040404"
                         app:layout_constraintStart_toEndOf="@+id/class6F37"
                         app:layout_constraintTop_toTopOf="@+id/class6F36" />
 
@@ -358,6 +389,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F17"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toStartOf="@+id/class6F16"
                         app:layout_constraintTop_toBottomOf="@+id/class6F19" />
 
@@ -370,6 +402,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F6"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toStartOf="@+id/class6F7"
                         app:layout_constraintTop_toTopOf="@+id/class6F7" />
 
@@ -383,6 +416,7 @@
                         android:background="#3EBB49"
                         android:gravity="center"
                         android:text="6F38"
+                        android:textColor="#040404"
                         app:layout_constraintStart_toEndOf="@+id/class6F37"
                         app:layout_constraintTop_toBottomOf="@+id/class6F35" />
 
@@ -713,6 +747,163 @@
                         app:layout_constraintEnd_toEndOf="@+id/floorg"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.366" />
+
+                    <TextView
+                        android:id="@+id/class6F20"
+                        android:layout_width="45dp"
+                        android:layout_height="52dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F20"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F19"
+                        app:layout_constraintTop_toTopOf="@+id/class6F19" />
+
+                    <TextView
+                        android:id="@+id/class6F21"
+                        android:layout_width="45dp"
+                        android:layout_height="52dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F21"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F20"
+                        app:layout_constraintTop_toTopOf="@+id/class6F20" />
+
+                    <TextView
+                        android:id="@+id/class6F24"
+                        android:layout_width="46dp"
+                        android:layout_height="52dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F24"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F21"
+                        app:layout_constraintTop_toTopOf="@+id/class6F21" />
+
+                    <TextView
+                        android:id="@+id/class6F25"
+                        android:layout_width="47dp"
+                        android:layout_height="52dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F25"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F24"
+                        app:layout_constraintTop_toTopOf="@+id/class6F24" />
+
+                    <TextView
+                        android:id="@+id/class6F49"
+                        android:layout_width="38dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F49"
+                        android:textColor="#040404"
+                        app:layout_constraintStart_toStartOf="@+id/class6F37"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F37" />
+
+                    <TextView
+                        android:id="@+id/class6F50"
+                        android:layout_width="38dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="40dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F50"
+                        android:textColor="#040404"
+                        app:layout_constraintStart_toStartOf="@+id/class6F49"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F49" />
+
+                    <TextView
+                        android:id="@+id/class6F48"
+                        android:layout_width="47dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginBottom="68dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F48"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6F56"
+                        app:layout_constraintStart_toEndOf="@+id/class6F50" />
+
+                    <TextView
+                        android:id="@+id/class6F11"
+                        android:layout_width="47dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="52dp"
+                        android:layout_marginRight="52dp"
+                        android:layout_marginBottom="68dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F11"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6F1"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F8" />
+
+                    <TextView
+                        android:id="@+id/class6F13"
+                        android:layout_width="35dp"
+                        android:layout_height="22dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F13"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/class6F14"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F14" />
+
+                    <TextView
+                        android:id="@+id/class6F12"
+                        android:layout_width="35dp"
+                        android:layout_height="22dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F12"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/class6F13"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F13" />
+
+                    <TextView
+                        android:id="@+id/class6F3"
+                        android:layout_width="45dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F3"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toBottomOf="@+id/class6F2"
+                        app:layout_constraintStart_toEndOf="@+id/class6F2" />
+
+                    <TextView
+                        android:id="@+id/class6F10"
+                        android:layout_width="33dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="33dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6F10"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6F6"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F9"
+                        tools:text="6F10" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </HorizontalScrollView>
