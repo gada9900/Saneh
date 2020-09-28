@@ -83,7 +83,7 @@ public class search extends AppCompatActivity {
                 calendar.set(Calendar.MONTH,month);
                 calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yy-MM-dd HH:mm");
+                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MM-yyyy");
                 date.setText(simpleDateFormat.format(calendar.getTime()));
 
 

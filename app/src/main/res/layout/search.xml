@@ -25,10 +25,9 @@
                 android:id="@+id/projectorSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginLeft="28dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginLeft="56dp"
                 android:layout_marginTop="20dp"
-                android:text="Projector"
                 app:layout_constraintStart_toEndOf="@+id/filterSearch"
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch" />
 
@@ -36,10 +35,9 @@
                 android:id="@+id/acticityClassSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:text="Activity class"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.32"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
 
@@ -53,6 +51,28 @@
                 android:hint="Select date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchPage5" />
+
+            <ImageView
+                android:id="@+id/imageView47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="52dp"
+                app:layout_constraintStart_toEndOf="@+id/acticityClassSearch"
+                app:layout_constraintTop_toTopOf="@+id/spinnerSearch"
+                app:srcCompat="@drawable/icons_class_i" />
+
+            <ImageView
+                android:id="@+id/imageView46"
+                android:layout_width="45dp"
+                android:layout_height="36dp"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroupSearch"
+                app:layout_constraintEnd_toStartOf="@+id/acticityClassSearch"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toEndOf="@+id/projectorSearch"
+                app:layout_constraintTop_toBottomOf="@+id/dateSearch"
+                app:srcCompat="@drawable/icons_pro" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
@@ -586,7 +606,7 @@
                     <TextView
                         android:id="@+id/class6G3"
                         android:layout_width="43dp"
-                        android:layout_height="40dp"
+                        android:layout_height="41dp"
                         android:layout_marginEnd="104dp"
                         android:layout_marginRight="104dp"
                         android:background="#3EBB49"
@@ -601,7 +621,7 @@
                     <TextView
                         android:id="@+id/class6G4"
                         android:layout_width="43dp"
-                        android:layout_height="40dp"
+                        android:layout_height="41dp"
                         android:layout_marginEnd="60dp"
                         android:layout_marginRight="60dp"
                         android:background="#3EBB49"
@@ -614,7 +634,7 @@
                     <TextView
                         android:id="@+id/class6G5"
                         android:layout_width="43dp"
-                        android:layout_height="40dp"
+                        android:layout_height="41dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:background="#3EBB49"
@@ -813,6 +833,154 @@
                         app:layout_constraintTop_toBottomOf="@+id/class6F37" />
 
                     <TextView
+                        android:id="@+id/class6G18"
+                        android:layout_width="38dp"
+                        android:layout_height="64dp"
+                        android:layout_marginBottom="44dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G18"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G2"
+                        app:layout_constraintEnd_toEndOf="@+id/floorg"
+                        app:layout_constraintHorizontal_bias="0.111"
+                        app:layout_constraintStart_toEndOf="@+id/class6G20" />
+
+                    <TextView
+                        android:id="@+id/Goffices"
+                        android:layout_width="50dp"
+                        android:layout_height="54dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="offices"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G36"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G21"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/class6G30"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.968" />
+
+                    <TextView
+                        android:id="@+id/class6G35"
+                        android:layout_width="38dp"
+                        android:layout_height="72dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G35"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G47"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G31"
+                        app:layout_constraintHorizontal_bias="0.95"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.110000014" />
+
+                    <TextView
+                        android:id="@+id/class6G42"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G42"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G47"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G31"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.65999997" />
+
+                    <TextView
+                        android:id="@+id/class6G41"
+                        android:layout_width="40dp"
+                        android:layout_height="36dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G41"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G47"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G31"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.557" />
+
+                    <TextView
+                        android:id="@+id/class6G43"
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G43"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G47"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G31"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.761" />
+
+                    <TextView
+                        android:id="@+id/class6G46"
+                        android:layout_width="40dp"
+                        android:layout_height="43dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G46"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toBottomOf="@+id/class6G48"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G31"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.827" />
+
+                    <TextView
+                        android:id="@+id/class6G23"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G44"
+                        android:textColor="#040404"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G47"
+                        app:layout_constraintEnd_toStartOf="@+id/class6G31"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/floorg"
+                        app:layout_constraintVertical_bias="0.86" />
+
+                    <TextView
+                        android:id="@+id/class6G12"
+                        android:layout_width="38dp"
+                        android:layout_height="33dp"
+                        android:layout_marginTop="204dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G12"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/floorg"
+                        app:layout_constraintHorizontal_bias="0.111"
+                        app:layout_constraintStart_toEndOf="@+id/class6G20"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/class6G2"
+                        android:layout_width="38dp"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="140dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="6G15"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/floorg"
+                        app:layout_constraintHorizontal_bias="0.125"
+                        app:layout_constraintStart_toEndOf="@+id/class6G20"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
                         android:id="@+id/class6F50"
                         android:layout_width="38dp"
                         android:layout_height="80dp"
@@ -919,27 +1087,27 @@
 
             <ImageView
                 android:id="@+id/calanderImage"
-                android:layout_width="44dp"
-                android:layout_height="55dp"
+                android:layout_width="39dp"
+                android:layout_height="47dp"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintEnd_toStartOf="@+id/dateSearch"
-                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintHorizontal_bias="0.55"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchPage5"
-                app:layout_constraintVertical_bias="0.13"
-                app:srcCompat="@drawable/call" />
+                app:layout_constraintVertical_bias="0.13999999"
+                app:srcCompat="@drawable/icons8_calendar_10_50" />
 
             <ImageView
                 android:id="@+id/timeImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="34dp"
+                android:layout_height="37dp"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.17"
+                app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toEndOf="@+id/dateSearch"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.43"
-                app:srcCompat="@drawable/path_13_ek2" />
+                app:layout_constraintVertical_bias="0.44"
+                app:srcCompat="@drawable/icons8_clock_64" />
 
             <RadioGroup
                 android:id="@+id/radioGroupSearch"
@@ -950,6 +1118,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.19"
                 app:layout_constraintStart_toEndOf="@+id/capacitySearch"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSearch"
                 app:layout_constraintVertical_bias="0.72">
@@ -962,7 +1131,7 @@
 
                 <RadioButton
                     android:id="@+id/Search30"
-                    android:layout_width="110dp"
+                    android:layout_width="79dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="0-30" />
@@ -978,9 +1147,9 @@
 
             <Spinner
                 android:id="@+id/spinnerSearch"
-                android:layout_width="158dp"
+                android:layout_width="154dp"
                 android:layout_height="47dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1003,10 +1172,10 @@
                 android:id="@+id/capacitySearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Class capacity:"
+                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="28dp"
+                android:text="Capacity:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filterSearch" />
@@ -1015,10 +1184,10 @@
                 android:id="@+id/Search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:text="Search"
                 android:textColor="#090808"
                 android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/searchPage5"
                 app:layout_constraintEnd_toEndOf="@+id/searchPage5"
                 app:layout_constraintStart_toStartOf="@+id/searchPage5"
                 app:layout_constraintTop_toTopOf="@+id/searchPage5" />
