@@ -1029,9 +1029,8 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="1dp"
+                android:layout_marginTop="6dp"
                 android:background="#3EBB49"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -1053,10 +1052,9 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="29dp"
                 android:layout_marginLeft="29dp"
-                android:layout_marginBottom="1dp"
+                android:layout_marginTop="6dp"
                 android:background="#E53935"
                 android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -1078,10 +1076,9 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="29dp"
                 android:layout_marginLeft="29dp"
-                android:layout_marginBottom="1dp"
+                android:layout_marginTop="6dp"
                 android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                 android:text=""
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -1096,6 +1093,26 @@
                 android:textColor="#060606"
                 app:layout_constraintStart_toEndOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+            <TextView
+                android:id="@+id/emptyforscrolling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/lineSearch"
+                android:layout_width="390dp"
+                android:layout_height="3dp"
+                android:background="#5E5C5C"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1116,11 +1133,11 @@
         android:id="@+id/imageView13"
         android:layout_width="73dp"
         android:layout_height="69dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.914"
         app:srcCompat="@drawable/cilcle_shape" />
 
     <ImageView
@@ -1149,6 +1166,16 @@
         app:srcCompat="@drawable/call" />
 
     <ImageView
+        android:id="@+id/imageView43"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:srcCompat="@drawable/searc" />
+
+    <ImageView
         android:id="@+id/imageView17"
         android:layout_width="36dp"
         android:layout_height="38dp"
@@ -1159,5 +1186,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageView13"
         app:layout_constraintVertical_bias="0.387"
         app:srcCompat="@drawable/search1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
