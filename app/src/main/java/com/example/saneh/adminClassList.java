@@ -17,17 +17,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class adminClassList extends AppCompatActivity {
-    private FirebaseFirestore firebaseFirestore;
+    /*private FirebaseFirestore firebaseFirestore;
     private RecyclerView mClassList;
     private FirestoreRecyclerAdapter adapter;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.adminclasslist);
+        //setContentView(R.layout.adminclasslist);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
-        mClassList = findViewById(R.id.classList);
+        //mClassList = findViewById(R.id.classList);
         //"classes"
         //Query
         Query query = firebaseFirestore.collection("classesTest");
@@ -84,5 +84,5 @@ public class adminClassList extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         adapter.startListening();
-    }
+    }*/
 }
