@@ -1154,8 +1154,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="34dp"
-        android:layout_height="29dp"
+        android:layout_width="39dp"
+        android:layout_height="37dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
         android:layout_marginBottom="16dp"
@@ -1163,41 +1163,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView7"
         app:layout_constraintVertical_bias="0.928"
-        app:srcCompat="@drawable/uouo" />
+        app:srcCompat="@drawable/sett" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="31dp"
+        android:layout_height="36dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView7"
         app:layout_constraintVertical_bias="0.565"
-        app:srcCompat="@drawable/call" />
+        app:srcCompat="@drawable/edd" />
 
     <ImageView
         android:id="@+id/imageView43"
-        android:layout_width="38dp"
-        android:layout_height="45dp"
+        android:layout_width="42dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView13"
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
-        app:srcCompat="@drawable/searc" />
+        app:srcCompat="@drawable/pluss" />
 
     <ImageView
         android:id="@+id/imageView17"
-        android:layout_width="36dp"
-        android:layout_height="38dp"
+        android:layout_width="51dp"
+        android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView13"
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
         app:layout_constraintVertical_bias="0.387"
-        app:srcCompat="@drawable/search1" />
+        app:srcCompat="@drawable/blus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
