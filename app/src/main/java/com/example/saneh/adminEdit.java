@@ -35,31 +35,90 @@ public class adminEdit extends AppCompatActivity {
         setContentView(R.layout.admin_edit);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
-        CollectionReference classes =firebaseFirestore.collection("classesTest");
+        CollectionReference classesRef = firebaseFirestore.collection("classesTest");
 
         /*Map<String, Object> data1 = new HashMap<>();
         data1.put("capacity", 25);
         data1.put("interactive", true);
         data1.put("projector", true);
 
-        classes.document("F22").set(data1);
+        classesRef.document("F22").set(data1);
 
         Map<String, Object> data2 = new HashMap<>();
         data2.put("capacity", 25);
         data2.put("interactive", true);
         data2.put("projector", true);
 
-        classes.document("G54").set(data1);*/
+        classesRef.document("G54").set(data1);*/
 
         //final Query query = firebaseFirestore.collection("classesTest");
 
-        TextView class47 = findViewById(R.id.class6G47);
-        class47.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
 
-                //onButtonShowPopupWindowClick(view);
+
+
+        public void clickableClass(){
+            TextView classes ;
+            TextView unavClasses = null;
+
+            /////// initiate a clickable classes in floor 1
+            for( int i = 1 ; i < 57 ; i++) {
+
+                if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 ){
+                    //continue;
+                    int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
+                    unavClasses = (TextView) findViewById(id);
+                } else{
+                int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
+                classes = (TextView) findViewById(id);
+
+                classes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onClickShowPopupWindowClick(view);
+
+                    }
+                });
+                    unavClasses.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onClickShowPopupWindowClick(view);
+
+                        }
+                    });
+            } }
+
+            /////// initiate a clickable classes in floor G
+            for( int i = 3 ; i < 52 ; i++) {
+
+                if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 ){
+                    //continue;
+                    int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
+                    unavClasses = (TextView) findViewById(id);
+                } else{
+                    int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
+                    classes = (TextView) findViewById(id);
+
+                    classes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onClickShowPopupWindowClick(view);
+
+                        }
+                    });
+                    unavClasses.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onClickShowPopupWindowClick(view);
+
+                        }
+                    });
+                }
+                //////////////////////////////////////////////
             }
-        });
+        }
+
+//The class is not created yet
+    private void onClickShowPopupWindowClick(View view) {
     }
 }
