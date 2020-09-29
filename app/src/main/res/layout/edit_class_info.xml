@@ -9,8 +9,8 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="393dp"
+        android:layout_height="454dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -19,10 +19,9 @@
         android:fillViewport="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595">
+        app:layout_constraintVertical_bias="0.622">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -470,10 +469,10 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.771"
+                app:layout_constraintHorizontal_bias="0.715"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.444" />
+                app:layout_constraintVertical_bias="0.349" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -494,18 +493,18 @@
                 android:id="@+id/classID"
                 android:layout_width="88dp"
                 android:layout_height="22dp"
-                android:layout_marginEnd="188dp"
-                android:layout_marginRight="188dp"
+                android:layout_marginEnd="220dp"
+                android:layout_marginRight="220dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.062" />
+                app:layout_constraintVertical_bias="0.061" />
 
             <RadioGroup
-                android:layout_width="352dp"
-                android:layout_height="37dp"
+                android:layout_width="323dp"
+                android:layout_height="36dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/divider2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -516,8 +515,8 @@
 
                 <RadioButton
                     android:id="@+id/radioButton"
-                    android:layout_width="129dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="101dp"
+                    android:layout_height="37dp"
                     android:text="G" />
 
                 <RadioButton
@@ -544,7 +543,7 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/classID"
                 app:layout_constraintEnd_toStartOf="@+id/classID"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/classID"
                 app:layout_constraintVertical_bias="0.0" />
@@ -553,8 +552,8 @@
                 android:id="@+id/Capacity"
                 android:layout_width="79dp"
                 android:layout_height="23dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -566,11 +565,11 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="schedule"
+                android:text="Schedule"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/divider2"
                 app:layout_constraintEnd_toStartOf="@+id/divider2"
-                app:layout_constraintHorizontal_bias="0.646"
+                app:layout_constraintHorizontal_bias="0.724"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/divider2" />
 
@@ -581,10 +580,10 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.72"
+                app:layout_constraintHorizontal_bias="0.673"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.288" />
+                app:layout_constraintVertical_bias="0.232" />
 
             <Switch
                 android:id="@+id/Projector"
@@ -593,10 +592,10 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.243"
+                app:layout_constraintHorizontal_bias="0.249"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.171"
+                app:layout_constraintVertical_bias="0.136"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
@@ -606,24 +605,27 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.838"
+                app:layout_constraintHorizontal_bias="0.847"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.171"
+                app:layout_constraintVertical_bias="0.136"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
+
 
             <TextView
                 android:id="@+id/className"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:text="Floor"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/divider"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
-                app:layout_constraintHorizontal_bias="0.479"
+                app:layout_constraintHorizontal_bias="0.125"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/divider" />
-
+                app:layout_constraintTop_toTopOf="@+id/divider"
+                app:layout_constraintVertical_bias="0.454" />
 
             <TextView
                 android:id="@+id/textView17"
@@ -673,6 +675,7 @@
                 android:text="12:00-1:00"
                 app:layout_constraintBottom_toBottomOf="@+id/checkBox4"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox4"
+                app:layout_constraintHorizontal_bias="0.42"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/checkBox4"
                 app:layout_constraintVertical_bias="1.0" />
@@ -687,8 +690,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/checkBox5"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/checkBox5"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="@+id/checkBox5" />
 
             <TextView
                 android:id="@+id/textView23"
@@ -699,10 +701,8 @@
                 android:text="2:00-3:00"
                 app:layout_constraintBottom_toBottomOf="@+id/checkBox7"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox7"
-                app:layout_constraintHorizontal_bias="0.347"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/checkBox7"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintTop_toTopOf="@+id/checkBox7" />
 
             <TextView
                 android:id="@+id/textView24"
@@ -755,6 +755,38 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2"
                 app:layout_constraintVertical_bias="0.002" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="700dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="165dp"
+                android:layout_height="43dp"
+                android:layout_marginBottom="72dp"
+                android:shadowColor="#138D97"
+                android:text="Edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* Checked boxs means that the class is not empty."
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.753" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
