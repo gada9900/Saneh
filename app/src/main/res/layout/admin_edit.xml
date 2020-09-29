@@ -788,7 +788,7 @@
                         android:gravity="center"
                         android:text="6G18"
                         android:textColor="#040404"
-                        app:layout_constraintBottom_toTopOf="@+id/class6G2"
+                        app:layout_constraintBottom_toTopOf="@+id/class6G15"
                         app:layout_constraintEnd_toEndOf="@+id/floorg"
                         app:layout_constraintHorizontal_bias="0.111"
                         app:layout_constraintStart_toEndOf="@+id/class6G20" />
@@ -885,7 +885,7 @@
                         app:layout_constraintVertical_bias="0.827" />
 
                     <TextView
-                        android:id="@+id/class6G23"
+                        android:id="@+id/class6G44"
                         android:layout_width="40dp"
                         android:layout_height="30dp"
                         android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
@@ -914,7 +914,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/class6G2"
+                        android:id="@+id/class6G15"
                         android:layout_width="38dp"
                         android:layout_height="41dp"
                         android:layout_marginTop="140dp"

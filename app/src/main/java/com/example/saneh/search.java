@@ -27,7 +27,6 @@ public class search extends AppCompatActivity {
 
     static PopupWindow popupWindow ;
     static ConstraintLayout con ;
-
     EditText date;
 
     @Override
@@ -50,13 +49,6 @@ public class search extends AppCompatActivity {
             }
         });
 
-        TextView class47 = findViewById(R.id.class6G47);
-        class47.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonShowPopupWindowClick(view);
-            }
-        });
 
         final ImageView profile = findViewById(R.id.imageView8);
 
@@ -70,7 +62,7 @@ public class search extends AppCompatActivity {
 
 
 
-
+       init();
 
     }
 
@@ -94,14 +86,21 @@ public class search extends AppCompatActivity {
 
         new DatePickerDialog(search.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
-    public void onButtonShowPopupWindowClick(View view) {
+    public void onButtonShowPopupWindowClick(View view  ) {
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.viewinfo, null);
 
+        //calling attrbuite which in class view info
         Button book = popupView.findViewById(R.id.bookINFO);
+        TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
+
+
+
+        // change vlaues in class view info
+        roomN.setText(""+view.getResources().getResourceEntryName(view.getId()).substring(5));
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +115,7 @@ public class search extends AppCompatActivity {
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
-        popupWindow = new PopupWindow(popupView, 700, 1200, focusable);
+        popupWindow = new PopupWindow(popupView, 600, 1000, focusable);
         popupWindow.setTouchable(true);
 
 
@@ -140,6 +139,53 @@ public class search extends AppCompatActivity {
 
 
     }
+
+    public void init(){
+TextView classes ;
+
+       /////// initiate a clickable classes in floor 1
+     for( int i = 1 ; i < 57 ; i++) {
+
+         if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
+             continue;
+         int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
+         classes = (TextView) findViewById(id);
+
+        classes.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 onButtonShowPopupWindowClick(view);
+
+             }
+         });
+
+     }
+
+        /////// initiate a clickable classes in floor G
+       for( int i = 3 ; i < 52 ; i++) {
+
+            if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
+                continue;
+           int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
+           classes = (TextView) findViewById(id);
+
+            classes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onButtonShowPopupWindowClick(view);
+                }
+            });
+
+
+        }
+
+
+
+    }
+
+
+
+
 
 
 
