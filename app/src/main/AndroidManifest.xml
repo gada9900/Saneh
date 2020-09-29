@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".search" />
+        <activity android:name=".Login" />
         <activity android:name=".admin_settings" />
         <activity android:name=".sign_up" />
         <activity android:name=".profile" />
         <activity android:name=".adminClassList"/>
+<<<<<<< HEAD
         <activity android:name=".Login"/>
         <activity android:name=".adminEdit">
+=======
+        <activity android:name=".search">
+>>>>>>> b015f4f8db93abac8fe6413f83cf377213d23fc3
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
