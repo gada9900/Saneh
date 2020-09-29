@@ -26,11 +26,10 @@
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="400dp"
                 android:layout_height="518dp"
-                android:layout_marginTop="300dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/searchPage5">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="500dp"
@@ -1118,8 +1117,7 @@
                 android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit"
-                android:textColor="#000000"
+                android:text="EDIT"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/searchPage5"
                 app:layout_constraintEnd_toEndOf="parent"
