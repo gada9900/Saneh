@@ -27,4 +27,10 @@ public class editClassInfo extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_class_info);
     }
+
+    public void EditClass(View view){
+
+    }
+
+
 }
