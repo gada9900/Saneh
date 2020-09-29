@@ -1277,6 +1277,7 @@
                 android:id="@+id/lineSearch"
                 android:layout_width="390dp"
                 android:layout_height="3dp"
+                android:layout_marginBottom="10dp"
                 android:background="#5E5C5C"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
