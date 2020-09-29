@@ -40,18 +40,6 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/icons_class_i" />
 
-            <ImageView
-                android:id="@+id/imageView38"
-                android:layout_width="46dp"
-                android:layout_height="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Projector_switch"
-                app:layout_constraintEnd_toStartOf="@+id/Projector_switch"
-                app:layout_constraintHorizontal_bias="0.81"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/Projector_switch"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/icons_pro" />
-
             <CheckBox
                 android:id="@+id/S8_9"
                 android:layout_width="wrap_content"
@@ -766,7 +754,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/EditClass"
                 android:layout_width="165dp"
                 android:layout_height="43dp"
                 android:layout_marginBottom="72dp"
@@ -789,6 +777,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.753" />
+
+            <ImageView
+                android:id="@+id/imageView45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/projecterr"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="94dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
