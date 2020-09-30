@@ -171,9 +171,6 @@ public class editClassInfo extends AppCompatActivity{
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
 
-                classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
-                refrence.child(_classID).setValue(obj1);
-
               //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
               //  refrence.child(_classID).setValue(obj1);
 
@@ -215,6 +212,8 @@ public class editClassInfo extends AppCompatActivity{
                         } else{
                             Floor.check(R.id.radioButton2);
                         }
+
+
 
 
                     } else {

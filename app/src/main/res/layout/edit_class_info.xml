@@ -516,12 +516,6 @@
                     android:layout_height="match_parent"
                     android:text="1st" />
 
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="81dp"
-                    android:layout_height="match_parent"
-                    android:text="2nd" />
-
             </RadioGroup>
 
             <TextView
