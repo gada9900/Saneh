@@ -40,10 +40,9 @@ public class editClassInfo extends AppCompatActivity{
     String _classID ;
     long _Capacity, currentCap;
     boolean _Projector , _InterActive, currentPro, currentInter;
-    long _floor;
 
-    Bundle query;
-    long id ;
+   boolean[] s , m , t , w ,th ;
+
 
 
     FirebaseDatabase root;
