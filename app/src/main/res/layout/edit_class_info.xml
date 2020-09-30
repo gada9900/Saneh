@@ -9,8 +9,8 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="393dp"
-        android:layout_height="454dp"
+        android:layout_width="400dp"
+        android:layout_height="565dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -19,9 +19,10 @@
         android:fillViewport="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622">
+        app:layout_constraintVertical_bias="0.792">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -479,8 +480,8 @@
 
             <EditText
                 android:id="@+id/classID"
-                android:layout_width="88dp"
-                android:layout_height="22dp"
+                android:layout_width="86dp"
+                android:layout_height="37dp"
                 android:layout_marginEnd="220dp"
                 android:layout_marginRight="220dp"
                 android:ems="10"
@@ -488,7 +489,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.061" />
+                app:layout_constraintVertical_bias="0.046" />
 
             <RadioGroup
                 android:id="@+id/FloorGroup"
@@ -532,15 +533,14 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/classID"
                 app:layout_constraintEnd_toStartOf="@+id/classID"
-                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintHorizontal_bias="0.384"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/classID"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@+id/classID" />
 
             <EditText
                 android:id="@+id/Capacity"
-                android:layout_width="79dp"
-                android:layout_height="23dp"
+                android:layout_width="78dp"
+                android:layout_height="35dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:ems="10"
@@ -548,7 +548,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.06" />
+                app:layout_constraintVertical_bias="0.049" />
 
             <TextView
                 android:id="@+id/textView14"
