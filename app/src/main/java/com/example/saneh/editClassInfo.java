@@ -170,10 +170,6 @@ public class editClassInfo extends AppCompatActivity{
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
-
-                classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
-                refrence.child(_classID).setValue(obj1);
-
               //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
               //  refrence.child(_classID).setValue(obj1);
 
@@ -191,7 +187,6 @@ public class editClassInfo extends AppCompatActivity{
         Intent intent=getIntent();
         Bundle valueFromFirstActivity = intent.getExtras();
         classIDPassed = valueFromFirstActivity.getString("classID");
-        //classID = findViewById(R.id.classID);
         classID.setText(classIDPassed);
 
         DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
