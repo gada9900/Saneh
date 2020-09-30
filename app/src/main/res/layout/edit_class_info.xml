@@ -514,7 +514,7 @@
                     android:id="@+id/radioButton2"
                     android:layout_width="82dp"
                     android:layout_height="match_parent"
-                    android:text="1st" />
+                    android:text="F" />
 
             </RadioGroup>
 
