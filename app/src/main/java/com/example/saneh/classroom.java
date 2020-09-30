@@ -85,6 +85,11 @@ public class classroom {
         return s;
     }
 
+    public boolean getS(String index){
+        int ind = Integer.parseInt(index);
+        return s[ind];
+    }
+
     public boolean[] getM(){
         return m;
     }
