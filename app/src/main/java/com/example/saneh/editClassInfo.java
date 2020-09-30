@@ -60,41 +60,11 @@ public class editClassInfo extends AppCompatActivity{
     Switch InterActive;
     RadioGroup Floor;
 
-    CheckBox Th8_9;
-    CheckBox Th9_10;
-    CheckBox Th10_11;
-    CheckBox Th11_12;
-    CheckBox Th12_1;
-    CheckBox Th1_2;
-    CheckBox Th2_3;
-    CheckBox S8_9;
-    CheckBox S9_10;
-    CheckBox S10_11;
-    CheckBox S11_12;
-    CheckBox S12_1;
-    CheckBox S1_2;
-    CheckBox S2_3;
-    CheckBox W8_9;
-    CheckBox W9_10;
-    CheckBox W10_11;
-    CheckBox W11_12;
-    CheckBox W12_1;
-    CheckBox W1_2;
-    CheckBox W2_3;
-    CheckBox M8_9;
-    CheckBox M9_10;
-    CheckBox M10_11;
-    CheckBox M11_12;
-    CheckBox M12_1;
-    CheckBox M1_2;
-    CheckBox M2_3;
-    CheckBox T8_9;
-    CheckBox T9_10;
-    CheckBox T10_11;
-    CheckBox T11_12;
-    CheckBox T12_1;
-    CheckBox T1_2;
-    CheckBox T2_3;
+    CheckBox S8_9, S9_10, S10_11, S11_12, S12_1, S1_2, S2_3;
+    CheckBox M8_9, M9_10, M10_11, M11_12, M12_1, M1_2, M2_3;
+    CheckBox T8_9, T9_10, T10_11, T11_12, T12_1, T1_2, T2_3;
+    CheckBox W8_9, W9_10, W10_11, W11_12, W12_1, W1_2, W2_3;
+    CheckBox Th8_9, Th9_10, Th10_11, Th11_12, Th12_1, Th1_2, Th2_3;
 
     Button Edit;
 
@@ -188,7 +158,7 @@ public class editClassInfo extends AppCompatActivity{
         Intent intent=getIntent();
         Bundle valueFromFirstActivity = intent.getExtras();
         classIDPassed = valueFromFirstActivity.getString("classID");
-        //classID = findViewById(R.id.classID);
+        //show ClassID
         classID.setText(classIDPassed);
 
         DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
@@ -204,16 +174,18 @@ public class editClassInfo extends AppCompatActivity{
                         currentPro = document.getBoolean("projector");
                         currentInter = document.getBoolean("interactive");
 
+                        //show Capacity
                         Capacity.setText(currentCap+"");
+                        //show Projector
                         Projector.setChecked(currentPro);
+                        //show Interactive
                         InterActive.setChecked(currentInter);
+                        //show Floor
                         if (classIDPassed.contains("G")){
                             Floor.check(R.id.radioButton);
                         } else{
                             Floor.check(R.id.radioButton2);
                         }
-
-
 
 
                     } else {
