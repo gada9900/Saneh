@@ -74,6 +74,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch"
                 app:srcCompat="@drawable/icons_pro" />
 
+            <Button
+                android:id="@+id/searchbtn"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="672dp"
+                android:background="#acdfe3"
+                android:text="Search"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.965"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password3"
+                app:layout_constraintVertical_bias="0.8" />
+
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="400dp"
