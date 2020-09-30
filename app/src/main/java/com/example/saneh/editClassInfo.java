@@ -45,6 +45,7 @@ public class editClassInfo extends AppCompatActivity{
     Bundle query;
     long id ;
 
+
     FirebaseDatabase root;
     DatabaseReference refrence;
     private static final String TAG = "DocSnippets";
@@ -153,7 +154,9 @@ public class editClassInfo extends AppCompatActivity{
 
         Edit    = findViewById(R.id.EditClass);
 
-         ShowData();
+
+            ShowData();
+
 
 
         Edit.setOnClickListener(new View.OnClickListener() {
@@ -167,13 +170,22 @@ public class editClassInfo extends AppCompatActivity{
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
+
                 classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
                 refrence.child(_classID).setValue(obj1);
+
+              //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
+              //  refrence.child(_classID).setValue(obj1);
+
+                //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
+                //  refrence.child(_classID).setValue(obj1);
+
 
             }
         });
     }
-    private void ShowData(){
+
+    private void ShowData() {
 
         final String classIDPassed;
         Intent intent=getIntent();

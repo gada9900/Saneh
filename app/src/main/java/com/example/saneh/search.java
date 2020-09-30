@@ -47,6 +47,13 @@ public class search extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
 
+
+
+        //prevent bottom toolbar from moving (its important)
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+
+
         inputDate = findViewById(R.id.dateSearch);
 
 
