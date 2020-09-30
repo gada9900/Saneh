@@ -63,6 +63,19 @@
                 app:layout_constraintTop_toTopOf="@+id/spinnerSearch"
                 app:srcCompat="@drawable/icons_class_i" />
 
+            <Button
+                android:id="@+id/searchbtn"
+                android:layout_width="63dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="12dp"
+                android:background="#acdfe3"
+                android:text="Save"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/imageView47"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
+
             <ImageView
                 android:id="@+id/imageView46"
                 android:layout_width="45dp"
