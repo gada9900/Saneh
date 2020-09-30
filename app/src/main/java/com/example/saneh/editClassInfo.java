@@ -216,14 +216,6 @@ public class editClassInfo extends AppCompatActivity{
             }
         });
 
-       /* query = getIntent().getExtras();
-        id = query.getLong("id");
-
-        Intent intent = getIntent();
-        _Capacity= intent.getLongExtra("capacity");*/
-
-
-
     }
 
     public void EditClass(View view){
