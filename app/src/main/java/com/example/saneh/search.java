@@ -19,6 +19,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,11 +34,25 @@ public class search extends AppCompatActivity {
     static PopupWindow popupWindow ;
     static ConstraintLayout con ;
     EditText date;
+    FirebaseAuth fAuth;
+    public static final String TAG = "TAG";
+    EditText inputDate;
+    Spinner selectedTime;
+    Button search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+
+        fAuth = FirebaseAuth.getInstance();
+
+        inputDate = findViewById(R.id.dateSearch);
+
+
+        selectedTime =(Spinner) findViewById(R.id.spinnerSearch);
+
+        search = findViewById(R.id.searchbtn);
 
         date=findViewById(R.id.dateSearch);
         Spinner mySpinner = (Spinner) findViewById(R.id.spinnerSearch);
@@ -60,9 +80,53 @@ public class search extends AppCompatActivity {
             }
         });
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //here we need to write a code that will take date and time and change the color of classrooms
+
+                //date input
+                String sdate =inputDate.getText().toString().trim();
+
+                //time input
+                String stime = selectedTime.getSelectedItem().toString();
+                int timeIndex = -1;
+
+                switch (stime){
+                    case "8:00 AM":  timeIndex= 0;
+                        break;
+
+                    case "9:00 AM": timeIndex= 1;
+                        break;
+
+                    case "10:00 AM": timeIndex= 2;
+                        break;
+
+                    case "11:00 AM": timeIndex= 3;
+                        break;
+
+                    case "12:00 PM": timeIndex= 4;
+                        break;
+
+                    case "1:00 PM": timeIndex= 5;
+                        break;
+
+                    case "2:00 PM": timeIndex= 6;
+                        break;
+
+                }//end switch
 
 
-       init();
+            }
+        });
+
+
+
+
+
+
+        init();
 
     }
 
@@ -178,6 +242,8 @@ TextView classes ;
 
 
         }
+
+
 
     }
 
