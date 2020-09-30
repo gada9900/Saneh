@@ -16,8 +16,6 @@
         <activity android:name=".Login"/>
         <activity android:name=".editClassInfo"/>
         <activity android:name=".adminEdit">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
