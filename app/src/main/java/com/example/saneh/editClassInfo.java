@@ -34,7 +34,9 @@ public class editClassInfo extends AppCompatActivity{
     private static final String TAG = "TAG";
     Bundle query;
     long id ;
+
     private  FirebaseFirestore db;
+
     FirebaseDatabase root;
     DatabaseReference refrence;
 
@@ -156,13 +158,20 @@ public class editClassInfo extends AppCompatActivity{
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
+
               //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
               //  refrence.child(_classID).setValue(obj1);
+
+                //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
+                //  refrence.child(_classID).setValue(obj1);
+
 
             }
         });
     }
+
     private void ShowData() {
+
 
         String classIDPassed;
         Intent intent=getIntent();
@@ -211,6 +220,18 @@ public class editClassInfo extends AppCompatActivity{
     public void EditClass(View view){
 
     }
-
+    /*public classes customObjects(String classID) {
+        // [START custom_objects]
+        DocumentReference docRef = db.collection("classes").document(classID+"");
+        final classes[] class1 = new classes[1];
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                 class1[0] = documentSnapshot.toObject(classes.class);
+                // [END custom_objects]
+            }
+        });
+        // [END custom_objects]
+        return class1[0];
+    }*/
 
 }
