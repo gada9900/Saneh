@@ -1,44 +1,56 @@
 package com.example.saneh;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class editClassInfo extends AppCompatActivity{
 
     //global variabls
     String _classID ;
-    long _Capacity;
-    boolean _Projector , _InterActive;
+    long _Capacity, currentCap;
+    boolean _Projector , _InterActive, currentPro, currentInter;
     long _floor;
-    private static final String TAG = "TAG";
+
     Bundle query;
     long id ;
 
-    private  FirebaseFirestore db;
 
     FirebaseDatabase root;
     DatabaseReference refrence;
+    private static final String TAG = "DocSnippets";
+
+    FirebaseFirestore firebaseFirestore;
 
     TextView classID;
     TextView Capacity;
@@ -85,14 +97,14 @@ public class editClassInfo extends AppCompatActivity{
     CheckBox T2_3;
 
     Button Edit;
-    private DocumentReference docRef;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_class_info);
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        final CollectionReference classesRef = firebaseFirestore.collection("classes");
+
         //Hooks
 
         classID = findViewById(R.id.classID);
@@ -154,10 +166,13 @@ public class editClassInfo extends AppCompatActivity{
                 refrence = root.getReference("classes");
                 //Get all the values
                 _classID =classID.getEditableText().toString();
-                _Capacity =Integer.parseInt(Capacity.getEditableText().toString());
+                _Capacity =Long.parseLong(Capacity.getEditableText().toString());
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
+
+                classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
+                refrence.child(_classID).setValue(obj1);
 
               //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
               //  refrence.child(_classID).setValue(obj1);
@@ -172,66 +187,52 @@ public class editClassInfo extends AppCompatActivity{
 
     private void ShowData() {
 
-
-        String classIDPassed;
+        final String classIDPassed;
         Intent intent=getIntent();
         Bundle valueFromFirstActivity = intent.getExtras();
         classIDPassed = valueFromFirstActivity.getString("classID");
-        classID = findViewById(R.id.classID);
+        //classID = findViewById(R.id.classID);
         classID.setText(classIDPassed);
 
-        // [START custom_objects]
-        db = FirebaseFirestore.getInstance();
-
-
-
-
-
-        DocumentReference docRef = db.collection("classes").document(""+classIDPassed);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
+        classRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        _Capacity=document.getLong("capacity");
-                        Capacity.setText(_Capacity+"");
+                        currentCap = document.getLong("capacity");
+                        currentPro = document.getBoolean("projector");
+                        currentInter = document.getBoolean("interactive");
+
+                        Capacity.setText(currentCap+"");
+                        Projector.setChecked(currentPro);
+                        InterActive.setChecked(currentInter);
+                        if (classIDPassed.contains("G")){
+                            Floor.check(R.id.radioButton);
+                        } else{
+                            Floor.check(R.id.radioButton2);
+                        }
+
+
                     } else {
                         Log.d(TAG, "No such document");
+                        Toast.makeText(editClassInfo.this, "No class with this ID", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
+                    Toast.makeText(editClassInfo.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-
-
-
-        // [END custom_objects]
-
-
-
-
 
     }
 
     public void EditClass(View view){
 
     }
-    /*public classes customObjects(String classID) {
-        // [START custom_objects]
-        DocumentReference docRef = db.collection("classes").document(classID+"");
-        final classes[] class1 = new classes[1];
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                 class1[0] = documentSnapshot.toObject(classes.class);
-                // [END custom_objects]
-            }
-        });
-        // [END custom_objects]
-        return class1[0];
-    }*/
+
 
 }
