@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,13 +28,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class editClassInfo extends AppCompatActivity{
 
     //global variabls
     String _classID ;
-    long _Capacity;
-    boolean _Projector , _InterActive;
+    long _Capacity, currentCap;
+    boolean _Projector , _InterActive, currentPro, currentInter;
     long _floor;
 
     Bundle query;
@@ -41,6 +47,9 @@ public class editClassInfo extends AppCompatActivity{
 
     FirebaseDatabase root;
     DatabaseReference refrence;
+    private static final String TAG = "DocSnippets";
+
+    FirebaseFirestore firebaseFirestore;
 
     TextView classID;
     TextView Capacity;
@@ -91,6 +100,9 @@ public class editClassInfo extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_class_info);
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        final CollectionReference classesRef = firebaseFirestore.collection("classes");
 
         //Hooks
 
@@ -167,8 +179,36 @@ public class editClassInfo extends AppCompatActivity{
         Intent intent=getIntent();
         Bundle valueFromFirstActivity = intent.getExtras();
         classIDPassed = valueFromFirstActivity.getString("classID");
-        classID = findViewById(R.id.classID);
+        //classID = findViewById(R.id.classID);
         classID.setText(classIDPassed);
+
+        DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
+        classRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        currentCap = document.getLong("capacity");
+                        currentPro = document.getBoolean("projector");
+                        currentInter = document.getBoolean("interactive");
+
+                        Capacity.setText(currentCap+"");
+                        Projector.setChecked(currentPro);
+                        InterActive.setChecked(currentInter);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Capacity.setText("Fail");
+                    Log.d(TAG, "get failed with ", task.getException());
+                    task.getException().printStackTrace();
+                    Toast.makeText(editClassInfo.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
        /* query = getIntent().getExtras();
         id = query.getLong("id");
