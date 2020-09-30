@@ -101,4 +101,9 @@ public class classroom {
         return th;
     }
 
+    public boolean getS(String index){
+        int ind = Integer.parseInt(index);
+        return s[ind];
+    }
+
 }
