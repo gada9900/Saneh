@@ -175,7 +175,7 @@ public class editClassInfo extends AppCompatActivity{
     }
     private void ShowData(){
 
-        String classIDPassed;
+        final String classIDPassed;
         Intent intent=getIntent();
         Bundle valueFromFirstActivity = intent.getExtras();
         classIDPassed = valueFromFirstActivity.getString("classID");
@@ -198,13 +198,19 @@ public class editClassInfo extends AppCompatActivity{
                         Capacity.setText(currentCap+"");
                         Projector.setChecked(currentPro);
                         InterActive.setChecked(currentInter);
+                        if (classIDPassed.contains("G")){
+                            Floor.check(R.id.radioButton);
+                        } else{
+                            Floor.check(R.id.radioButton2);
+                        }
+
+
                     } else {
                         Log.d(TAG, "No such document");
+                        Toast.makeText(editClassInfo.this, "No class with this ID", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Capacity.setText("Fail");
                     Log.d(TAG, "get failed with ", task.getException());
-                    task.getException().printStackTrace();
                     Toast.makeText(editClassInfo.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
