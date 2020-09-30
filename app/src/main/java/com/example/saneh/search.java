@@ -1,8 +1,10 @@
 package com.example.saneh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +23,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class search extends AppCompatActivity {
 
@@ -91,35 +101,80 @@ public class search extends AppCompatActivity {
 
                 //time input
                 String stime = selectedTime.getSelectedItem().toString();
-                int timeIndex = -1;
+                String timeIndex = "-1";
 
                 switch (stime){
-                    case "8:00 AM":  timeIndex= 0;
-                     break;
-
-                    case "9:00 AM": timeIndex= 1;
+                    case "8:00 AM":  timeIndex= "0";
                         break;
 
-                    case "10:00 AM": timeIndex= 2;
+                    case "9:00 AM": timeIndex= "1";
                         break;
 
-                    case "11:00 AM": timeIndex= 3;
+                    case "10:00 AM": timeIndex= "2";
                         break;
 
-                    case "12:00 PM": timeIndex= 4;
+                    case "11:00 AM": timeIndex= "3";
                         break;
 
-                    case "1:00 PM": timeIndex= 5;
+                    case "12:00 PM": timeIndex= "4";
                         break;
 
-                    case "2:00 PM": timeIndex= 6;
+                    case "1:00 PM": timeIndex= "5";
+                        break;
+
+                    case "2:00 PM": timeIndex= "6";
                         break;
 
                 }//end switch
 
 
-            }
-        });
+
+
+                //-- here
+
+                //get all the Documents
+                final String finalTimeIndex = timeIndex;
+
+                Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
+                        .collection("classes")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @SuppressLint("ResourceAsColor")
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+
+                                    List<classroom> classroomList = new ArrayList<classroom>();
+
+
+                                    for (DocumentSnapshot ds : myListOfDocuments) {
+                                        classroom classobj = ds.toObject(classroom.class);
+                                        classroomList.add(classobj);
+                                    }
+
+                                    TextView room;
+
+                                    for (classroom element : classroomList) {
+                                        String roomid = "class" + element.getRoomNum();
+                                        int id = getResources().getIdentifier(roomid, "id", getPackageName());
+                                        room = (TextView) findViewById(id);
+
+                                        if (element.getS(finalTimeIndex) == true) {
+                                            room.setBackgroundColor(R.color.red);
+                                        } else {
+                                            room.setBackgroundColor(R.color.grean);
+                                        }//end else
+                                    }//end for
+                                }
+                            }
+
+                        });
+            }});
+
+
+
+
 
 
 
