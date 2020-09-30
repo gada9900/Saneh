@@ -141,6 +141,8 @@ public class editClassInfo extends AppCompatActivity{
 
         Edit    = findViewById(R.id.EditClass);
 
+         ShowData();
+
 
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +162,14 @@ public class editClassInfo extends AppCompatActivity{
         });
     }
     private void ShowData(){
+
+        String classIDPassed;
+        Intent intent=getIntent();
+        Bundle valueFromFirstActivity = intent.getExtras();
+        classIDPassed = valueFromFirstActivity.getString("classID");
+        classID = findViewById(R.id.classID);
+        classID.setText(classIDPassed);
+
        /* query = getIntent().getExtras();
         id = query.getLong("id");
 
