@@ -5,19 +5,82 @@ import java.util.*;
 
 
 public class classInfo {
-    //private String name;
+    private String roomNum;
     private long capacity;
     private boolean interactive;
     private boolean projector;
-    //boolean[][] schedule = new boolean[5][7];
+    private boolean[] s ;
+    private boolean[] m ;
+    private boolean[] t ;
+    private boolean[] w ;
+    private boolean[] th;
 
     private classInfo(){}
+    public classInfo(String roomNum ,long capacity, boolean interactive,boolean projector ){
+        this.roomNum=roomNum;
+        this.capacity=capacity;
+        this.interactive=interactive;
+        this.projector=projector;
+    }
 
-    private classInfo(long capacity, boolean interactive, boolean projector){
-        this.capacity = capacity;
-        this.interactive = interactive;
-        this.projector = projector;
+    public classInfo(String roomNum ,long capacity, boolean interactive,boolean projector ,boolean[] s,boolean[] m ,boolean[] t , boolean[] w ,boolean[] th) {
+        this.roomNum=roomNum;
+        this.capacity=capacity;
+        this.interactive=interactive;
+        this.projector=projector;
+        this.s = s;
+        this.m=m;
+        this.t=t;
+        this.w=w;
+        this.th=th;
+    }
 
+    public boolean[] getT() {
+        return t;
+    }
+
+    public boolean[] getS() {
+        return s;
+    }
+
+    public void setS(boolean[] s) {
+        this.s = s;
+    }
+
+    public boolean[] getM() {
+        return m;
+    }
+
+    public boolean[] getW() {
+        return w;
+    }
+
+    public void setW(boolean[] w) {
+        this.w = w;
+    }
+
+    public void setM(boolean[] m) {
+        this.m = m;
+    }
+
+    public boolean[] getTh() {
+        return th;
+    }
+
+    public void setTh(boolean[] th) {
+        this.th = th;
+    }
+
+    public void setT(boolean[] t) {
+        this.t = t;
+    }
+
+    public String getRoomNum() {
+        return roomNum;
+    }
+
+    public void setRoomNum(String roomNum) {
+        this.roomNum = roomNum;
     }
 
     public long getCapacity() {
@@ -44,11 +107,5 @@ public class classInfo {
         this.projector = projector;
     }
 
-    /*public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }*/
 }

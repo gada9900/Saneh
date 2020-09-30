@@ -1,5 +1,6 @@
 package com.example.saneh;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,12 +25,28 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class editClassInfo extends AppCompatActivity{
 
+    //global variabls
+    String _classID ;
+    long _Capacity;
+    boolean _Projector , _InterActive;
+    long _floor;
+
+    Bundle query;
+    long id ;
+
+    FirebaseDatabase root;
+    DatabaseReference refrence;
+
     TextView classID;
     TextView Capacity;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch Projector;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch InterActive;
     RadioGroup Floor;
 
@@ -122,9 +139,46 @@ public class editClassInfo extends AppCompatActivity{
         T2_3    = findViewById(R.id.T2_3);
 
 
+        Edit    = findViewById(R.id.EditClass);
+
+         ShowData();
+
+
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                root = FirebaseDatabase.getInstance();
+                refrence = root.getReference("classes");
+                //Get all the values
+                _classID =classID.getEditableText().toString();
+                _Capacity =Long.parseLong(Capacity.getEditableText().toString());
+                _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
+                _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
+
+                classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
+                refrence.child(_classID).setValue(obj1);
+
+            }
+        });
+    }
+    private void ShowData(){
+
+        String classIDPassed;
+        Intent intent=getIntent();
+        Bundle valueFromFirstActivity = intent.getExtras();
+        classIDPassed = valueFromFirstActivity.getString("classID");
+        classID = findViewById(R.id.classID);
+        classID.setText(classIDPassed);
+
+       /* query = getIntent().getExtras();
+        id = query.getLong("id");
+
+        Intent intent = getIntent();
+        _Capacity= intent.getLongExtra("capacity");*/
+
+
 
     }
-
 
     public void EditClass(View view){
 
