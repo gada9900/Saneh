@@ -10,12 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".search" />
-        <activity android:name=".adminEdit" />
         <activity android:name=".admin_settings" />
         <activity android:name=".sign_up" />
         <activity android:name=".profile" />
-        <activity android:name=".adminClassList"/>
-        <activity android:name=".Login">
+        <activity android:name=".editClassInfo"/>
+        <activity android:name=".Login"/>
+        <activity android:name=".search">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
