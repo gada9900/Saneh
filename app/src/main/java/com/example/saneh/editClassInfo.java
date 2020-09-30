@@ -140,11 +140,9 @@ public class editClassInfo extends AppCompatActivity{
 
         Edit    = findViewById(R.id.EditClass);
 
-        try {
+
             ShowData();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+
 
 
         Edit.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +162,7 @@ public class editClassInfo extends AppCompatActivity{
             }
         });
     }
-    private void ShowData() throws NoSuchFieldException {
+    private void ShowData() {
 
         String classIDPassed;
         Intent intent=getIntent();
@@ -213,20 +211,6 @@ public class editClassInfo extends AppCompatActivity{
     public void EditClass(View view){
 
     }
-    /*public classes customObjects(String classID) {
-        // [START custom_objects]
-        DocumentReference docRef = db.collection("classes").document(classID+"");
-        final classes[] class1 = new classes[1];
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                 class1[0] = documentSnapshot.toObject(classes.class);
-                // [END custom_objects]
-            }
-        });
-        // [END custom_objects]
-        return class1[0];
-    }*/
 
 
 }
