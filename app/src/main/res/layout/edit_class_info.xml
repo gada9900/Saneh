@@ -790,6 +790,7 @@
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView40"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="@+id/imageView40"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -805,6 +806,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView40" />
+
+            <ImageView
+                android:id="@+id/gotoadminEdit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView40"
+                app:layout_constraintEnd_toStartOf="@+id/PROFILE3"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/arr" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
