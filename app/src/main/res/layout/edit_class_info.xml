@@ -739,7 +739,7 @@
                 android:id="@+id/EditClass"
                 android:layout_width="165dp"
                 android:layout_height="43dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="60dp"
                 android:onClick="EditClass"
                 android:shadowColor="#138D97"
                 android:text="Save"

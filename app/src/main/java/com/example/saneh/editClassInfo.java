@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -32,6 +33,11 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class editClassInfo extends AppCompatActivity{
@@ -41,12 +47,10 @@ public class editClassInfo extends AppCompatActivity{
     long _Capacity, currentCap;
     boolean _Projector , _InterActive, currentPro, currentInter;
 
-   boolean[] s , m , t , w ,th ;
+    List<Boolean> s , m , t , w ,th ;
 
 
 
-    FirebaseDatabase root;
-    DatabaseReference refrence;
     private static final String TAG = "DocSnippets";
 
     FirebaseFirestore firebaseFirestore;
@@ -70,6 +74,9 @@ public class editClassInfo extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_class_info);
+
+        //prevent bottom toolbar from moving (its important)
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         final CollectionReference classesRef = firebaseFirestore.collection("classes");
@@ -131,21 +138,36 @@ public class editClassInfo extends AppCompatActivity{
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                root = FirebaseDatabase.getInstance();
-                refrence = root.getReference("classes");
+                final String classIDPassedd;
+                Intent intent=getIntent();
+                Bundle valueFromFirstActivity = intent.getExtras();
+                classIDPassedd = valueFromFirstActivity.getString("classID");
+                DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassedd);
+                // Get a new write batch
+
+
                 //Get all the values
                 _classID =classID.getEditableText().toString();
-                _Capacity =Long.parseLong(Capacity.getEditableText().toString());
+               // _Capacity =Long.parseLong(Capacity.getEditableText().toString());
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
 
-              //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
-              //  refrence.child(_classID).setValue(obj1);
-
-                //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
-                //  refrence.child(_classID).setValue(obj1);
-
+//reference.update("capacity",_Capacity);
+                firebaseFirestore.collection("classes").document(classIDPassedd)
+                .update("roomNum",_classID,
+               "interactive", _InterActive,
+               "projector",Projector).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(editClassInfo.this,"Data Updated Successfully",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(editClassInfo.this,e.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
         });
@@ -157,6 +179,7 @@ public class editClassInfo extends AppCompatActivity{
         Intent intent=getIntent();
         Bundle valueFromFirstActivity = intent.getExtras();
         classIDPassed = valueFromFirstActivity.getString("classID");
+
         //show ClassID
         classID.setText(classIDPassed);
 
@@ -172,6 +195,11 @@ public class editClassInfo extends AppCompatActivity{
                         currentCap = document.getLong("capacity");
                         currentPro = document.getBoolean("projector");
                         currentInter = document.getBoolean("interactive");
+                             s  = (List<Boolean>) document.get("s");
+                             m  = (List<Boolean>) document.get("m");
+                             t  = (List<Boolean>) document.get("t");
+                             w  = (List<Boolean>) document.get("w");
+                             th = (List<Boolean>) document.get("th");
 
                         //show Capacity
                         Capacity.setText(currentCap+"");
@@ -185,6 +213,48 @@ public class editClassInfo extends AppCompatActivity{
                         } else{
                             Floor.check(R.id.radioButton2);
                         }
+
+                        //sunday checkboxes
+                        S8_9.setChecked(s.get(0));
+                        S9_10.setChecked(s.get(1));
+                        S10_11.setChecked(s.get(2));
+                        S11_12.setChecked(s.get(3));
+                        S12_1.setChecked(s.get(4));
+                        S1_2.setChecked(s.get(5));
+                        S2_3.setChecked(s.get(6));
+                        //monday checkboxes
+                        M8_9.setChecked(m.get(0));
+                        M9_10.setChecked(m.get(1));
+                        M10_11.setChecked(m.get(2));
+                        M11_12.setChecked(m.get(3));
+                        M12_1.setChecked(m.get(4));
+                        M1_2.setChecked(m.get(5));
+                        M2_3.setChecked(m.get(6));
+                        //tuesday checkboxes
+                        T8_9.setChecked(t.get(0));
+                        T9_10.setChecked(t.get(1));
+                        T10_11.setChecked(t.get(2));
+                        T11_12.setChecked(t.get(3));
+                        T12_1.setChecked(t.get(4));
+                        T1_2.setChecked(t.get(5));
+                        T2_3.setChecked(t.get(6));
+                        //wednesday checkboxes
+                        W8_9.setChecked(w.get(0));
+                        W9_10.setChecked(w.get(1));
+                        W10_11.setChecked(w.get(2));
+                        W11_12.setChecked(w.get(3));
+                        W12_1.setChecked(w.get(4));
+                        W1_2.setChecked(w.get(5));
+                        W2_3.setChecked(w.get(6));
+                        //thursday
+                        Th8_9.setChecked(th.get(0));
+                        Th9_10.setChecked(th.get(1));
+                        Th10_11.setChecked(th.get(2));
+                        Th11_12.setChecked(th.get(3));
+                        Th12_1.setChecked(th.get(4));
+                        Th1_2.setChecked(th.get(5));
+                        Th2_3.setChecked(th.get(6));
+
 
 
                     } else {
@@ -200,7 +270,47 @@ public class editClassInfo extends AppCompatActivity{
 
     }
 
-    public void EditClass(View view){
+    public void UpdateClass(View view){
+
+        final String classIDPassed;
+        Intent intent=getIntent();
+        Bundle valueFromFirstActivity = intent.getExtras();
+        classIDPassed = valueFromFirstActivity.getString("classID");
+        DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
+
+        //Get all the values
+        _classID =classID.getEditableText().toString();
+        _Capacity =Long.parseLong(Capacity.getEditableText().toString());
+        _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
+        _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
+
+
+        classRef.update("roomNum",_classID);
+        classRef.update("capacity",_Capacity);
+        classRef.update("interactive", _InterActive);
+        classRef.update("projector",Projector).addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                Toast.makeText(editClassInfo.this,"Data Updated Successfully",Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(editClassInfo.this,e.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+                         /* "capacity": _Capacity ,
+                          "interactive": _InterActive,
+                          "projector": Projector ,
+                          "s": ,
+                          "m": ,
+                          "t": ,
+                          "w": ,
+                          "th":
+                  });*/
+
+        //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
+        //  refrence.child(_classID).setValue(obj1);
 
     }
 

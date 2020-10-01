@@ -6,7 +6,7 @@ import java.util.*;
 
 public class classes {
     private String roomNum;
-    private int capacity;
+    private long capacity;
     private boolean interactive;
     private boolean projector;
     private boolean[] s ;
@@ -17,7 +17,16 @@ public class classes {
 
     private classes(){}
 
-    public classes(String roomNum ,int capacity, boolean interactive,boolean projector ,boolean[] s,boolean[] m ,boolean[] t , boolean[] w ,boolean[] th) {
+    public classes(String roomNum ,long capacity, boolean interactive,boolean projector){
+        this.roomNum=roomNum;
+        this.capacity=capacity;
+        this.interactive=interactive;
+        this.projector=projector;
+    }
+
+
+
+    public classes(String roomNum ,long capacity, boolean interactive,boolean projector ,boolean[] s,boolean[] m ,boolean[] t , boolean[] w ,boolean[] th) {
         this.roomNum=roomNum;
         this.capacity=capacity;
         this.interactive=interactive;
@@ -77,11 +86,11 @@ public class classes {
         this.roomNum = roomNum;
     }
 
-    public int getCapacity() {
+    public long getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(long capacity) {
         this.capacity = capacity;
     }
 
