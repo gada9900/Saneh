@@ -71,7 +71,7 @@ public class editClassInfo extends AppCompatActivity{
     CheckBox Th8_9, Th9_10, Th10_11, Th11_12, Th12_1, Th1_2, Th2_3;
 
     Button Edit;
-    ImageView settings;
+    ImageView settings, gotoadminEdit;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +82,15 @@ public class editClassInfo extends AppCompatActivity{
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         final CollectionReference classesRef = firebaseFirestore.collection("classes");
+        gotoadminEdit = findViewById(R.id.gotoadminEdit);
 
+        gotoadminEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(editClassInfo.this, adminEdit.class));
+                finish();
+            }
+        });
 
         //Hooks
 
