@@ -14,8 +14,8 @@
         <activity android:name=".sign_up" />
         <activity android:name=".profile" />
         <activity android:name=".editClassInfo"/>
-        <activity android:name=".Login"/>
-        <activity android:name=".adminEdit">
+        <activity android:name=".adminEdit"/>
+        <activity android:name=".Login">
 
 
             <intent-filter>
