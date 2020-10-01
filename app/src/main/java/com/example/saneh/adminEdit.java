@@ -30,7 +30,7 @@ public class adminEdit extends AppCompatActivity {
 
     private FirebaseFirestore firebaseFirestore;
     private ImageView edit, settings;
-
+    static PopupWindow popupWindow ;
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_edit);
@@ -107,8 +107,83 @@ public class adminEdit extends AppCompatActivity {
 
             }
 
+            /////// add class window
+            for( int i = 3 ; i < 52 ; i++) {
+
+                if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
+                    continue;
+                int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
+                final String classID = "6G"+i;
+                classes = (TextView) findViewById(id);
+
+                classes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getApplicationContext(), editClassInfo.class);
+                        i.putExtra("classID", classID);
+                        startActivity(i);
+                    }
+                });
+
+
+            }
+
 
 
         }
+
+    public void onButtonShowPopupWindowClick(View view  ) {
+
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.adminwindow, null);
+
+        //calling attrbuite which in class view info
+        Button AddClass = popupView.findViewById(R.id.AddClass);
+        TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
+
+
+
+        // change vlaues in class view info
+        roomN.setText(""+view.getResources().getResourceEntryName(view.getId()).substring(5));
+        AddClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), adminAdd.class);
+                startActivity(i);
+            }
+        });
+
+
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        popupWindow = new PopupWindow(popupView, 600, 1000, focusable);
+        popupWindow.setTouchable(true);
+
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+
+                popupWindow.dismiss();
+
+                return true;
+            }
+        });
+
+
+
+
+
+    }
 
 }
