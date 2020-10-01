@@ -62,7 +62,6 @@ public class editClassInfo extends AppCompatActivity{
     Switch Projector;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch InterActive;
-    RadioGroup Floor;
 
     CheckBox S8_9, S9_10, S10_11, S11_12, S12_1, S1_2, S2_3;
     CheckBox M8_9, M9_10, M10_11, M11_12, M12_1, M1_2, M2_3;
@@ -98,7 +97,6 @@ public class editClassInfo extends AppCompatActivity{
         Capacity = findViewById(R.id.Capacity);
         Projector = findViewById(R.id.Projector_switch);
         InterActive = findViewById(R.id.interactive_switch);
-        Floor = findViewById(R.id.FloorGroup);
         Edit = findViewById(R.id.EditClass);
 
 
@@ -139,13 +137,10 @@ public class editClassInfo extends AppCompatActivity{
         T2_3    = findViewById(R.id.T2_3);
 
 
-        Edit    = findViewById(R.id.EditClass);
-
-
             ShowData();
 
 
-
+        Edit = findViewById(R.id.EditClass);
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,26 +148,19 @@ public class editClassInfo extends AppCompatActivity{
                 Intent intent=getIntent();
                 Bundle valueFromFirstActivity = intent.getExtras();
                 classIDPassedd = valueFromFirstActivity.getString("classID");
-                DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassedd);
+                DocumentReference classDoc = classesRef.document(classIDPassedd);
                 // Get a new write batch
 
 
                 //Get all the values
-                _classID =classID.getEditableText().toString();
                 _Capacity =Long.parseLong(Capacity.getEditableText().toString());
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
-
-//reference.update("capacity",_Capacity);
-                /*firebaseFirestore.collection("classes").document(classIDPassedd)
-                .update("roomNum",_classID,
-               "interactive", _InterActive,
-               "projector",Projector).addOnSuccessListener(new OnSuccessListener<Void>() {*/
-                classRef.update("capacity", _Capacity);
-                classRef.update("roomNum", _classID);
-                classRef.update("interactive", _InterActive);
-                classRef.update("projector",_Projector).addOnSuccessListener(new OnSuccessListener<Void>() {
+                classDoc.update("capacity", _Capacity);
+                classDoc.update("roomNum", classIDPassedd);
+                classDoc.update("interactive", _InterActive);
+                classDoc.update("projector",_Projector).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(editClassInfo.this,"Data Updated Successfully",Toast.LENGTH_LONG).show();
@@ -222,12 +210,7 @@ public class editClassInfo extends AppCompatActivity{
                         Projector.setChecked(currentPro);
                         //show Interactive
                         InterActive.setChecked(currentInter);
-                        //show Floor
-                        if (classIDPassed.contains("G")){
-                            Floor.check(R.id.radioButton);
-                        } else{
-                            Floor.check(R.id.radioButton2);
-                        }
+
 
                         //sunday checkboxes
                         S8_9.setChecked(s.get(0));
@@ -314,18 +297,7 @@ public class editClassInfo extends AppCompatActivity{
                 Toast.makeText(editClassInfo.this,e.toString(), Toast.LENGTH_LONG).show();
             }
         });
-                         /* "capacity": _Capacity ,
-                          "interactive": _InterActive,
-                          "projector": Projector ,
-                          "s": ,
-                          "m": ,
-                          "t": ,
-                          "w": ,
-                          "th":
-                  });*/
 
-        //  classInfo obj1 = new classInfo(_classID,_Capacity,_Projector,_InterActive);
-        //  refrence.child(_classID).setValue(obj1);
 
     }
 
