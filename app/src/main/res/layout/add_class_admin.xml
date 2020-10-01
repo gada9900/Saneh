@@ -33,11 +33,11 @@
                 android:id="@+id/imageView41"
                 android:layout_width="53dp"
                 android:layout_height="35dp"
-                app:layout_constraintBottom_toBottomOf="@+id/interactive_switch"
-                app:layout_constraintEnd_toStartOf="@+id/interactive_switch"
+                app:layout_constraintBottom_toBottomOf="@+id/interactive_switch_Add"
+                app:layout_constraintEnd_toStartOf="@+id/interactive_switch_Add"
                 app:layout_constraintHorizontal_bias="0.969"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/interactive_switch"
+                app:layout_constraintTop_toTopOf="@+id/interactive_switch_Add"
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/icons_class_i" />
 
@@ -467,19 +467,14 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="1dp"
                 android:text="Capacity"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/Capacity"
-                app:layout_constraintEnd_toStartOf="@+id/Capacity"
-                app:layout_constraintHorizontal_bias="0.965"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/Capacity" />
+                app:layout_constraintBottom_toBottomOf="@+id/CapacityAdd"
+                app:layout_constraintEnd_toStartOf="@+id/CapacityAdd"
+                app:layout_constraintTop_toTopOf="@+id/CapacityAdd" />
 
             <EditText
-                android:id="@+id/classID"
+                android:id="@+id/classIDAdd"
                 android:layout_width="86dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="216dp"
@@ -500,11 +495,11 @@
                 android:layout_marginLeft="16dp"
                 android:text="Class ID"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/classID"
-                app:layout_constraintEnd_toStartOf="@+id/classID"
+                app:layout_constraintBottom_toBottomOf="@+id/classIDAdd"
+                app:layout_constraintEnd_toStartOf="@+id/classIDAdd"
                 app:layout_constraintHorizontal_bias="0.708"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/classID"
+                app:layout_constraintTop_toTopOf="@+id/classIDAdd"
                 app:layout_constraintVertical_bias="0.478" />
 
             <TextView
@@ -521,7 +516,7 @@
 
 
             <Switch
-                android:id="@+id/Projector_switch"
+                android:id="@+id/Projector_switch_Add"
                 android:layout_width="52dp"
                 android:layout_height="27dp"
                 android:textSize="16sp"
@@ -534,7 +529,7 @@
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
-                android:id="@+id/interactive_switch"
+                android:id="@+id/interactive_switch_Add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -713,11 +708,11 @@
                 android:id="@+id/imageView38"
                 android:layout_width="51dp"
                 android:layout_height="35dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Projector_switch"
-                app:layout_constraintEnd_toStartOf="@+id/Projector_switch"
+                app:layout_constraintBottom_toBottomOf="@+id/Projector_switch_Add"
+                app:layout_constraintEnd_toStartOf="@+id/Projector_switch_Add"
                 app:layout_constraintHorizontal_bias="0.84"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/Projector_switch"
+                app:layout_constraintTop_toTopOf="@+id/Projector_switch_Add"
                 app:srcCompat="@drawable/projecterr" />
 
             <ImageView
@@ -725,7 +720,6 @@
                 android:layout_width="418dp"
                 android:layout_height="86dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/rectangle_2001_shape" />
@@ -745,8 +739,8 @@
                 android:id="@+id/CapacityAdd"
                 android:layout_width="78dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
-                android:layout_marginRight="28dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="556dp"
                 android:ems="10"
                 android:inputType="textPersonName"
