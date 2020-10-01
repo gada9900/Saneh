@@ -1,11 +1,14 @@
 package com.example.saneh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,35 +23,41 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.google.firebase.auth.AuthResult;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import static com.example.saneh.R.color.red;
 
 public class search extends AppCompatActivity {
 
     static PopupWindow popupWindow ;
     static ConstraintLayout con ;
     EditText date;
-    FirebaseAuth fAuth;
     public static final String TAG = "TAG";
     EditText inputDate;
     Spinner selectedTime;
     Button search;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-        //<< to prevent bottom toolbar from moving (its important)
+        // this line to make bottom bar in its place while writing on keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-       // >>>
-        fAuth = FirebaseAuth.getInstance();
+
 
         inputDate = findViewById(R.id.dateSearch);
 
@@ -90,40 +99,105 @@ public class search extends AppCompatActivity {
                 //here we need to write a code that will take date and time and change the color of classrooms
 
                 //date input
-                String sdate =inputDate.getText().toString().trim();
+                String sdate = inputDate.getText().toString().trim();
 
                 //time input
                 String stime = selectedTime.getSelectedItem().toString();
-                int timeIndex = -1;
+
+                String timeIndex = "-1";
 
                 switch (stime){
-                    case "8:00 AM":  timeIndex= 0;
+                    case "8:00 AM":  timeIndex= "0";
                         break;
 
-                    case "9:00 AM": timeIndex= 1;
+                    case "9:00 AM": timeIndex= "1";
                         break;
 
-                    case "10:00 AM": timeIndex= 2;
+                    case "10:00 AM": timeIndex= "2";
                         break;
 
-                    case "11:00 AM": timeIndex= 3;
+                    case "11:00 AM": timeIndex= "3";
                         break;
 
-                    case "12:00 PM": timeIndex= 4;
+                    case "12:00 PM": timeIndex= "4";
                         break;
 
-                    case "1:00 PM": timeIndex= 5;
+                    case "1:00 PM": timeIndex= "5";
                         break;
 
-                    case "2:00 PM": timeIndex= 6;
+                    case "2:00 PM": timeIndex= "6";
                         break;
 
                 }//end switch
 
 
-            }
-        });
 
+
+                //-- here
+
+                //get all the Documents
+                final String finalTimeIndex = timeIndex;
+
+                Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
+                        .collection("classes")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @SuppressLint("ResourceAsColor")
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+
+                                    List<classroom> classroomList = new ArrayList<classroom>();
+
+                                   // Toast.makeText(search.this, ""+myListOfDocuments.get(0), Toast.LENGTH_LONG).show();
+
+                                    for (DocumentSnapshot ds : myListOfDocuments) {
+
+                                        classroom classobj = ds.toObject(classroom.class);
+                                        classroomList.add(classobj);
+                                    }
+
+                                    TextView room;
+                                /*
+                                   for (classroom element : classroomList) {
+                                        String roomid = "class" + element.getRoomNum();
+                                        int id = getResources().getIdentifier(roomid, "id", getPackageName());
+                                        room = (TextView) findViewById(id);
+
+                                        if (element.getS(finalTimeIndex) == true) {
+                                            room.setBackgroundColor(red);
+                                        } else {
+                                            room.setBackgroundColor(R.color.grean);
+                                        }//end else
+                                    }//end for   */
+                                }
+                            }
+
+
+                        });
+
+
+
+            }});
+
+        //get all the Documents that go with input time
+
+             /*    FirebaseFirestore.getInstance()
+                        .collection("classes")
+                        .whereArrayContains("s",timeIndex,true)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                }
+                            }*/
+
+
+
+        //-- end
 
 
 
@@ -134,7 +208,7 @@ public class search extends AppCompatActivity {
     }
 
     private void showDateDialog(final EditText date) {
-       final Calendar calendar= Calendar.getInstance();
+        final Calendar calendar= Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dateSetListener= new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
@@ -208,33 +282,33 @@ public class search extends AppCompatActivity {
     }
 
     public void init(){
-TextView classes ;
+        TextView classes ;
 
-       /////// initiate a clickable classes in floor 1
-     for( int i = 1 ; i < 57 ; i++) {
+        /////// initiate a clickable classes in floor 1
+        for( int i = 1 ; i < 57 ; i++) {
 
-         if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
-             continue;
-         int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
-         classes = (TextView) findViewById(id);
+            if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
+                continue;
+            int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
+            classes = (TextView) findViewById(id);
 
-        classes.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 onButtonShowPopupWindowClick(view);
+            classes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onButtonShowPopupWindowClick(view);
 
-             }
-         });
+                }
+            });
 
-     }
+        }
 
         /////// initiate a clickable classes in floor G
-       for( int i = 3 ; i < 52 ; i++) {
+        for( int i = 3 ; i < 52 ; i++) {
 
             if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
                 continue;
-           int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
-           classes = (TextView) findViewById(id);
+            int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
+            classes = (TextView) findViewById(id);
 
             classes.setOnClickListener(new View.OnClickListener() {
                 @Override
