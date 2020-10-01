@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -70,6 +71,7 @@ public class editClassInfo extends AppCompatActivity{
     CheckBox Th8_9, Th9_10, Th10_11, Th11_12, Th12_1, Th1_2, Th2_3;
 
     Button Edit;
+    ImageView settings;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,7 @@ public class editClassInfo extends AppCompatActivity{
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         final CollectionReference classesRef = firebaseFirestore.collection("classes");
+
 
         //Hooks
 
@@ -138,7 +141,7 @@ public class editClassInfo extends AppCompatActivity{
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String classIDPassedd;
+                String classIDPassedd;
                 Intent intent=getIntent();
                 Bundle valueFromFirstActivity = intent.getExtras();
                 classIDPassedd = valueFromFirstActivity.getString("classID");
@@ -148,16 +151,20 @@ public class editClassInfo extends AppCompatActivity{
 
                 //Get all the values
                 _classID =classID.getEditableText().toString();
-               // _Capacity =Long.parseLong(Capacity.getEditableText().toString());
+                _Capacity =Long.parseLong(Capacity.getEditableText().toString());
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
 
 //reference.update("capacity",_Capacity);
-                firebaseFirestore.collection("classes").document(classIDPassedd)
+                /*firebaseFirestore.collection("classes").document(classIDPassedd)
                 .update("roomNum",_classID,
                "interactive", _InterActive,
-               "projector",Projector).addOnSuccessListener(new OnSuccessListener<Void>() {
+               "projector",Projector).addOnSuccessListener(new OnSuccessListener<Void>() {*/
+                classRef.update("capacity", _Capacity);
+                classRef.update("roomNum", _classID);
+                classRef.update("interactive", _InterActive);
+                classRef.update("projector",_Projector).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(editClassInfo.this,"Data Updated Successfully",Toast.LENGTH_LONG).show();
