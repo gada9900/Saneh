@@ -29,6 +29,7 @@ import java.util.Map;
 public class adminEdit extends AppCompatActivity {
 
     private FirebaseFirestore firebaseFirestore;
+    private ImageView edit, settings;
 
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,25 @@ public class adminEdit extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         CollectionReference classesRef = firebaseFirestore.collection("classesTest");
+
+        settings = findViewById(R.id.imageView8);
+        edit = findViewById(R.id.imageView9);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),adminEdit.class);
+                startActivity(i);
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),admin_settings.class);
+                startActivity(i);
+            }
+        });
 
         clickableClass();
 

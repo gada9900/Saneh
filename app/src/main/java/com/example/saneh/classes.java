@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.*;
 
 
-public class classInfo {
+public class classes {
     private String roomNum;
     private long capacity;
     private boolean interactive;
@@ -15,15 +15,18 @@ public class classInfo {
     private boolean[] w ;
     private boolean[] th;
 
-    private classInfo(){}
-    public classInfo(String roomNum ,long capacity, boolean interactive,boolean projector ){
+    private classes(){}
+
+    public classes(String roomNum ,long capacity, boolean interactive,boolean projector){
         this.roomNum=roomNum;
         this.capacity=capacity;
         this.interactive=interactive;
         this.projector=projector;
     }
 
-    public classInfo(String roomNum ,long capacity, boolean interactive,boolean projector ,boolean[] s,boolean[] m ,boolean[] t , boolean[] w ,boolean[] th) {
+
+
+    public classes(String roomNum ,long capacity, boolean interactive,boolean projector ,boolean[] s,boolean[] m ,boolean[] t , boolean[] w ,boolean[] th) {
         this.roomNum=roomNum;
         this.capacity=capacity;
         this.interactive=interactive;
@@ -109,3 +112,4 @@ public class classInfo {
 
 
 }
+

@@ -45,10 +45,15 @@ public class search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-        //<< to prevent bottom toolbar from moving (its important)
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-       // >>>
+
         fAuth = FirebaseAuth.getInstance();
+
+
+
+        //prevent bottom toolbar from moving (its important)
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+
 
         inputDate = findViewById(R.id.dateSearch);
 
