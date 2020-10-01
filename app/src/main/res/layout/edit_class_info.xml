@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.792">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -458,10 +458,10 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.715"
+                app:layout_constraintHorizontal_bias="0.708"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.349" />
+                app:layout_constraintVertical_bias="0.402" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -481,24 +481,25 @@
             <EditText
                 android:id="@+id/classID"
                 android:layout_width="86dp"
-                android:layout_height="37dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="216dp"
+                android:layout_marginRight="216dp"
+                android:layout_marginBottom="556dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.046" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView40"
+                app:layout_constraintVertical_bias="0.461" />
 
             <RadioGroup
                 android:id="@+id/FloorGroup"
-                android:layout_width="241dp"
+                android:layout_width="170dp"
                 android:layout_height="37dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/divider2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.67"
+                app:layout_constraintHorizontal_bias="0.58"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:layout_constraintVertical_bias="0.506">
@@ -513,13 +514,7 @@
                     android:id="@+id/radioButton2"
                     android:layout_width="82dp"
                     android:layout_height="match_parent"
-                    android:text="1st" />
-
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="81dp"
-                    android:layout_height="match_parent"
-                    android:text="2nd" />
+                    android:text="F" />
 
             </RadioGroup>
 
@@ -536,19 +531,6 @@
                 app:layout_constraintHorizontal_bias="0.384"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/classID" />
-
-            <EditText
-                android:id="@+id/Capacity"
-                android:layout_width="78dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.049" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -569,10 +551,11 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.673"
+                app:layout_constraintHorizontal_bias="0.682"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.232" />
+                app:layout_constraintVertical_bias="0.289" />
+
 
             <Switch
                 android:id="@+id/Projector_switch"
@@ -581,10 +564,10 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.249"
+                app:layout_constraintHorizontal_bias="0.281"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.136"
+                app:layout_constraintVertical_bias="0.23"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
@@ -594,12 +577,11 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.847"
+                app:layout_constraintHorizontal_bias="0.853"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.136"
+                app:layout_constraintVertical_bias="0.234"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
-
 
             <TextView
                 android:id="@+id/className"
@@ -757,12 +739,13 @@
                 android:id="@+id/EditClass"
                 android:layout_width="165dp"
                 android:layout_height="43dp"
-                android:layout_marginBottom="72dp"
+                android:layout_marginBottom="60dp"
                 android:onClick="EditClass"
                 android:shadowColor="#138D97"
-                android:text="Edit"
+                android:text="Save"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -770,13 +753,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="* Checked boxs means that the class is not empty."
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.753" />
+                app:layout_constraintVertical_bias="0.8" />
 
             <ImageView
                 android:id="@+id/imageView38"
@@ -789,99 +772,55 @@
                 app:layout_constraintTop_toTopOf="@+id/Projector_switch"
                 app:srcCompat="@drawable/projecterr" />
 
+            <ImageView
+                android:id="@+id/imageView40"
+                android:layout_width="418dp"
+                android:layout_height="86dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/rectangle_2001_shape" />
+
+            <TextView
+                android:id="@+id/PROFILE3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDIT CLASS INFORMATION"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView40"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="@+id/imageView40"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/Capacity"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="556dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView40" />
+
+            <ImageView
+                android:id="@+id/gotoadminEdit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView40"
+                app:layout_constraintEnd_toStartOf="@+id/PROFILE3"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/arr" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView40"
-        android:layout_width="409dp"
-        android:layout_height="84dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/rectangle_2001_shape" />
-
-    <TextView
-        android:id="@+id/PROFILE3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EDIT CLASS INFORMATION"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView40"
-        app:layout_constraintEnd_toEndOf="@+id/imageView40"
-        app:layout_constraintStart_toStartOf="@+id/imageView40"
-        app:layout_constraintTop_toTopOf="@+id/imageView40" />
-
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="409dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/rectangle_2000_shape" />
-
-    <ImageView
-        android:id="@+id/imageView26"
-        android:layout_width="73dp"
-        android:layout_height="69dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.974"
-        app:srcCompat="@drawable/cilcle_shape" />
-
-    <ImageView
-        android:id="@+id/imageView36"
-        android:layout_width="42dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView26"
-        app:layout_constraintEnd_toEndOf="@+id/imageView26"
-        app:layout_constraintStart_toStartOf="@+id/imageView26"
-        app:layout_constraintTop_toTopOf="@+id/imageView26"
-        app:srcCompat="@drawable/pluss" />
-
-    <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="51dp"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView26"
-        app:layout_constraintEnd_toEndOf="@+id/imageView26"
-        app:layout_constraintStart_toStartOf="@+id/imageView26"
-        app:layout_constraintTop_toTopOf="@+id/imageView26"
-        app:layout_constraintVertical_bias="0.272"
-        app:srcCompat="@drawable/blus" />
-
-    <ImageView
-        android:id="@+id/imageView39"
-        android:layout_width="31dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toStartOf="@+id/imageView25"
-        app:layout_constraintTop_toTopOf="@+id/imageView25"
-        app:layout_constraintVertical_bias="0.39"
-        app:srcCompat="@drawable/edd" />
-
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="39dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView25"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="@+id/imageView25"
-        app:layout_constraintTop_toTopOf="@+id/imageView25"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/sett" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
