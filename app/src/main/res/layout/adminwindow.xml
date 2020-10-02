@@ -11,7 +11,7 @@
         android:id="@+id/textView30"
         android:layout_width="216dp"
         android:layout_height="99dp"
-        android:text="The Class Is Not Available Do You Want To Add It ? "
+        android:text="This class is not available do you want to add it ? "
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

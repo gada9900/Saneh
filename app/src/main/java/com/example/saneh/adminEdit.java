@@ -76,7 +76,7 @@ public class adminEdit extends AppCompatActivity {
                 final String classID = "6F"+i;
                 classes = (TextView) findViewById(id);
 
-                if(i == 18 || i == 12 || i == 15 || i == 35 || i == 41 || i == 42 ||i == 43 ||i == 44 ||i == 46 ) {
+                if(i == 49 || i == 50 || i == 48 || i == 25 || i == 24 || i == 21 ||i == 20 ||i == 13 ||i == 12|| i == 5 || i == 3|| i == 10 || i == 11  ) {
                     classes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
