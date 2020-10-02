@@ -584,6 +584,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/S2_3"
         app:layout_constraintEnd_toStartOf="@+id/S2_3"
         app:layout_constraintStart_toStartOf="parent"
+
+=======
         app:layout_constraintTop_toTopOf="@+id/S2_3" />
 
     <TextView
