@@ -76,16 +76,24 @@ public class adminEdit extends AppCompatActivity {
                 final String classID = "6F"+i;
                 classes = (TextView) findViewById(id);
 
-                classes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), editClassInfo.class);
-                        i.putExtra("classID", classID);
-                        i.putExtra("type", "old");
-                        startActivity(i);
-                    }
-                });
-
+                if(i == 18 || i == 12 || i == 15 || i == 35 || i == 41 || i == 42 ||i == 43 ||i == 44 ||i == 46 ) {
+                    classes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onButtonShowPopupWindowClick(view , classID);
+                        }
+                    });
+                }else {
+                    classes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(getApplicationContext(), editClassInfo.class);
+                            i.putExtra("classID", classID);
+                            i.putExtra("type", "old");
+                            startActivity(i);
+                        }
+                    });
+                }
             }
 
             /////// initiate a clickable classes in floor G
@@ -93,25 +101,34 @@ public class adminEdit extends AppCompatActivity {
 
                 if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
                     continue;
-                int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
-                final String classID = "6G"+i;
+
+                int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
+                final String classID = "6G" + i;
                 classes = (TextView) findViewById(id);
 
-                classes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), editClassInfo.class);
-                        i.putExtra("classID", classID);
-                        i.putExtra("type", "old");
-                        startActivity(i);
-                    }
-                });
-
+                if(i == 18 || i == 12 || i == 15 || i == 35 || i == 41 || i == 42 ||i == 43 ||i == 44 ||i == 46 ) {
+                    classes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onButtonShowPopupWindowClick(view , classID);
+                        }
+                    });
+                }else {
+                    classes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(getApplicationContext(), editClassInfo.class);
+                            i.putExtra("classID", classID);
+                            i.putExtra("type", "old");
+                            startActivity(i);
+                        }
+                    });
+                }
 
             }
 
             /////// add class window
-            for( int i = 3 ; i < 52 ; i++) {
+           /* for( int i = 3 ; i < 52 ; i++) {
 
                 if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
                     continue;
@@ -128,7 +145,7 @@ public class adminEdit extends AppCompatActivity {
                     });
 
                 }
-             }
+             }*/
 
 
 

@@ -84,7 +84,6 @@ public class editClassInfo extends AppCompatActivity{
         firebaseFirestore = FirebaseFirestore.getInstance();
         final CollectionReference classesRef = firebaseFirestore.collection("classes");
         gotoadminEdit = findViewById(R.id.gotoadminEdit);
-
         gotoadminEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,8 +92,8 @@ public class editClassInfo extends AppCompatActivity{
             }
         });
 
-        //Hooks
 
+        //Hooks
         classID = findViewById(R.id.classID);
         Capacity = findViewById(R.id.Capacity);
         Projector = findViewById(R.id.Projector_switch);
@@ -155,7 +154,7 @@ public class editClassInfo extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 String classIDPassedd;
-                Intent intent=getIntent();
+                Intent intent = getIntent();
                 Bundle valueFromFirstActivity = intent.getExtras();
                 classIDPassedd = valueFromFirstActivity.getString("classID");
                 DocumentReference classDoc = classesRef.document(classIDPassedd);
@@ -167,6 +166,7 @@ public class editClassInfo extends AppCompatActivity{
                 _Projector = Boolean.parseBoolean(Projector.getEditableText().toString());
                 _InterActive =Boolean.parseBoolean(InterActive.getEditableText().toString());
 
+                //updates the values
                 classDoc.update("capacity", _Capacity);
                 classDoc.update("roomNum", classIDPassedd);
                 classDoc.update("interactive", _InterActive);
@@ -188,11 +188,8 @@ public class editClassInfo extends AppCompatActivity{
 
     private void ShowData(String classIDPassed) {
 
-
-
         //show ClassID
         classID.setText(classIDPassed);
-
 
         DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
         classRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -339,11 +336,14 @@ public class editClassInfo extends AppCompatActivity{
 
                 //adding classes
 
+
+
                 /*Map<String, Object> newClass = new HashMap<>();
                 newClass.put("capacity", newCap);
                 newClass.put("projector", newPro);
                 newClass.put("interactive", newInter);*/
                 classes newClass = new classes(classIDPassed, newCap, newInter, newPro);
+
 
                 firebaseFirestore.collection("classes").document(classIDPassed)
                         .set(newClass)
