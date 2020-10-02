@@ -696,7 +696,7 @@
         app:srcCompat="@drawable/rectangle_2001_shape" />
 
     <TextView
-        android:id="@+id/PROFILE3"
+        android:id="@+id/titleEditClassInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="EDIT CLASS INFORMATION"
@@ -725,8 +725,8 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView40"
-        app:layout_constraintEnd_toStartOf="@+id/PROFILE3"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arr" />
