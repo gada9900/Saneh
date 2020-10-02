@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -85,6 +86,11 @@ public class adminAdd extends AppCompatActivity {
 
                 //TextView addClassID = findViewById(R.id.addClassID);
                 //String classID = addClassID.toString().trim();
+
+                if (TextUtils.isEmpty(Capacity.getText().toString().trim())){
+                    Capacity.setError("Capacity is required!");
+                    return;
+                }
 
                 newCap = Long.parseLong(Capacity.getText().toString());
                 if(projector.isChecked())
