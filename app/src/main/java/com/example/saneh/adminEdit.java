@@ -69,8 +69,9 @@ public class adminEdit extends AppCompatActivity {
             /////// initiate a clickable classes in floor 1
             for( int i = 1 ; i < 57 ; i++) {
 
-                if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
+                if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 ){
                     continue;
+                }
                 int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
                 final String classID = "6F"+i;
                 classes = (TextView) findViewById(id);
@@ -112,27 +113,26 @@ public class adminEdit extends AppCompatActivity {
 
                 if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
                     continue;
-                int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
-                final String classID = "6G"+i;
-                classes = (TextView) findViewById(id);
+                if(i == 18 || i == 12 || i == 15 || i == 35 || i == 41 || i == 42 ||i == 43 ||i == 44 ||i == 46 ) {
+                    int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
+                    final String classID = "6G" + i;
+                    classes = (TextView) findViewById(id);
 
-                classes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), editClassInfo.class);
-                        i.putExtra("classID", classID);
-                        startActivity(i);
-                    }
-                });
+                    classes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onButtonShowPopupWindowClick(view , classID);
+                        }
+                    });
 
-
-            }
+                }
+             }
 
 
 
         }
 
-    public void onButtonShowPopupWindowClick(View view  ) {
+    public void onButtonShowPopupWindowClick(View view , final String classID) {
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
@@ -141,17 +141,14 @@ public class adminEdit extends AppCompatActivity {
 
         //calling attrbuite which in class view info
         Button AddClass = popupView.findViewById(R.id.AddClass);
-        TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
-
-
 
         // change vlaues in class view info
-        roomN.setText(""+view.getResources().getResourceEntryName(view.getId()).substring(5));
         AddClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), adminAdd.class);
-                startActivity(i);
+
+                startActivity((new Intent(adminEdit.this,adminAdd.class).putExtra("classID", classID)));
+
             }
         });
 

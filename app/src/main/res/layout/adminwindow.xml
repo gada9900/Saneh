@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView30"
-        android:layout_width="374dp"
-        android:layout_height="67dp"
+        android:layout_width="217dp"
+        android:layout_height="171dp"
         android:text="The Class Is Not Available Do You Want To Add It ? "
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,13 +22,14 @@
         android:id="@+id/AddClass"
         android:layout_width="154dp"
         android:layout_height="53dp"
+        android:clickable="true"
         android:text="Add Class"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.197" />
 
     <ImageView
         android:id="@+id/imageView26"
