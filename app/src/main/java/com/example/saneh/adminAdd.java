@@ -2,6 +2,7 @@ package com.example.saneh;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -112,7 +113,12 @@ public class adminAdd extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(adminAdd.this, "class added sucessfully", Toast.LENGTH_LONG).show();
+
+                                int id = getResources().getIdentifier("class"+classIDPassed, "id", getPackageName());
+                                TextView addedClass = (TextView) findViewById(id);
+                                addedClass.setBackgroundColor(getResources().getColor(R.color.grean));
+                                Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
