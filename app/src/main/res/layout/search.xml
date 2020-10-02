@@ -86,7 +86,7 @@
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/prp1_removebg_preview__1_" />
+                app:srcCompat="@drawable/projecterr" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
@@ -1109,7 +1109,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchPage5"
                 app:layout_constraintVertical_bias="0.121"
-                app:srcCompat="@drawable/cal104_1044961_calendar_icon_png_date_events_icon_white_png_removebg_preview" />
+                app:srcCompat="@drawable/calenderblack" />
 
             <ImageView
                 android:id="@+id/timeImage"
@@ -1121,7 +1121,7 @@
                 app:layout_constraintStart_toEndOf="@+id/dateSearch"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.39"
-                app:srcCompat="@drawable/c223404" />
+                app:srcCompat="@drawable/whatchblack" />
 
             <RadioGroup
                 android:id="@+id/radioGroupSearch"
