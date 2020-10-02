@@ -47,8 +47,8 @@ public class editClassInfo extends AppCompatActivity{
 
     //global variabls
     String _classID ;
-    long _Capacity, currentCap, updatedCap, newCap;
-    boolean _Projector , _InterActive, currentPro, currentInter, updatedPro, updatedInter, newPro, newInter;
+    long _Capacity, currentCap, updatedCap;
+    boolean _Projector , _InterActive, currentPro, currentInter, updatedPro, updatedInter;
 
     List<Boolean> s , m , t , w ,th ;
 
@@ -145,8 +145,8 @@ public class editClassInfo extends AppCompatActivity{
         type = valueFromFirstActivity.getString("type");
         if (type.equalsIgnoreCase("old"))
             ShowData(classIDPassed);
-        else
-            addClass(classIDPassed);
+        //else
+           // addClass(classIDPassed);
 
 
         Edit = findViewById(R.id.EditClass);
@@ -372,6 +372,7 @@ public class editClassInfo extends AppCompatActivity{
 
 
     }
+
 
 
 }
