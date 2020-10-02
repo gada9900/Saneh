@@ -312,6 +312,7 @@ public class editClassInfo extends AppCompatActivity {
 
                 //updates the values
                 Map<String, Object> editedClass = new HashMap<>();
+                editedClass.put("roomNum", classIDPassed);
                 editedClass.put("capacity", _Capacity);
                 editedClass.put("projector", _Projector);
                 editedClass.put("interactive", _InterActive);
@@ -356,7 +357,6 @@ public class editClassInfo extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent i = new Intent(editClassInfo.this, adminAdd.class);
-                //getApplicationContext(), editClassInfo.class);
                 i.putExtra("classID", classID);
                 i.putExtra("type", "new");
                 startActivity(i);

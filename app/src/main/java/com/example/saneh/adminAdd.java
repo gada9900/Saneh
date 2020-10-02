@@ -102,6 +102,7 @@ public class adminAdd extends AppCompatActivity {
                 DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed);
 
                 Map<String, Object> newClass = new HashMap<>();
+                newClass.put("roomNum", classIDPassed);
                 newClass.put("capacity", newCap);
                 newClass.put("projector", newPro);
                 newClass.put("interactive", newInter);
