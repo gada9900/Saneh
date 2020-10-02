@@ -36,6 +36,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +47,8 @@ public class editClassInfo extends AppCompatActivity{
 
     //global variabls
     String _classID ;
-    long _Capacity, currentCap;
-    boolean _Projector , _InterActive, currentPro, currentInter;
+    long _Capacity, currentCap, updatedCap, newCap;
+    boolean _Projector , _InterActive, currentPro, currentInter, updatedPro, updatedInter, newPro, newInter;
 
     List<Boolean> s , m , t , w ,th ;
 
@@ -137,7 +139,15 @@ public class editClassInfo extends AppCompatActivity{
         T2_3    = findViewById(R.id.T2_3);
 
 
-            ShowData();
+        final String classIDPassed, type;
+        Intent intent=getIntent();
+        Bundle valueFromFirstActivity = intent.getExtras();
+        classIDPassed = valueFromFirstActivity.getString("classID");
+        type = valueFromFirstActivity.getString("type");
+        if (type.equalsIgnoreCase("old"))
+            ShowData(classIDPassed);
+        else
+            addClass(classIDPassed);
 
 
         Edit = findViewById(R.id.EditClass);
@@ -176,15 +186,13 @@ public class editClassInfo extends AppCompatActivity{
         });
     }
 
-    private void ShowData() {
+    private void ShowData(String classIDPassed) {
 
-        final String classIDPassed;
-        Intent intent=getIntent();
-        Bundle valueFromFirstActivity = intent.getExtras();
-        classIDPassed = valueFromFirstActivity.getString("classID");
+
 
         //show ClassID
         classID.setText(classIDPassed);
+
 
         DocumentReference classRef = firebaseFirestore.collection("classes").document(classIDPassed);
         classRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -266,6 +274,7 @@ public class editClassInfo extends AppCompatActivity{
             }
         });
 
+
     }
 
     public void UpdateClass(View view){
@@ -297,6 +306,69 @@ public class editClassInfo extends AppCompatActivity{
                 Toast.makeText(editClassInfo.this,e.toString(), Toast.LENGTH_LONG).show();
             }
         });
+
+
+    }
+
+    public void addClass(final String classIDPassed){
+
+        TextView titleEditClassInfo = findViewById(R.id.titleEditClassInfo);
+        Button addClass = findViewById(R.id.EditClass);
+
+        classID.setText(classIDPassed);
+        titleEditClassInfo.setText("ADD CLASSROOM");
+        addClass.setText("Add");
+
+        addClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText Capacity = findViewById(R.id.Capacity);
+                Switch projector = findViewById(R.id.Projector_switch);
+                Switch interactive = findViewById(R.id.interactive_switch);
+
+                newCap = Long.parseLong(Capacity.getText().toString());
+                if(projector.isChecked())
+                    newPro = true;
+                else
+                    newPro = false;
+
+                if (interactive.isChecked())
+                    newInter = true;
+                else
+                    newInter = false;
+
+                //adding classes
+
+                /*Map<String, Object> newClass = new HashMap<>();
+                newClass.put("capacity", newCap);
+                newClass.put("projector", newPro);
+                newClass.put("interactive", newInter);*/
+                classes newClass = new classes(classIDPassed, newCap, newInter, newPro);
+
+                firebaseFirestore.collection("classes").document(classIDPassed)
+                        .set(newClass)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "Class added successfully");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Fail to add class", e);
+                                Toast.makeText(editClassInfo.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
+                //should say something to the user before going back
+                //done, go back
+                //startActivity(new Intent(editClassInfo.this, adminEdit.class));
+                //finish();
+            }
+        });
+
 
 
     }

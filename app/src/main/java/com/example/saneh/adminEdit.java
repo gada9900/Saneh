@@ -81,6 +81,7 @@ public class adminEdit extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent i = new Intent(getApplicationContext(), editClassInfo.class);
                         i.putExtra("classID", classID);
+                        i.putExtra("type", "old");
                         startActivity(i);
                     }
                 });
@@ -101,6 +102,7 @@ public class adminEdit extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent i = new Intent(getApplicationContext(), editClassInfo.class);
                         i.putExtra("classID", classID);
+                        i.putExtra("type", "old");
                         startActivity(i);
                     }
                 });
@@ -147,7 +149,11 @@ public class adminEdit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity((new Intent(adminEdit.this,adminAdd.class).putExtra("classID", classID)));
+                Intent i = new Intent(adminEdit.this,editClassInfo.class);
+                        //getApplicationContext(), editClassInfo.class);
+                i.putExtra("classID", classID);
+                i.putExtra("type", "new");
+                startActivity(i);
 
             }
         });
