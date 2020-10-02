@@ -13,6 +13,7 @@
         <activity android:name=".admin_settings" />
         <activity android:name=".sign_up" />
         <activity android:name=".profile" />
+        <activity android:name=".adminAdd" />
         <activity android:name=".editClassInfo"/>
         <activity android:name=".adminEdit"/>
         <activity android:name=".Login">
