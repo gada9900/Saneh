@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -65,18 +66,24 @@ public class adminAdd extends AppCompatActivity {
         classIDPassed = valueFromFirstActivity.getString("classID");
         addClassID = findViewById(R.id.addClassID);
         addClassID.setText(classIDPassed);
+        addClass(classIDPassed);
     }
 
 
 
-    public void addClass(View view){
+    public void addClass(final String classIDPassed){
+
+        AddClass = findViewById(R.id.AddClass);
+        AddClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
                 EditText Capacity = findViewById(R.id.addCapacity);
-                Switch projector = findViewById(R.id.Projector_switch_add);
-                Switch interactive = findViewById(R.id.interactive_switch_add);
+                @SuppressLint("UseSwitchCompatOrMaterialCode") Switch projector = findViewById(R.id.Projector_switch_add);
+                @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch_add);
 
-                TextView addClassID = findViewById(R.id.addClassID);
-                String classID = addClassID.toString();
+                //TextView addClassID = findViewById(R.id.addClassID);
+                //String classID = addClassID.toString().trim();
 
                 newCap = Long.parseLong(Capacity.getText().toString());
                 if(projector.isChecked())
@@ -91,12 +98,17 @@ public class adminAdd extends AppCompatActivity {
 
                 //adding classes
 
+                DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed);
+
                 Map<String, Object> newClass = new HashMap<>();
                 newClass.put("capacity", newCap);
                 newClass.put("projector", newPro);
                 newClass.put("interactive", newInter);
 
-                firebaseFirestore.collection("classes").document(classID).set(newClass)
+                //classes newClass = new classes(classID, newCap, newInter, newPro);
+
+
+                documentReference.set(newClass)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -110,7 +122,9 @@ public class adminAdd extends AppCompatActivity {
                                 Log.d(TAG, e.toString());
                             }
                         });
-                //classes newClass = new classes(classIDPassed, newCap, newInter, newPro);
+            }
+        });
+
 
 
 

@@ -36,7 +36,6 @@ public class adminEdit extends AppCompatActivity {
         setContentView(R.layout.admin_edit);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
-        CollectionReference classesRef = firebaseFirestore.collection("classesTest");
 
         settings = findViewById(R.id.imageView8);
         edit = findViewById(R.id.imageView9);
