@@ -149,7 +149,7 @@ public class adminEdit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(adminEdit.this,editClassInfo.class);
+                Intent i = new Intent(adminEdit.this,adminAdd.class);
                         //getApplicationContext(), editClassInfo.class);
                 i.putExtra("classID", classID);
                 i.putExtra("type", "new");
