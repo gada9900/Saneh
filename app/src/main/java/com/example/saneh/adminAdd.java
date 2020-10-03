@@ -129,8 +129,13 @@ public class adminAdd extends AppCompatActivity {
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch_add);
 
 
-                if (TextUtils.isEmpty(Capacity.getText().toString().trim())){
+                String capCheck = Capacity.getText().toString().trim();
+                if (TextUtils.isEmpty(capCheck)){
                     Capacity.setError("Capacity is required!");
+                    return;
+                }
+                if (!TextUtils.isDigitsOnly(capCheck)){
+                    Capacity.setError("Capacity accepts digits only!");
                     return;
                 }
 

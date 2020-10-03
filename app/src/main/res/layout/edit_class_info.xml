@@ -9,17 +9,17 @@
 
     <TextView
         android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="* Not that this will delet class from every were"
+        android:layout_width="246dp"
+        android:layout_height="35dp"
+        android:text="Note: the deletion process will delete the class's info from the database"
         android:textColor="#F80404"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deleteClass"
-        app:layout_constraintVertical_bias="0.471" />
+        app:layout_constraintVertical_bias="0.36" />
 
     <Button
         android:id="@+id/deleteClass"
@@ -771,6 +771,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999" />
+
+    <TextView
+        android:id="@+id/redStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="*"
+        android:textColor="#F80404"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/feildReq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="* required field "
+        android:textColor="#F80404"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView40" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
