@@ -268,6 +268,8 @@ public class adminEdit extends AppCompatActivity {
                 i.putExtra("type", "new");
                 startActivity(i);
 
+
+
             }
         });
 

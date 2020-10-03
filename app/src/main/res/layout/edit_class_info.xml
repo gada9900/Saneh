@@ -11,26 +11,30 @@
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="* Checked boxs means that the class is not empty."
+        android:text="* Not that this will delet class from every were"
+        android:textColor="#F80404"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletClass" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteClass"
+        app:layout_constraintVertical_bias="0.471" />
 
     <Button
-        android:id="@+id/deletClass"
-        android:layout_width="165dp"
-        android:layout_height="43dp"
+        android:id="@+id/deleteClass"
+        android:layout_width="135dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         android:onClick="EditClass"
         android:shadowColor="#138D97"
-        android:text="Delet Class"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Delete Class"
+        app:layout_constraintBottom_toBottomOf="@+id/EditClass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintTop_toTopOf="@+id/EditClass"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <ImageView
         android:id="@+id/imageView41"
@@ -673,30 +677,29 @@
 
     <Button
         android:id="@+id/EditClass"
-        android:layout_width="165dp"
-        android:layout_height="43dp"
+        android:layout_width="135dp"
+        android:layout_height="36dp"
         android:onClick="EditClass"
         android:shadowColor="#138D97"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.843" />
+        app:layout_constraintTop_toBottomOf="@+id/textView29"
+        app:layout_constraintVertical_bias="0.226" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="* Checked boxs means that the class is not empty."
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/S2_3"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toBottomOf="@+id/S2_3" />
 
     <ImageView
         android:id="@+id/imageView38"
