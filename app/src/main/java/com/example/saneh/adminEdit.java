@@ -186,7 +186,6 @@ public class adminEdit extends AppCompatActivity {
         }
 
 
-
             /////// initiate a clickable classes in floor F
             for( int i = 1 ; i < 57 ; i++) {
 
@@ -267,6 +266,8 @@ public class adminEdit extends AppCompatActivity {
                 i.putExtra("classID", classID);
                 i.putExtra("type", "new");
                 startActivity(i);
+
+
 
             }
         });
