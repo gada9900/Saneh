@@ -7,87 +7,6 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView47"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/password3"
-        app:layout_constraintEnd_toStartOf="@+id/password3"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/password3"
-        app:layout_constraintVertical_bias="0.52"
-        app:srcCompat="@drawable/loc" />
-
-    <ImageView
-        android:id="@+id/imageView46"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/password"
-        app:layout_constraintEnd_toStartOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/password"
-        app:layout_constraintVertical_bias="0.56"
-        app:srcCompat="@drawable/loc" />
-
-    <ImageView
-        android:id="@+id/imageView45"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/name2"
-        app:layout_constraintEnd_toStartOf="@+id/name2"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/name2"
-        app:layout_constraintVertical_bias="0.68"
-        app:srcCompat="@drawable/uouo1" />
-
-    <EditText
-        android:id="@+id/password3"
-        android:layout_width="198dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="198dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
-
-    <EditText
-        android:id="@+id/name2"
-        android:layout_width="198dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481" />
-
-    <ImageView
         android:id="@+id/imageView41"
         android:layout_width="412dp"
         android:layout_height="83dp"
@@ -99,7 +18,7 @@
         app:srcCompat="@drawable/rectangle_2001_shape" />
 
     <ImageView
-        android:id="@+id/gotologin2"
+        android:id="@+id/gotoProfile"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
@@ -150,17 +69,85 @@
         app:layout_constraintVertical_bias="0.538" />
 
     <Button
-        android:id="@+id/SaveEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="91dp"
+        android:id="@+id/EditName"
+        android:layout_width="110dp"
+        android:layout_height="44dp"
         android:background="#acdfe3"
-        android:text="Save"
+        android:text="Update Name"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password3"
-        app:layout_constraintVertical_bias="0.681" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Name:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="10"
+        android:hint="New Name "
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/EditName"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Password:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintVertical_bias="0.149" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.199"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        app:layout_constraintVertical_bias="0.068" />
+
+    <Button
+        android:id="@+id/editPassword"
+        android:layout_width="110dp"
+        android:layout_height="44dp"
+        android:background="#acdfe3"
+        android:text="Update Password"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPassword3"
+        app:layout_constraintTop_toBottomOf="@+id/EditName"
+        app:layout_constraintVertical_bias="0.28" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
