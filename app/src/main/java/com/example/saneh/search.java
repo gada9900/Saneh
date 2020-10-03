@@ -1,11 +1,16 @@
 package com.example.saneh;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,42 +25,54 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.google.firebase.auth.AuthResult;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import static com.example.saneh.R.color.red;
 
 public class search extends AppCompatActivity {
 
+
     static PopupWindow popupWindow ;
     static ConstraintLayout con ;
-    EditText date;
-    FirebaseAuth fAuth;
+    TextView date;
     public static final String TAG = "TAG";
-    EditText inputDate;
+    Date inputDate;
     Spinner selectedTime;
     Button search;
+    String _classID ;
+    long _Capacity;
+    boolean _Projector , _InterActive;
+    List<Boolean> s,m,t,w,th;
+    String dayOfWeek;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
-        fAuth = FirebaseAuth.getInstance();
-
-
-
         //prevent bottom toolbar from moving (its important)
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
 
-        inputDate = findViewById(R.id.dateSearch);
 
 
         selectedTime =(Spinner) findViewById(R.id.spinnerSearch);
@@ -89,13 +106,65 @@ public class search extends AppCompatActivity {
         });
 
         search.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
                 //here we need to write a code that will take date and time and change the color of classrooms
 
                 //date input
-                String sdate =inputDate.getText().toString().trim();
+                String sdate ;
+               if(date.length() == 0 ) { // if the user did not enter a date it will be by default today's date for the user's device
+                   Date today = new Date();
+                   SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+                   date.setText(simple.format(today));
+                   sdate = simple.format(today);
+                   //
+               }
+                 sdate = date.getText().toString().trim();
+                int year=Integer.parseInt(sdate.substring(6,10));
+                int month=Integer.parseInt(sdate.substring(3,5));;
+                int day=Integer.parseInt(sdate.substring(0,2));;
+
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
+                cal.set(Calendar.MONTH,month); //Set month, starts with JANUARY = 0
+                cal.set(Calendar.YEAR,year); //Set year
+                int day0 = cal.get(Calendar.DAY_OF_WEEK);
+                String d ="s";
+
+
+                switch (day0) {
+                    case 1:
+                        d="th";
+                        break;
+                    case 2:
+                        d="f";
+                        break;
+                    case 3:
+                        d="ss";
+                        break;
+                    case 4:
+                        d="s";
+                        break;
+                    case 5:
+                        d="m";
+                        break;
+                    case 6:
+                        d="t";
+                        break;
+                    case 7:
+                        d="w";
+                        break;
+
+                }
+
+                final String finalDay =d;
+
+
+
+
 
                 //time input
                 String stime = selectedTime.getSelectedItem().toString();
@@ -126,20 +195,86 @@ public class search extends AppCompatActivity {
                 }//end switch
 
 
-            }
-        });
 
 
 
 
+                //-- here
+
+                //get all the Documents
+                final int finalTimeIndex = timeIndex;
+
+                Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
+                        .collection("classes")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @SuppressLint("ResourceAsColor")
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                    int myListOfDocumentsLen = myListOfDocuments.size();
+                                    boolean b=false;
 
 
-        init();
 
+
+                                    for(int i=0; i<myListOfDocumentsLen; i++){
+                                        _classID = "class"+myListOfDocuments.get(i).getString("roomNum");
+
+
+                                        int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                        TextView room = (TextView) findViewById(id);
+
+
+
+                                        if (finalDay.equals("s")) {
+                                            s = (List<Boolean>) myListOfDocuments.get(i).get("s");
+                                            b = s.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+
+                                        } else if (finalDay.equals("m")) {
+                                            m = (List<Boolean>) myListOfDocuments.get(i).get("m");
+                                            b = m.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+
+                                        } else if  (finalDay.equals("t")) {
+                                            t = (List<Boolean>) myListOfDocuments.get(i).get("t");
+                                            b = t.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                        }  else if  (finalDay.equals("w")) {
+                                            w = (List<Boolean>) myListOfDocuments.get(i).get("w");
+                                            b = w.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                        }else if  (finalDay.equals("th")){
+                                            th = (List<Boolean>) myListOfDocuments.get(i).get("th");
+                                            b = th.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                        }else if(finalDay.equals("f")){
+                                            Toast.makeText(search.this, "Friday! the weekend is not supported", Toast.LENGTH_SHORT).show();
+
+                                        }else if(finalDay.equals("ss")){
+                                            Toast.makeText(search.this, "Saturday! the weekend is not supported", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+
+                                }
+
+
+                            }
+
+
+                        });
+            }});
+
+
+       init();
     }
 
-    private void showDateDialog(final EditText date) {
-       final Calendar calendar= Calendar.getInstance();
+    private void showDateDialog(final TextView date) {
+        final Calendar calendar= Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dateSetListener= new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
@@ -213,33 +348,33 @@ public class search extends AppCompatActivity {
     }
 
     public void init(){
-TextView classes ;
+        TextView classes ;
 
-       /////// initiate a clickable classes in floor 1
-     for( int i = 1 ; i < 57 ; i++) {
+        /////// initiate a clickable classes in floor 1
+        for( int i = 1 ; i < 57 ; i++) {
 
-         if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
-             continue;
-         int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
-         classes = (TextView) findViewById(id);
+            if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
+                continue;
+            int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
+            classes = (TextView) findViewById(id);
 
-        classes.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 onButtonShowPopupWindowClick(view);
+            classes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onButtonShowPopupWindowClick(view);
 
-             }
-         });
+                }
+            });
 
-     }
+        }
 
         /////// initiate a clickable classes in floor G
-       for( int i = 3 ; i < 52 ; i++) {
+        for( int i = 3 ; i < 52 ; i++) {
 
             if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
                 continue;
-           int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
-           classes = (TextView) findViewById(id);
+            int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
+            classes = (TextView) findViewById(id);
 
             classes.setOnClickListener(new View.OnClickListener() {
                 @Override

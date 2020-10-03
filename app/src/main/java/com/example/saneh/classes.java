@@ -9,11 +9,8 @@ public class classes {
     private long capacity;
     private boolean interactive;
     private boolean projector;
-    private boolean[] s ;
-    private boolean[] m ;
-    private boolean[] t ;
-    private boolean[] w ;
-    private boolean[] th;
+    private List<Boolean> s , m , t , w ,th ;
+
 
     private classes(){}
 
@@ -26,7 +23,7 @@ public class classes {
 
 
 
-    public classes(String roomNum ,long capacity, boolean interactive,boolean projector ,boolean[] s,boolean[] m ,boolean[] t , boolean[] w ,boolean[] th) {
+    public classes(String roomNum ,long capacity, boolean interactive,boolean projector ,List<Boolean> s,List<Boolean> m ,List<Boolean> t , List<Boolean> w ,List<Boolean> th) {
         this.roomNum=roomNum;
         this.capacity=capacity;
         this.interactive=interactive;
@@ -38,43 +35,43 @@ public class classes {
         this.th=th;
     }
 
-    public boolean[] getT() {
+    public List<Boolean> getT() {
         return t;
     }
 
-    public boolean[] getS() {
+    public List<Boolean> getS() {
         return s;
     }
 
-    public void setS(boolean[] s) {
+    public void setS(List<Boolean> s) {
         this.s = s;
     }
 
-    public boolean[] getM() {
+    public List<Boolean> getM() {
         return m;
     }
 
-    public boolean[] getW() {
+    public List<Boolean> getW() {
         return w;
     }
 
-    public void setW(boolean[] w) {
+    public void setW(List<Boolean> w) {
         this.w = w;
     }
 
-    public void setM(boolean[] m) {
+    public void setM(List<Boolean> m) {
         this.m = m;
     }
 
-    public boolean[] getTh() {
+    public List<Boolean> getTh() {
         return th;
     }
 
-    public void setTh(boolean[] th) {
+    public void setTh(List<Boolean> th) {
         this.th = th;
     }
 
-    public void setT(boolean[] t) {
+    public void setT(List<Boolean> t) {
         this.t = t;
     }
 
