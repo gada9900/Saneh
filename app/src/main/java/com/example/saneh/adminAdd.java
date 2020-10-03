@@ -25,6 +25,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +40,7 @@ public class adminAdd extends AppCompatActivity {
     TextView addCapacity;
     Switch Projector_switch_add;
     Switch InterActive_switch_add;
-    List<Boolean> s, m, t, w, th;
+
     Long newCap;
     boolean newPro, newInter;
 
@@ -71,13 +72,14 @@ public class adminAdd extends AppCompatActivity {
         classIDPassed = valueFromFirstActivity.getString("classID");
         addClassID = findViewById(R.id.addClassID);
         addClassID.setText(classIDPassed);
-        addClass(classIDPassed);
 
-        s = Collections.unmodifiableList(new List<>(7));
-        m = [];
-        t = new List<Boolean>(7) ;
-        w = new List<Boolean>(7) ;
-        th= new List<Boolean>(7) ;
+        if (addClass(classIDPassed)){
+            int id = getResources().getIdentifier("class"+classIDPassed, "id", getPackageName());
+            TextView addedClass = (TextView) findViewById(id);
+            addedClass.setBackgroundColor(getResources().getColor(R.color.grean));
+        }
+
+
 
         Th8_9 = findViewById(R.id.Th8_9A);
         Th9_10 = findViewById(R.id.Th9_10A);
@@ -119,8 +121,10 @@ public class adminAdd extends AppCompatActivity {
 
 
 
-    public void addClass(final String classIDPassed){
+    public boolean addClass(final String classIDPassed){
 
+        final boolean[] Added = new boolean[1];
+        Added[0] = false;
         AddClass = findViewById(R.id.AddClass);
         AddClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,8 +134,6 @@ public class adminAdd extends AppCompatActivity {
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch projector = findViewById(R.id.Projector_switch_add);
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch_add);
 
-                //TextView addClassID = findViewById(R.id.addClassID);
-                //String classID = addClassID.toString().trim();
 
                 if (TextUtils.isEmpty(Capacity.getText().toString().trim())){
                     Capacity.setError("Capacity is required!");
@@ -149,47 +151,10 @@ public class adminAdd extends AppCompatActivity {
                 else
                     newInter = false;
 
-                s.set(0, S8_9.isChecked());
-                s.set(1, S9_10.isChecked());
-                s.set(2, S10_11.isChecked());
-                s.set(3, S11_12.isChecked());
-                s.set(4, S12_1.isChecked());
-                s.set(5, S1_2.isChecked());
-                s.set(6, S2_3.isChecked());
 
-                m.set(0, M8_9.isChecked());
-                m.set(1, M9_10.isChecked());
-                m.set(2, M10_11.isChecked());
-                m.set(3, M11_12.isChecked());
-                m.set(4, M12_1.isChecked());
-                m.set(5, M1_2.isChecked());
-                m.set(6, M2_3.isChecked());
-
-                t.set(0, T8_9.isChecked());
-                t.set(1, T9_10.isChecked());
-                t.set(2, T10_11.isChecked());
-                t.set(3, T11_12.isChecked());
-                t.set(4, T12_1.isChecked());
-                t.set(5, T1_2.isChecked());
-                t.set(6, T2_3.isChecked());
-
-                w.set(0, W8_9.isChecked());
-                w.set(1, W9_10.isChecked());
-                w.set(2, W10_11.isChecked());
-                w.set(3, W11_12.isChecked());
-                w.set(4, W12_1.isChecked());
-                w.set(5, W1_2.isChecked());
-                w.set(6, W2_3.isChecked());
-
-                th.set(0, Th8_9.isChecked());
-                th.set(1, Th9_10.isChecked());
-                th.set(2, Th10_11.isChecked());
-                th.set(3, Th11_12.isChecked());
-                th.set(4, Th12_1.isChecked());
-                th.set(5, Th1_2.isChecked());
-                th.set(6, Th2_3.isChecked());
 
                 //adding classes
+
 
                 DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed);
 
@@ -198,13 +163,11 @@ public class adminAdd extends AppCompatActivity {
                 newClass.put("capacity", newCap);
                 newClass.put("projector", newPro);
                 newClass.put("interactive", newInter);
-                newClass.put("s", s);
-                newClass.put("m", m);
-                newClass.put("t", t);
-                newClass.put("w", w);
-                newClass.put("th", th);
-
-                //classes newClass = new classes(classID, newCap, newInter, newPro);
+                newClass.put("s", Arrays.asList(S8_9.isChecked(), S9_10.isChecked(), S10_11.isChecked(), S10_11.isChecked(), S12_1.isChecked(), S1_2.isChecked(), S2_3.isChecked()));
+                newClass.put("m", Arrays.asList(M8_9.isChecked(), M9_10.isChecked(), M10_11.isChecked(), M11_12.isChecked(), M12_1.isChecked(), S1_2.isChecked(), M2_3.isChecked()));
+                newClass.put("t", Arrays.asList(T8_9.isChecked(),T9_10.isChecked(),T10_11.isChecked(),T11_12.isChecked(),T12_1.isChecked(),T1_2.isChecked(),T2_3.isChecked()));
+                newClass.put("w", Arrays.asList(W8_9.isChecked(),W9_10.isChecked(),W10_11.isChecked(),W11_12.isChecked(),W12_1.isChecked(),W1_2.isChecked(),W2_3.isChecked()));
+                newClass.put("th", Arrays.asList(Th8_9.isChecked(),Th9_10.isChecked(),Th10_11.isChecked(),Th11_12.isChecked(),Th12_1.isChecked(),Th1_2.isChecked(),Th2_3.isChecked()));
 
 
                 documentReference.set(newClass)
@@ -212,11 +175,8 @@ public class adminAdd extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                int id = getResources().getIdentifier("class"+classIDPassed, "id", getPackageName());
-                                TextView addedClass = (TextView) findViewById(id);
-                                addedClass.setBackgroundColor(getResources().getColor(R.color.grean));
                                 Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
-
+                                 Added[0] = true;
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -224,6 +184,7 @@ public class adminAdd extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, e.toString());
+                                Added[0] = false;
                             }
                         });
             }
@@ -231,8 +192,9 @@ public class adminAdd extends AppCompatActivity {
 
 
 
-
+       return  Added[0];
 
 
     }
 }
+
