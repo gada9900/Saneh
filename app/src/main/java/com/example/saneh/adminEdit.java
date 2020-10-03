@@ -38,7 +38,7 @@ public class adminEdit extends AppCompatActivity {
 
     private static final String TAG = "DocSnippets";
     private FirebaseFirestore firebaseFirestore;
-    private ImageView edit, settings;
+    private ImageView edit, settings, add;
     static PopupWindow popupWindow ;
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +48,7 @@ public class adminEdit extends AppCompatActivity {
 
         settings = findViewById(R.id.imageView8);
         edit = findViewById(R.id.imageView9);
+        add = findViewById(R.id.imageView17);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +62,14 @@ public class adminEdit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),admin_settings.class);
+                startActivity(i);
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),adminAdd.class);
                 startActivity(i);
             }
         });
