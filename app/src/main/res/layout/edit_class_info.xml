@@ -7,13 +7,38 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="* Checked boxs means that the class is not empty."
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletClass" />
+
+    <Button
+        android:id="@+id/deletClass"
+        android:layout_width="165dp"
+        android:layout_height="43dp"
+        android:onClick="EditClass"
+        android:shadowColor="#138D97"
+        android:text="Delet Class"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954" />
+
     <ImageView
         android:id="@+id/imageView41"
-        android:layout_width="53dp"
-        android:layout_height="35dp"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
         app:layout_constraintBottom_toBottomOf="@+id/interactive_switch"
         app:layout_constraintEnd_toStartOf="@+id/interactive_switch"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/interactive_switch"
         app:layout_constraintVertical_bias="1.0"
@@ -503,10 +528,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_bias="0.299"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
@@ -655,10 +680,10 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintVertical_bias="0.843" />
 
     <TextView
         android:id="@+id/textView29"
