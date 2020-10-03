@@ -53,6 +53,6 @@ dependencies {
     // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-firestore:6.3.0'
 
-
+    implementation 'com.google.firebase:firebase-analytics'
 
 }
