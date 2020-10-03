@@ -73,12 +73,6 @@ public class adminAdd extends AppCompatActivity {
         addClassID = findViewById(R.id.addClassID);
         addClassID.setText(classIDPassed);
 
-        if (addClass(classIDPassed)){
-            int id = getResources().getIdentifier("class"+classIDPassed, "id", getPackageName());
-            TextView addedClass = (TextView) findViewById(id);
-            addedClass.setBackgroundColor(getResources().getColor(R.color.grean));
-        }
-
 
 
         Th8_9 = findViewById(R.id.Th8_9A);
