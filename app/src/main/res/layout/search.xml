@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
                 android:layout_marginLeft="56dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toEndOf="@+id/filterSearch"
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch" />
 
@@ -37,19 +37,22 @@
                 android:layout_height="32dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.32"
+                app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dateSearch"
                 android:layout_width="130dp"
                 android:layout_height="43dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="64dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="216dp"
+                android:layout_marginRight="216dp"
+                android:gravity="center_vertical"
                 android:hint="Select date"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#060606"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerSearch"
                 app:layout_constraintTop_toBottomOf="@+id/searchPage5" />
 
             <ImageView
@@ -65,33 +68,34 @@
 
             <Button
                 android:id="@+id/searchbtn"
-                android:layout_width="63dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="130dp"
+                android:layout_height="33dp"
                 android:background="#acdfe3"
-                android:text="Save"
+                android:text="Search"
+                android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/imageView47"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupSearch" />
 
             <ImageView
                 android:id="@+id/imageView46"
-                android:layout_width="45dp"
-                android:layout_height="36dp"
+                android:layout_width="50dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/radioGroupSearch"
-                app:layout_constraintEnd_toStartOf="@+id/acticityClassSearch"
-                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch"
-                app:srcCompat="@drawable/icons_pro" />
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/projecterr" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="400dp"
                 android:layout_height="518dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="330dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1104,11 +1108,11 @@
                 android:layout_height="47dp"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintEnd_toStartOf="@+id/dateSearch"
-                app:layout_constraintHorizontal_bias="0.55"
+                app:layout_constraintHorizontal_bias="0.578"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchPage5"
-                app:layout_constraintVertical_bias="0.13999999"
-                app:srcCompat="@drawable/icons8_calendar_10_50" />
+                app:layout_constraintVertical_bias="0.121"
+                app:srcCompat="@drawable/calenderblack" />
 
             <ImageView
                 android:id="@+id/timeImage"
@@ -1119,8 +1123,8 @@
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toEndOf="@+id/dateSearch"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.44"
-                app:srcCompat="@drawable/icons8_clock_64" />
+                app:layout_constraintVertical_bias="0.39"
+                app:srcCompat="@drawable/whatchblack" />
 
             <RadioGroup
                 android:id="@+id/radioGroupSearch"
@@ -1128,13 +1132,14 @@
                 android:layout_height="49dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginBottom="56dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.19"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/capacitySearch"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerSearch"
-                app:layout_constraintVertical_bias="0.72">
+                app:layout_constraintTop_toBottomOf="@+id/timeImage"
+                app:layout_constraintVertical_bias="0.93">
 
                 <RadioButton
                     android:id="@+id/Search20"
@@ -1187,7 +1192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="20dp"
                 android:text="Capacity:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"

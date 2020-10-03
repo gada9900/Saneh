@@ -1,12 +1,14 @@
 package com.example.saneh;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -32,10 +34,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.saneh.R.color.red;
 
@@ -43,11 +49,16 @@ public class search extends AppCompatActivity {
 
     static PopupWindow popupWindow ;
     static ConstraintLayout con ;
-    EditText date;
+    TextView date;
     public static final String TAG = "TAG";
-    EditText inputDate;
+    Date inputDate;
     Spinner selectedTime;
     Button search;
+    String _classID ;
+    long _Capacity;
+    boolean _Projector , _InterActive;
+    List<Boolean> s,m,t,w,th;
+    String dayOfWeek;
 
 
 
@@ -55,19 +66,12 @@ public class search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-        // this line to make bottom bar in its place while writing on keyboard
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
-
-
-
 
         //prevent bottom toolbar from moving (its important)
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
 
-        inputDate = findViewById(R.id.dateSearch);
 
 
         selectedTime =(Spinner) findViewById(R.id.spinnerSearch);
@@ -101,39 +105,90 @@ public class search extends AppCompatActivity {
         });
 
         search.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
                 //here we need to write a code that will take date and time and change the color of classrooms
 
                 //date input
-                String sdate = inputDate.getText().toString().trim();
+                String sdate ;
+               if(date.length() == 0 ) { // if the user did not enter a date it will be by default today's date for the user's device
+                   Date today = new Date();
+                   SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+                   date.setText(simple.format(today));
+                   sdate = simple.format(today);
+                   //
+               }
+                 sdate = date.getText().toString().trim();
+                int year=Integer.parseInt(sdate.substring(6,10));
+                int month=Integer.parseInt(sdate.substring(3,5));;
+                int day=Integer.parseInt(sdate.substring(0,2));;
+
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
+                cal.set(Calendar.MONTH,month); //Set month, starts with JANUARY = 0
+                cal.set(Calendar.YEAR,year); //Set year
+                int day0 = cal.get(Calendar.DAY_OF_WEEK);
+                String d ="s";
+
+
+                switch (day0) {
+                    case 1:
+                        d="th";
+                        break;
+                    case 2:
+                        d="f";
+                        break;
+                    case 3:
+                        d="ss";
+                        break;
+                    case 4:
+                        d="s";
+                        break;
+                    case 5:
+                        d="m";
+                        break;
+                    case 6:
+                        d="t";
+                        break;
+                    case 7:
+                        d="w";
+                        break;
+
+                }
+
+                final String finalDay =d;
+
+
+
+
 
                 //time input
                 String stime = selectedTime.getSelectedItem().toString();
-
-                String timeIndex = "-1";
+                int timeIndex = -1;
 
                 switch (stime){
-                    case "8:00 AM":  timeIndex= "0";
+                    case "8:00 AM":  timeIndex= 0;
                         break;
 
-                    case "9:00 AM": timeIndex= "1";
+                    case "9:00 AM": timeIndex= 1;
                         break;
 
-                    case "10:00 AM": timeIndex= "2";
+                    case "10:00 AM": timeIndex= 2;
                         break;
 
-                    case "11:00 AM": timeIndex= "3";
+                    case "11:00 AM": timeIndex= 3;
                         break;
 
-                    case "12:00 PM": timeIndex= "4";
+                    case "12:00 PM": timeIndex= 4;
                         break;
 
-                    case "1:00 PM": timeIndex= "5";
+                    case "1:00 PM": timeIndex= 5;
                         break;
 
-                    case "2:00 PM": timeIndex= "6";
+                    case "2:00 PM": timeIndex= 6;
                         break;
 
                 }//end switch
@@ -141,10 +196,12 @@ public class search extends AppCompatActivity {
 
 
 
+
+
                 //-- here
 
                 //get all the Documents
-                final String finalTimeIndex = timeIndex;
+                final int finalTimeIndex = timeIndex;
 
                 Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
                         .collection("classes")
@@ -155,69 +212,67 @@ public class search extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                    int myListOfDocumentsLen = myListOfDocuments.size();
+                                    boolean b=false;
 
-                                    List<classroom> classroomList = new ArrayList<classroom>();
 
-                                   // Toast.makeText(search.this, ""+myListOfDocuments.get(0), Toast.LENGTH_LONG).show();
 
-                                    for (DocumentSnapshot ds : myListOfDocuments) {
-                                         //      ds.getData()
-                                        Toast.makeText(search.this, ""+myListOfDocuments.get(0).getData(), Toast.LENGTH_LONG).show();
 
-                                       //  classroom classobj = ds.toObject(classroom.class);
-                                       // classroomList.add(classobj);
-                                   }
+                                    for(int i=0; i<myListOfDocumentsLen; i++){
+                                        _classID = "class"+myListOfDocuments.get(i).getString("roomNum");
 
-                                    TextView room;
-                                /*
-                                   for (classroom element : classroomList) {
-                                        String roomid = "class" + element.getRoomNum();
-                                        int id = getResources().getIdentifier(roomid, "id", getPackageName());
-                                        room = (TextView) findViewById(id);
 
-                                        if (element.getS(finalTimeIndex) == true) {
-                                            room.setBackgroundColor(red);
-                                        } else {
-                                            room.setBackgroundColor(R.color.grean);
-                                        }//end else
-                                    }//end for   */
+                                        int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                        TextView room = (TextView) findViewById(id);
+
+
+
+                                        if (finalDay.equals("s")) {
+                                            s = (List<Boolean>) myListOfDocuments.get(i).get("s");
+                                            b = s.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+
+                                        } else if (finalDay.equals("m")) {
+                                            m = (List<Boolean>) myListOfDocuments.get(i).get("m");
+                                            b = m.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+
+                                        } else if  (finalDay.equals("t")) {
+                                            t = (List<Boolean>) myListOfDocuments.get(i).get("t");
+                                            b = t.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                        }  else if  (finalDay.equals("w")) {
+                                            w = (List<Boolean>) myListOfDocuments.get(i).get("w");
+                                            b = w.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                        }else if  (finalDay.equals("th")){
+                                            th = (List<Boolean>) myListOfDocuments.get(i).get("th");
+                                            b = th.get(finalTimeIndex);
+                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                        }else if(finalDay.equals("f")){
+                                            Toast.makeText(search.this, "Friday! the weekend is not supported", Toast.LENGTH_SHORT).show();
+
+                                        }else if(finalDay.equals("ss")){
+                                            Toast.makeText(search.this, "Saturday! the weekend is not supported", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+
                                 }
+
+
                             }
 
 
                         });
-
-
-
             }});
 
-        //get all the Documents that go with input time
 
-             /*    FirebaseFirestore.getInstance()
-                        .collection("classes")
-                        .whereArrayContains("s",timeIndex,true)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
-                                }
-                            }*/
-
-
-
-        //-- end
-
-
-
-
-
-        init();
-
+       init();
     }
 
-    private void showDateDialog(final EditText date) {
+    private void showDateDialog(final TextView date) {
         final Calendar calendar= Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dateSetListener= new DatePickerDialog.OnDateSetListener() {
             @Override
