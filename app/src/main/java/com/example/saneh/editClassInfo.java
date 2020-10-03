@@ -275,9 +275,23 @@ public class editClassInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 final DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed);
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch projector = findViewById(R.id.Projector_switch);
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch);
+
+
+                String capCheck = Capacity.getText().toString();
+                if (TextUtils.isEmpty(capCheck)){
+                    Capacity.setError("Capacity is required!");
+                    return;
+                }
+                if (!TextUtils.isDigitsOnly(capCheck)){
+                    Capacity.setError("Capacity accepts digits only!");
+                    return;
+                }
+
+
                 // Get a new write batch
                 //Get all the values
                 _Capacity = Long.parseLong(Capacity.getEditableText().toString());
