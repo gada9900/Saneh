@@ -1,22 +1,30 @@
 package com.example.saneh;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class classroom {
 
     private String roomNum;
-    private int capacity;
+    private long capacity;
     private boolean interactive;
     private boolean projector;
-    private boolean[] s;
-    private boolean[] m;
-    private boolean[] t;
-    private boolean[] w;
-    private boolean[] th;
+    private List<Boolean> s;
+    private List<Boolean> m;
+    private List<Boolean> t;
+    private List<Boolean> w;
+    private List<Boolean> th;
 
-    public classroom(String roomNum, int capacity, boolean interactive,boolean projector,
-                     boolean[] s,boolean[] m,boolean[] t,boolean[] w,boolean[]th){
+    public classroom(){
+
+
+
+    }
+
+    public classroom(String roomNum, long capacity, boolean interactive,boolean projector,
+                     List<Boolean> s,List<Boolean> m,List<Boolean> t,List<Boolean> w,List<Boolean> th){
 
         this.roomNum = roomNum;
         this.capacity=capacity;
@@ -30,11 +38,12 @@ public class classroom {
 
     }
     //set
+
     public void setRoomNum(String roomNum){
         this.roomNum = roomNum;
     }
 
-    public void setCapacity(int capacity1){
+    public void setCapacity(long capacity){
         this.capacity=capacity;
     }
 
@@ -42,26 +51,26 @@ public class classroom {
         this.projector=projector;
     }
 
-    public void setInteractive(boolean projector){
+    public void setInteractive(boolean interactive){
         this.interactive=interactive;
     }
-    public void setM(boolean[] m){
+    public void setM(List<Boolean> m){
         this.m=m;
     }
 
-    public void setS(boolean[] s){
+    public void setS(List<Boolean> s){
         this.s=s;
     }
 
-    public void setT(boolean[] t){
+    public void setT(List<Boolean> t){
         this.t=t;
     }
 
-    public void setTH(boolean[] th){
+    public void setTh(List<Boolean> th){
         this.th=th;
     }
 
-    public void setW(boolean[] w){
+    public void setW(List<Boolean> w){
         this.w=w;
     }
     //get
@@ -69,7 +78,7 @@ public class classroom {
         return roomNum;
     }
 
-    public int getCapacity(){
+    public long getCapacity(){
         return capacity;
     }
 
@@ -81,25 +90,31 @@ public class classroom {
         return projector;
     }
 
-    public boolean[] getS(){
+    public List<Boolean> getS(){
         return s;
     }
 
-    public boolean[] getM(){
+  /*  public boolean getS(String index){
+        int ind = Integer.parseInt(index);
+        return s[ind];
+    } */
+
+    public List<Boolean> getM(){
         return m;
     }
 
-    public boolean[] getT(){
+    public List<Boolean> getT(){
         return t;
     }
 
-    public boolean[] getW(){
+    public List<Boolean> getW(){
         return w;
     }
 
-    public boolean[] getTH(){
+    public List<Boolean> getTh(){
         return th;
     }
+
 
 }
 
