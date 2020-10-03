@@ -46,7 +46,7 @@
         app:srcCompat="@drawable/newbar" />
 
     <ImageView
-        android:id="@+id/imageView25"
+        android:id="@+id/close"
         android:layout_width="48dp"
         android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView26"
