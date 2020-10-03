@@ -176,7 +176,7 @@ public class adminAdd extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
-                                 Added[0] = true;
+                                Added[0] = true;
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -192,7 +192,7 @@ public class adminAdd extends AppCompatActivity {
 
 
 
-       return  Added[0];
+        return  Added[0];
 
 
     }
