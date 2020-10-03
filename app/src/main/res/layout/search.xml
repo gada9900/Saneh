@@ -41,14 +41,17 @@
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dateSearch"
                 android:layout_width="130dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="216dp"
                 android:layout_marginRight="216dp"
+                android:gravity="center_vertical"
                 android:hint="Select date"
+                android:textColor="#060606"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/spinnerSearch"
                 app:layout_constraintTop_toBottomOf="@+id/searchPage5" />
 

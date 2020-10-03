@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -49,7 +50,7 @@ public class search extends AppCompatActivity {
 
     static PopupWindow popupWindow ;
     static ConstraintLayout con ;
-    EditText date;
+    TextView date;
     public static final String TAG = "TAG";
     Date inputDate;
     Spinner selectedTime;
@@ -112,7 +113,15 @@ public class search extends AppCompatActivity {
                 //here we need to write a code that will take date and time and change the color of classrooms
 
                 //date input
-                String sdate = date.getText().toString().trim();
+                String sdate ;
+               if(date.length() == 0 ) { // if the user did not enter a date it will be by default today's date for the user's device
+                   Date today = new Date();
+                   SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+                   date.setText(simple.format(today));
+                   sdate = simple.format(today);
+                   //
+               }
+                 sdate = date.getText().toString().trim();
                 int year=Integer.parseInt(sdate.substring(6,10));
                 int month=Integer.parseInt(sdate.substring(3,5));;
                 int day=Integer.parseInt(sdate.substring(0,2));;
@@ -261,10 +270,10 @@ public class search extends AppCompatActivity {
             }});
 
 
-
+       init();
     }
 
-    private void showDateDialog(final EditText date) {
+    private void showDateDialog(final TextView date) {
         final Calendar calendar= Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dateSetListener= new DatePickerDialog.OnDateSetListener() {
             @Override
