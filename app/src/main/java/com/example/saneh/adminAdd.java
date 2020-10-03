@@ -73,12 +73,6 @@ public class adminAdd extends AppCompatActivity {
         addClassID = findViewById(R.id.addClassID);
         addClassID.setText(classIDPassed);
 
-        if (addClass(classIDPassed)){
-            int id = getResources().getIdentifier("class"+classIDPassed, "id", getPackageName());
-            TextView addedClass = (TextView) findViewById(id);
-            addedClass.setBackgroundColor(getResources().getColor(R.color.grean));
-        }
-
 
 
         Th8_9 = findViewById(R.id.Th8_9A);
@@ -176,7 +170,7 @@ public class adminAdd extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
-                                 Added[0] = true;
+                                Added[0] = true;
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -192,7 +186,7 @@ public class adminAdd extends AppCompatActivity {
 
 
 
-       return  Added[0];
+        return  Added[0];
 
 
     }
