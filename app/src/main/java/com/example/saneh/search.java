@@ -161,10 +161,12 @@ public class search extends AppCompatActivity {
                                    // Toast.makeText(search.this, ""+myListOfDocuments.get(0), Toast.LENGTH_LONG).show();
 
                                     for (DocumentSnapshot ds : myListOfDocuments) {
+                                         //      ds.getData()
+                                        Toast.makeText(search.this, ""+myListOfDocuments.get(0).getData(), Toast.LENGTH_LONG).show();
 
-                                        classroom classobj = ds.toObject(classroom.class);
-                                        classroomList.add(classobj);
-                                    }
+                                       //  classroom classobj = ds.toObject(classroom.class);
+                                       // classroomList.add(classobj);
+                                   }
 
                                     TextView room;
                                 /*
