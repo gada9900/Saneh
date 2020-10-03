@@ -1,10 +1,14 @@
 package com.example.saneh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,7 +22,11 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import java.text.SimpleDateFormat;
@@ -28,6 +36,7 @@ import java.util.Map;
 
 public class adminEdit extends AppCompatActivity {
 
+    private static final String TAG = "DocSnippets";
     private FirebaseFirestore firebaseFirestore;
     private ImageView edit, settings;
     static PopupWindow popupWindow ;
@@ -56,82 +65,187 @@ public class adminEdit extends AppCompatActivity {
             }
         });
 
+        classesColor();
         clickableClass();
+
+    }
+
+    public void classesColor(){
+
+        final int green = Color.parseColor("#3EBB49");
+        final int gray = Color.parseColor("#8b97ac");
+        //TextView classID;
+        //coloring Floor G
+
+        for( int i = 3 ; i < 52 ; i++) {
+
+            if (i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45)
+                continue;
+
+            int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
+            final String DBClassID = "6G" + i;
+            final TextView classID = (TextView) findViewById(id);
+
+            DocumentReference docRef = firebaseFirestore.collection("classes").document(DBClassID);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            //Log.d(TAG, "Document exists!");
+                            classID.setBackgroundColor(green);
+                        } else {
+                            //Log.d(TAG, "Document does not exist!");
+                            classID.setBackgroundColor(gray);
+                        }
+                    } else {
+                        Log.d(TAG, "Failed with: ", task.getException());
+                    }
+                }
+            });
+
+        }
+
+        //coloring Floor F
+
+        for( int i = 1 ; i < 57 ; i++) {
+
+            if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
+                continue;
+
+
+            int id = getResources().getIdentifier("class6F" + i, "id", getPackageName());
+            final String DBClassID = "6F" + i;
+            final TextView classID = (TextView) findViewById(id);
+
+            DocumentReference docRef = firebaseFirestore.collection("classes").document(DBClassID);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            //Log.d(TAG, "Document exists!");
+                            classID.setBackgroundColor(green);
+                        } else {
+                            //Log.d(TAG, "Document does not exist!");
+                            classID.setBackgroundColor(gray);
+                        }
+                    } else {
+                        Log.d(TAG, "Failed with: ", task.getException());
+                    }
+                }
+            });
+
+        }
 
     }
 
 
 
-        public void clickableClass(){
-            TextView classes ;
-
-            /////// initiate a clickable classes in floor 1
-            for( int i = 1 ; i < 57 ; i++) {
-
-                if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 ){
-                    continue;
-                }
-                int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
-                final String classID = "6F"+i;
-                classes = (TextView) findViewById(id);
-
-                classes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), editClassInfo.class);
-                        i.putExtra("classID", classID);
-                        i.putExtra("type", "old");
-                        startActivity(i);
-                    }
-                });
-
-            }
-
-            /////// initiate a clickable classes in floor G
-            for( int i = 3 ; i < 52 ; i++) {
-
-                if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
-                    continue;
-                int id = getResources().getIdentifier("class6G"+i, "id", getPackageName());
-                final String classID = "6G"+i;
-                classes = (TextView) findViewById(id);
-
-                classes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), editClassInfo.class);
-                        i.putExtra("classID", classID);
-                        i.putExtra("type", "old");
-                        startActivity(i);
-                    }
-                });
+    public void clickableClass(){
 
 
-            }
+        /////// initiate a clickable classes in floor G
+        for( int i = 3 ; i < 52 ; i++) {
+            if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
+                continue;
 
-            /////// add class window
-            for( int i = 3 ; i < 52 ; i++) {
+            int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
+            final String DBClassID = "6G" + i;
+            final TextView classID = (TextView) findViewById(id);
 
-                if( i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 ||i == 24 ||i == 25 ||i == 26 ||i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45 )
-                    continue;
-                if(i == 18 || i == 12 || i == 15 || i == 35 || i == 41 || i == 42 ||i == 43 ||i == 44 ||i == 46 ) {
-                    int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
-                    final String classID = "6G" + i;
-                    classes = (TextView) findViewById(id);
-
-                    classes.setOnClickListener(new View.OnClickListener() {
+            classID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    DocumentReference docRef = firebaseFirestore.collection("classes").document(DBClassID);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
-                        public void onClick(View view) {
-                            onButtonShowPopupWindowClick(view , classID);
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    //Log.d(TAG, "Document exists!");
+                                    Intent i = new Intent(getApplicationContext(), editClassInfo.class);
+                                    i.putExtra("classID", DBClassID);
+                                    i.putExtra("type", "old");
+                                    startActivity(i);
+                                } else {
+                                    //Log.d(TAG, "Document does not exist!");
+                                    onButtonShowPopupWindowClick(v , DBClassID);
+                                }
+                            } else {
+                                Log.d(TAG, "Failed with: ", task.getException());
+                            }
                         }
                     });
-
                 }
-             }
-
-
+            });
 
         }
+
+
+
+        /////// initiate a clickable classes in floor F
+        for( int i = 1 ; i < 57 ; i++) {
+
+            if( i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 ||i == 31 ||i == 32 ||i == 33 ||i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 ||i == 46 ||i == 47 )
+                continue;
+
+            int id = getResources().getIdentifier("class6F"+i, "id", getPackageName());
+            final String DBClassID = "6F"+i;
+            final TextView classID = (TextView) findViewById(id);
+
+            classID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    DocumentReference docRef = firebaseFirestore.collection("classes").document(DBClassID);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    //Log.d(TAG, "Document exists!");
+                                    Intent i = new Intent(getApplicationContext(), editClassInfo.class);
+                                    i.putExtra("classID", DBClassID);
+                                    i.putExtra("type", "old");
+                                    startActivity(i);
+                                } else {
+                                    //Log.d(TAG, "Document does not exist!");
+                                    onButtonShowPopupWindowClick(v , DBClassID);
+                                }
+                            } else {
+                                Log.d(TAG, "Failed with: ", task.getException());
+                            }
+                        }
+                    });
+                }
+            });
+
+
+                /*if(i == 49 || i == 50 || i == 48 || i == 25 || i == 24 || i == 21 ||i == 20 ||i == 13 ||i == 12|| i == 5 || i == 3|| i == 10 || i == 11  ) {
+                    classID.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            onButtonShowPopupWindowClick(view , DBClassID);
+                        }
+                    });
+                }else {
+                    classID.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(getApplicationContext(), editClassInfo.class);
+                            i.putExtra("classID", DBClassID);
+                            startActivity(i);
+                        }
+                    });
+                }*/
+        }
+
+
+    }
 
     public void onButtonShowPopupWindowClick(View view , final String classID) {
 
@@ -149,7 +263,7 @@ public class adminEdit extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent i = new Intent(adminEdit.this,adminAdd.class);
-                        //getApplicationContext(), editClassInfo.class);
+                //getApplicationContext(), editClassInfo.class);
                 i.putExtra("classID", classID);
                 i.putExtra("type", "new");
                 startActivity(i);
