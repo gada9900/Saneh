@@ -18,7 +18,6 @@
         <activity android:name=".search"/>
         <activity android:name=".adminEdit"/>
             <activity android:name=".Login">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
