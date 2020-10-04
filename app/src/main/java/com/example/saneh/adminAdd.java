@@ -73,12 +73,6 @@ public class adminAdd extends AppCompatActivity {
         addClassID = findViewById(R.id.addClassID);
         addClassID.setText(classIDPassed);
 
-        if (addClass(classIDPassed)){
-            int id = getResources().getIdentifier("class"+classIDPassed, "id", getPackageName());
-            TextView addedClass = (TextView) findViewById(id);
-            addedClass.setBackgroundColor(getResources().getColor(R.color.grean));
-        }
-
 
 
         Th8_9 = findViewById(R.id.Th8_9A);
@@ -135,8 +129,13 @@ public class adminAdd extends AppCompatActivity {
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch_add);
 
 
-                if (TextUtils.isEmpty(Capacity.getText().toString().trim())){
+                String capCheck = Capacity.getText().toString().trim();
+                if (TextUtils.isEmpty(capCheck)){
                     Capacity.setError("Capacity is required!");
+                    return;
+                }
+                if (!TextUtils.isDigitsOnly(capCheck)){
+                    Capacity.setError("Capacity accepts digits only!");
                     return;
                 }
 
@@ -163,8 +162,8 @@ public class adminAdd extends AppCompatActivity {
                 newClass.put("capacity", newCap);
                 newClass.put("projector", newPro);
                 newClass.put("interactive", newInter);
-                newClass.put("s", Arrays.asList(S8_9.isChecked(), S9_10.isChecked(), S10_11.isChecked(), S10_11.isChecked(), S12_1.isChecked(), S1_2.isChecked(), S2_3.isChecked()));
-                newClass.put("m", Arrays.asList(M8_9.isChecked(), M9_10.isChecked(), M10_11.isChecked(), M11_12.isChecked(), M12_1.isChecked(), S1_2.isChecked(), M2_3.isChecked()));
+                newClass.put("s", Arrays.asList(S8_9.isChecked(), S9_10.isChecked(), S10_11.isChecked(), S11_12.isChecked(), S12_1.isChecked(), S1_2.isChecked(), S2_3.isChecked()));
+                newClass.put("m", Arrays.asList(M8_9.isChecked(), M9_10.isChecked(), M10_11.isChecked(), M11_12.isChecked(), M12_1.isChecked(), M1_2.isChecked(), M2_3.isChecked()));
                 newClass.put("t", Arrays.asList(T8_9.isChecked(),T9_10.isChecked(),T10_11.isChecked(),T11_12.isChecked(),T12_1.isChecked(),T1_2.isChecked(),T2_3.isChecked()));
                 newClass.put("w", Arrays.asList(W8_9.isChecked(),W9_10.isChecked(),W10_11.isChecked(),W11_12.isChecked(),W12_1.isChecked(),W1_2.isChecked(),W2_3.isChecked()));
                 newClass.put("th", Arrays.asList(Th8_9.isChecked(),Th9_10.isChecked(),Th10_11.isChecked(),Th11_12.isChecked(),Th12_1.isChecked(),Th1_2.isChecked(),Th2_3.isChecked()));
@@ -176,7 +175,7 @@ public class adminAdd extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
-                                 Added[0] = true;
+                                Added[0] = true;
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -192,7 +191,7 @@ public class adminAdd extends AppCompatActivity {
 
 
 
-       return  Added[0];
+        return  Added[0];
 
 
     }

@@ -32,7 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class profile  extends AppCompatActivity {
     private FirebaseAuth firebaseAuth ;
     private FirebaseFirestore fStore;
-    private Button  logout;
+    private Button  logout , Edit;
     private TextView EMail,fullName;
     private String userId;
     //  private Button Help;
@@ -44,6 +44,14 @@ public class profile  extends AppCompatActivity {
         EMail=findViewById(R.id.EMailProf);
         fullName=findViewById(R.id.fullName);
         Button Help=findViewById(R.id.textView3);
+        Edit =findViewById(R.id.EDITPROf);
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),editProfileInfo.class);
+                startActivity(i);
+            }
+        });
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class admin_settings extends AppCompatActivity {
     private FirebaseAuth firebaseAuth ;
     private Button  logout;
-    private ImageView edit, settings;
+    private ImageView edit, settings, add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class admin_settings extends AppCompatActivity {
         logout = (Button)findViewById(R.id.LogOut);
         edit = findViewById(R.id.imageView32);
         settings = findViewById(R.id.imageView27);
+        add = findViewById(R.id.imageView21);
 
 
         edit.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +48,14 @@ public class admin_settings extends AppCompatActivity {
                 firebaseAuth.signOut();
                 finish();
                 startActivity(new Intent(admin_settings.this,Login.class));
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),adminAdd.class);
+                startActivity(i);
             }
         });
     }
