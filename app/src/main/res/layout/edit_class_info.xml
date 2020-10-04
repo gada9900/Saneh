@@ -489,8 +489,8 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         android:text="Class ID"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/classID"
@@ -761,9 +761,10 @@
 
     <TextView
         android:id="@+id/classID"
-        android:layout_width="56dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="classID"
+        android:textColor="@color/colorAccent"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
