@@ -7,13 +7,42 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="246dp"
+        android:layout_height="35dp"
+        android:text="Note: the deletion process will delete the class's info from the database"
+        android:textColor="#F80404"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteClass"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <Button
+        android:id="@+id/deleteClass"
+        android:layout_width="135dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:onClick="EditClass"
+        android:shadowColor="#138D97"
+        android:text="Delete Class"
+        app:layout_constraintBottom_toBottomOf="@+id/EditClass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/EditClass"
+        app:layout_constraintVertical_bias="1.0" />
+
+
     <ImageView
         android:id="@+id/imageView41"
-        android:layout_width="53dp"
-        android:layout_height="35dp"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
         app:layout_constraintBottom_toBottomOf="@+id/interactive_switch"
         app:layout_constraintEnd_toStartOf="@+id/interactive_switch"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/interactive_switch"
         app:layout_constraintVertical_bias="1.0"
@@ -460,8 +489,8 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         android:text="Class ID"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/classID"
@@ -503,10 +532,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_bias="0.299"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
@@ -648,30 +677,29 @@
 
     <Button
         android:id="@+id/EditClass"
-        android:layout_width="165dp"
-        android:layout_height="43dp"
+        android:layout_width="135dp"
+        android:layout_height="36dp"
         android:onClick="EditClass"
         android:shadowColor="#138D97"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintTop_toBottomOf="@+id/textView29"
+        app:layout_constraintVertical_bias="0.226" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="* Checked boxs means that the class is not empty."
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/S2_3"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toBottomOf="@+id/S2_3" />
 
     <ImageView
         android:id="@+id/imageView38"
@@ -733,9 +761,10 @@
 
     <TextView
         android:id="@+id/classID"
-        android:layout_width="56dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="classID"
+        android:textColor="@color/colorAccent"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -743,6 +772,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999" />
+
+    <TextView
+        android:id="@+id/redStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="*"
+        android:textColor="#F80404"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/feildReq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="* required field "
+        android:textColor="#F80404"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView40" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

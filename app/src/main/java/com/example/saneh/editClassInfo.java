@@ -77,7 +77,7 @@ public class editClassInfo extends AppCompatActivity {
     CheckBox W8_9, W9_10, W10_11, W11_12, W12_1, W1_2, W2_3;
     CheckBox Th8_9, Th9_10, Th10_11, Th11_12, Th12_1, Th1_2, Th2_3;
 
-    Button Edit;
+    Button Edit , Delete;
     ImageView gotoadminEdit;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,15 +246,52 @@ public class editClassInfo extends AppCompatActivity {
 
     public void UpdateClass(final String classIDPassed) {
 
+        Delete = findViewById(R.id.deleteClass);
+
+        Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseFirestore.collection("classes").document(classIDPassed)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                Toast.makeText(editClassInfo.this, "class successfully deleted!", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error deleting document", e);
+                                Toast.makeText(editClassInfo.this, "Error!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
 
         Edit = findViewById(R.id.EditClass);
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
                 final DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed);
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch projector = findViewById(R.id.Projector_switch);
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch);
+
+
+                String capCheck = Capacity.getText().toString();
+                if (TextUtils.isEmpty(capCheck)){
+                    Capacity.setError("Capacity is required!");
+                    return;
+                }
+                if (!TextUtils.isDigitsOnly(capCheck)){
+                    Capacity.setError("Capacity accepts digits only!");
+                    return;
+                }
+
+
                 // Get a new write batch
                 //Get all the values
                 _Capacity = Long.parseLong(Capacity.getEditableText().toString());

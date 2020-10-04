@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -162,111 +164,136 @@ public class search extends AppCompatActivity {
 
                 final String finalDay =d;
 
+                if (finalDay.equals("f")|| finalDay.equals("ss")){
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(search.this);
+                    alert.setTitle("wrong date");
+                    if (finalDay.equals("f")){
+                    alert.setMessage("Friday! the weekend is not supported");}
+                    else if (finalDay.equals("ss")){
+                        alert.setMessage("Saturday! the weekend is not supported");}
+                    alert.setPositiveButton("OK",null);
+                    alert.show();
+
+                }else {
 
 
+                    //time input
+                    String stime = selectedTime.getSelectedItem().toString();
+                    int timeIndex = -1;
+
+                    switch (stime) {
+                        case "8:00 AM":
+                            timeIndex = 0;
+                            break;
+
+                        case "9:00 AM":
+                            timeIndex = 1;
+                            break;
+
+                        case "10:00 AM":
+                            timeIndex = 2;
+                            break;
+
+                        case "11:00 AM":
+                            timeIndex = 3;
+                            break;
+
+                        case "12:00 PM":
+                            timeIndex = 4;
+                            break;
+
+                        case "1:00 PM":
+                            timeIndex = 5;
+                            break;
+
+                        case "2:00 PM":
+                            timeIndex = 6;
+                            break;
+
+                    }//end switch
 
 
-                //time input
-                String stime = selectedTime.getSelectedItem().toString();
-                int timeIndex = -1;
+                    //-- here
 
-                switch (stime){
-                    case "8:00 AM":  timeIndex= 0;
-                        break;
+                    //get all the Documents
+                    final int finalTimeIndex = timeIndex;
 
-                    case "9:00 AM": timeIndex= 1;
-                        break;
-
-                    case "10:00 AM": timeIndex= 2;
-                        break;
-
-                    case "11:00 AM": timeIndex= 3;
-                        break;
-
-                    case "12:00 PM": timeIndex= 4;
-                        break;
-
-                    case "1:00 PM": timeIndex= 5;
-                        break;
-
-                    case "2:00 PM": timeIndex= 6;
-                        break;
-
-                }//end switch
+                    Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
+                            .collection("classes")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @SuppressLint("ResourceAsColor")
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                        int myListOfDocumentsLen = myListOfDocuments.size();
+                                        boolean b = false;
 
 
+                                        for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                            _classID = "class" + myListOfDocuments.get(i).getString("roomNum");
 
 
+                                            int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                            TextView room = (TextView) findViewById(id);
 
 
-                //-- here
+                                            if (finalDay.equals("s")) {
+                                                s = (List<Boolean>) myListOfDocuments.get(i).get("s");
+                                                b = s.get(finalTimeIndex);
+                                                if (b) {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                } else {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                }
 
-                //get all the Documents
-                final int finalTimeIndex = timeIndex;
+                                            } else if (finalDay.equals("m")) {
+                                                m = (List<Boolean>) myListOfDocuments.get(i).get("m");
+                                                b = m.get(finalTimeIndex);
+                                                if (b) {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                } else {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                }
 
-                Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
-                        .collection("classes")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @SuppressLint("ResourceAsColor")
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
-                                    int myListOfDocumentsLen = myListOfDocuments.size();
-                                    boolean b=false;
-
-
-
-
-                                    for(int i=0; i<myListOfDocumentsLen; i++){
-                                        _classID = "class"+myListOfDocuments.get(i).getString("roomNum");
-
-
-                                        int id = getResources().getIdentifier(_classID, "id", getPackageName());
-                                        TextView room = (TextView) findViewById(id);
-
-
-
-                                        if (finalDay.equals("s")) {
-                                            s = (List<Boolean>) myListOfDocuments.get(i).get("s");
-                                            b = s.get(finalTimeIndex);
-                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
-
-                                        } else if (finalDay.equals("m")) {
-                                            m = (List<Boolean>) myListOfDocuments.get(i).get("m");
-                                            b = m.get(finalTimeIndex);
-                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
-
-                                        } else if  (finalDay.equals("t")) {
-                                            t = (List<Boolean>) myListOfDocuments.get(i).get("t");
-                                            b = t.get(finalTimeIndex);
-                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
-                                        }  else if  (finalDay.equals("w")) {
-                                            w = (List<Boolean>) myListOfDocuments.get(i).get("w");
-                                            b = w.get(finalTimeIndex);
-                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
-                                        }else if  (finalDay.equals("th")){
-                                            th = (List<Boolean>) myListOfDocuments.get(i).get("th");
-                                            b = th.get(finalTimeIndex);
-                                            if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
-                                        }else if(finalDay.equals("f")){
-                                            Toast.makeText(search.this, "Friday! the weekend is not supported", Toast.LENGTH_SHORT).show();
-
-                                        }else if(finalDay.equals("ss")){
-                                            Toast.makeText(search.this, "Saturday! the weekend is not supported", Toast.LENGTH_SHORT).show();
+                                            } else if (finalDay.equals("t")) {
+                                                t = (List<Boolean>) myListOfDocuments.get(i).get("t");
+                                                b = t.get(finalTimeIndex);
+                                                if (b) {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                } else {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                }
+                                            } else if (finalDay.equals("w")) {
+                                                w = (List<Boolean>) myListOfDocuments.get(i).get("w");
+                                                b = w.get(finalTimeIndex);
+                                                if (b) {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                } else {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                }
+                                            } else if (finalDay.equals("th")) {
+                                                th = (List<Boolean>) myListOfDocuments.get(i).get("th");
+                                                b = th.get(finalTimeIndex);
+                                                if (b) {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                } else {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                }
+                                            }
 
                                         }
 
                                     }
 
+
                                 }
 
 
-                            }
-
-
-                        });
+                            });
+                }//if the day not f or ss
             }});
 
 
