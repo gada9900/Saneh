@@ -111,14 +111,15 @@ public class adminAdd extends AppCompatActivity {
         T1_2 = findViewById(R.id.T1_2A);
         T2_3 = findViewById(R.id.T2_3A);
 
+        addClass(classIDPassed);
+
     }
 
 
 
-    public boolean addClass(final String classIDPassed){
+    public void addClass(final String classIDPassed){
 
-        final boolean[] Added = new boolean[1];
-        Added[0] = false;
+
         AddClass = findViewById(R.id.AddClass);
         AddClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +176,7 @@ public class adminAdd extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
-                                Added[0] = true;
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -183,7 +184,7 @@ public class adminAdd extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, e.toString());
-                                Added[0] = false;
+
                             }
                         });
             }
@@ -191,7 +192,7 @@ public class adminAdd extends AppCompatActivity {
 
 
 
-        return  Added[0];
+
 
 
     }
