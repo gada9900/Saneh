@@ -66,13 +66,13 @@ public class adminEdit extends AppCompatActivity {
             }
         });
 
-        /*add.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),adminAdd.class);
+                Intent i = new Intent(getApplicationContext(),adminAddList.class);
                 startActivity(i);
             }
-        });*/
+        });
 
         classesColor();
         clickableClass();
@@ -312,5 +312,6 @@ public class adminEdit extends AppCompatActivity {
 
 
     }
+
 
 }
