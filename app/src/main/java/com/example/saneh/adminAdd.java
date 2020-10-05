@@ -37,9 +37,6 @@ public class adminAdd extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     TextView addClassID;
-    TextView addCapacity;
-    Switch Projector_switch_add;
-    Switch InterActive_switch_add;
 
     Long newCap;
     boolean newPro, newInter;
@@ -51,7 +48,7 @@ public class adminAdd extends AppCompatActivity {
     CheckBox Th8_9, Th9_10, Th10_11, Th11_12, Th12_1, Th1_2, Th2_3;
 
     Button AddClass;
-    ImageView settings, gotoadminEdit;
+    ImageView gotoadminEdit;
 
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
