@@ -75,6 +75,7 @@ public class search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
+
           alert = findViewById(R.id.alertSearch) ;
 
         //prevent bottom toolbar from moving (its important)
@@ -130,6 +131,11 @@ public class search extends AppCompatActivity {
         search = findViewById(R.id.searchbtn);
 
         date=findViewById(R.id.dateSearch);
+//////////////////  current day
+        Date today = new Date();
+        SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+        date.setHint(simple.format(today));
+        ///////////////////////
         Spinner mySpinner = (Spinner) findViewById(R.id.spinnerSearch);
         ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(search.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.time));
@@ -146,31 +152,30 @@ public class search extends AppCompatActivity {
             String d ="s";
             switch (day0) {
                 case 1:
-                    d="th";
-                    break;
-                case 2:
-                    d="f";
-                    break;
-                case 3:
-                    d="ss";
-                    break;
-                case 4:
                     d="s";
                     break;
-                case 5:
+                case 2:
                     d="m";
                     break;
-                case 6:
+                case 3:
                     d="t";
                     break;
-                case 7:
+                case 4:
                     d="w";
+                    break;
+                case 5:
+                    d="th";
+                    break;
+                case 6:
+                    d="f";
+                    break;
+                case 7:
+                    d="ss";
                     break;
 
             }
             final int finalTimeIndex = index;
             final String finalDay =d;
-
             Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
                     .collection("classes")
                     .get()
@@ -217,12 +222,6 @@ public class search extends AppCompatActivity {
                                         th = (List<Boolean>) myListOfDocuments.get(i).get("th");
                                         b = th.get(finalTimeIndex);
                                         if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
-                                    }else if(finalDay.equals("f")){
-                                        Toast.makeText(search.this, "Friday! the weekend is not supported", Toast.LENGTH_SHORT).show();
-
-                                    }else if(finalDay.equals("ss")){
-                                        Toast.makeText(search.this, "Saturday! the weekend is not supported", Toast.LENGTH_SHORT).show();
-
                                     }
 
                                 }
@@ -485,7 +484,7 @@ public class search extends AppCompatActivity {
         Drawable background = view.getBackground();
         if (background instanceof ColorDrawable)
             color = ((ColorDrawable) background).getColor();
-
+        final int colour = color;
         if(color == -7628884) {
             Toast.makeText(search.this, "This class is unavailable", Toast.LENGTH_LONG).show();
 
@@ -493,10 +492,10 @@ public class search extends AppCompatActivity {
             // inflate the layout of the popup window
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
-            View popupView = inflater.inflate(R.layout.viewinfo, null);
+            final View popupView = inflater.inflate(R.layout.viewinfo, null);
 
             //calling attrbuite which in class view info
-            Button book = popupView.findViewById(R.id.bookINFO);
+            final Button book = popupView.findViewById(R.id.bookINFO);
             TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
             final TextView capacityV = popupView.findViewById(R.id.CapacityViewInfo);
             final TextView projector = popupView.findViewById(R.id.answerProjectorViewInfo);
@@ -633,38 +632,40 @@ public class search extends AppCompatActivity {
 
                             final int finalTimeIndex = timeIndex;
                             boolean b;
-                            if (finalDay.equals("s")) {
-                                s = (List<Boolean>) document.get("s");
+                            if(colour == -1754827) {
+                                availableT.setText("Booked up");
+                                availableT.setTextColor(Color.parseColor("#E53935"));
+                                 book.setVisibility(View.GONE);
+                                  TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
+                                  avai.setVisibility(View.INVISIBLE);
+                            }else {
+                                if (finalDay.equals("s")) {
+                                    s = (List<Boolean>) document.get("s");
 
-                                printTime(s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
+                                    printTime(s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
 
-                            } else if (finalDay.equals("m")) {
-                                m = (List<Boolean>) document.get("m");
+                                } else if (finalDay.equals("m")) {
+                                    m = (List<Boolean>) document.get("m");
 
-                                printTime(m, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(m, finalTimeIndex, selectedT, timeNext, availableT);
 
-                            } else if (finalDay.equals("t")) {
-                                t = (List<Boolean>) document.get("t");
+                                } else if (finalDay.equals("t")) {
+                                    t = (List<Boolean>) document.get("t");
 
-                                printTime(t, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(t, finalTimeIndex, selectedT, timeNext, availableT);
 
-                            } else if (finalDay.equals("w")) {
-                                w = (List<Boolean>) document.get("w");
+                                } else if (finalDay.equals("w")) {
+                                    w = (List<Boolean>) document.get("w");
 
-                                printTime(w, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(w, finalTimeIndex, selectedT, timeNext, availableT);
 
-                            } else if (finalDay.equals("th")) {
-                                th = (List<Boolean>) document.get("th");
+                                } else if (finalDay.equals("th")) {
+                                    th = (List<Boolean>) document.get("th");
 
-                                printTime(th, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(th, finalTimeIndex, selectedT, timeNext, availableT);
 
 
-                            } else if (finalDay.equals("f")) {
-                                Toast.makeText(search.this, "Friday! the weekend is not supported", Toast.LENGTH_SHORT).show();
-
-                            } else if (finalDay.equals("ss")) {
-                                Toast.makeText(search.this, "Saturday! the weekend is not supported", Toast.LENGTH_SHORT).show();
-
+                                }
                             }
 
 
