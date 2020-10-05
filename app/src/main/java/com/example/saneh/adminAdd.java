@@ -111,6 +111,8 @@ public class adminAdd extends AppCompatActivity {
         T1_2 = findViewById(R.id.T1_2A);
         T2_3 = findViewById(R.id.T2_3A);
 
+        addClass(classIDPassed);
+
     }
 
 
