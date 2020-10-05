@@ -316,6 +316,7 @@ public class search extends AppCompatActivity {
                         d="w";
                         break;
 
+
                 }
 
                 final String finalDay =d;
@@ -755,7 +756,7 @@ public void printTime(List<Boolean> s , int finalTimeIndex , String selectedT , 
     int i ;
     String avTime = selectedT+"-";
     for( i = finalTimeIndex+1 ; i < 7 ; i ++){
-        if(!s.get(i)){
+        if(s.get(i)){
             break;
 
         }
