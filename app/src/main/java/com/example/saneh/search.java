@@ -503,7 +503,13 @@ public class search extends AppCompatActivity {
             final TextView activity = popupView.findViewById(R.id.answerActivityClassViewInfo);
             final TextView availableT = popupView.findViewById(R.id.availableTimeViewInfo);
 
-
+            if(colour == -1754827) {//// this code to avoid delay to hide book button
+                availableT.setText("Booked up");
+                availableT.setTextColor(Color.parseColor("#E53935"));
+                book.setVisibility(View.GONE);
+                TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
+                avai.setVisibility(View.INVISIBLE);
+            }/////
             // change vlaues in class view info thats do not need a database
             roomN.setText("" + view.getResources().getResourceEntryName(view.getId()).substring(5));
             book.setOnClickListener(new View.OnClickListener() {
