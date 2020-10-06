@@ -1,21 +1,49 @@
 package com.example.saneh;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class adminAddList extends AppCompatActivity {
 
     private static final String TAG = "DocSnippets";
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    FirebaseFirestore firebaseFirestore ;
 
     Long newCap;
     boolean newPro, newInter;
@@ -34,6 +62,8 @@ public class adminAddList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_add_list);
 
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        CollectionReference reference = firebaseFirestore.collection("classes");
 
         gotoadminEdit = findViewById(R.id.gotoadminEdit2);
         gotoadminEdit.setOnClickListener(new View.OnClickListener() {
@@ -44,10 +74,72 @@ public class adminAddList extends AppCompatActivity {
             }
         });
 
-        selectedClass = (Spinner) findViewById(R.id.classesList);
-        Spinner mySpinner = (Spinner) findViewById(R.id.spinnerSearch);
-        /////////////////////////////////////////////////////////////////////////////////
-        //list?
+        final List<String> classesList = new ArrayList<>();
+        classesList.add("Select class");
+
+
+        //Floor G
+        for (int i = 3; i < 52; i++) {
+
+            if (i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45)
+                continue;
+
+            int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
+            final String DBClassID = "6G" + i;
+
+            DocumentReference docRef = firebaseFirestore.collection("classes").document(DBClassID);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (!document.exists()) {
+                            classesList.add(DBClassID);
+                        }
+                    } else {
+                        Log.d(TAG, "Failed with: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        //Floor F
+        for (int i = 1; i < 57; i++) {
+
+            if (i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 || i == 46 || i == 47)
+                continue;
+
+            int id = getResources().getIdentifier("class6F" + i, "id", getPackageName());
+            final String DBClassID = "6F" + i;
+
+            DocumentReference docRef = firebaseFirestore.collection("classes").document(DBClassID);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            classesList.add(DBClassID);
+                        }
+                    } else {
+                        Log.d(TAG, "Failed with: ", task.getException());
+                    }
+                }
+            });
+
+        }
+
+            Collections.sort(classesList);
+
+        //selectedClass = (Spinner) findViewById(R.id.classesList);
+        final Spinner spinner = (Spinner) findViewById(R.id.classesList);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, classesList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+
+        adapter.notifyDataSetChanged();
+
 
         Th8_9 = findViewById(R.id.Th8_9A2);
         Th9_10 = findViewById(R.id.Th9_10A2);
@@ -84,6 +176,117 @@ public class adminAddList extends AppCompatActivity {
         T12_1 = findViewById(R.id.T12_1A2);
         T1_2 = findViewById(R.id.T1_2A2);
         T2_3 = findViewById(R.id.T2_3A2);
+
+        //final String[] classIDPassed = new String[1];
+        final String[] classIDPassed = new String[1];
+
+        AddClass = findViewById(R.id.AddClass2);
+        AddClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText Capacity = findViewById(R.id.addCapacity2);
+                @SuppressLint("UseSwitchCompatOrMaterialCode") Switch projector = findViewById(R.id.Projector_switch_add2);
+                @SuppressLint("UseSwitchCompatOrMaterialCode") Switch interactive = findViewById(R.id.interactive_switch_add2);
+
+
+                if (spinner.getSelectedItemPosition() > 0) {
+                    // get selected item value
+                    classIDPassed[0] = String.valueOf(spinner.getSelectedItem());
+                } else {
+                    // set error message on spinner
+                    TextView errorTextview = (TextView) spinner.getSelectedView();
+                    errorTextview.setError("Class ID is required");
+                }
+                /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(
+                            AdapterView<?> adapterView, View view,
+                            int i, long l) {
+
+                        classIDPassed[0] = spinner.getSelectedItem().toString().trim();
+                    }
+
+                    public void onNothingSelected(
+                            AdapterView<?> adapterView) {
+
+                    }
+                });*/
+
+                String capCheck = Capacity.getText().toString().trim();
+                if (TextUtils.isEmpty(capCheck)) {
+                    Capacity.setError("Capacity is required!");
+                    return;
+                }
+                if (!TextUtils.isDigitsOnly(capCheck)) {
+                    Capacity.setError("Capacity accepts digits only!");
+                    return;
+                }
+
+                newCap = Long.parseLong(Capacity.getText().toString());
+                if (projector.isChecked())
+                    newPro = true;
+                else
+                    newPro = false;
+
+                if (interactive.isChecked())
+                    newInter = true;
+                else
+                    newInter = false;
+
+
+                //adding classes
+
+
+                String classIDPassed2 = classIDPassed[0].toString();
+                DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed2);
+
+                Map<String, Object> newClass = new HashMap<>();
+                newClass.put("roomNum", classIDPassed[0]);
+                newClass.put("capacity", newCap);
+                newClass.put("projector", newPro);
+                newClass.put("interactive", newInter);
+                newClass.put("s", Arrays.asList(S8_9.isChecked(), S9_10.isChecked(), S10_11.isChecked(), S11_12.isChecked(), S12_1.isChecked(), S1_2.isChecked(), S2_3.isChecked()));
+                newClass.put("m", Arrays.asList(M8_9.isChecked(), M9_10.isChecked(), M10_11.isChecked(), M11_12.isChecked(), M12_1.isChecked(), M1_2.isChecked(), M2_3.isChecked()));
+                newClass.put("t", Arrays.asList(T8_9.isChecked(), T9_10.isChecked(), T10_11.isChecked(), T11_12.isChecked(), T12_1.isChecked(), T1_2.isChecked(), T2_3.isChecked()));
+                newClass.put("w", Arrays.asList(W8_9.isChecked(), W9_10.isChecked(), W10_11.isChecked(), W11_12.isChecked(), W12_1.isChecked(), W1_2.isChecked(), W2_3.isChecked()));
+                newClass.put("th", Arrays.asList(Th8_9.isChecked(), Th9_10.isChecked(), Th10_11.isChecked(), Th11_12.isChecked(), Th12_1.isChecked(), Th1_2.isChecked(), Th2_3.isChecked()));
+
+
+                final android.app.AlertDialog.Builder alert = new AlertDialog.Builder(adminAddList.this);
+                alert.setTitle("Add Class");
+
+                alert.setPositiveButton("Go Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(adminAddList.this, adminEdit.class));
+                        finish();
+                    }
+                });
+
+                alert.setCancelable(false);
+
+                documentReference.set(newClass)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                alert.setMessage("class added successfully");
+                                alert.show();
+                                //Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, e.toString());
+                                alert.setMessage("Error! : " + e);
+                                alert.show();
+
+                            }
+                        });
+            }
+        });
 
 
     }
