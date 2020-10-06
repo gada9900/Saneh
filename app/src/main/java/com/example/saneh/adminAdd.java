@@ -1,6 +1,8 @@
 package com.example.saneh;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -167,20 +169,37 @@ public class adminAdd extends AppCompatActivity {
                 newClass.put("th", Arrays.asList(Th8_9.isChecked(),Th9_10.isChecked(),Th10_11.isChecked(),Th11_12.isChecked(),Th12_1.isChecked(),Th1_2.isChecked(),Th2_3.isChecked()));
 
 
+
+                final android.app.AlertDialog.Builder alert = new AlertDialog.Builder(adminAdd.this);
+                alert.setTitle("Add Class");
+
+                alert.setPositiveButton("Go Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(adminAdd.this, adminEdit.class));
+                        finish();
+                    }
+                });
+
+                alert.setCancelable(false);
+
                 documentReference.set(newClass)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-
-                                Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
+                                alert.setMessage("class added successfully");
+                                alert.show();
+                                //Toast.makeText(adminAdd.this, "class added successfully", Toast.LENGTH_LONG).show();
 
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, e.toString());
+                                alert.setMessage("Error! : "+ e);
+                                alert.show();
 
                             }
                         });
