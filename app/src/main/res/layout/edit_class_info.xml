@@ -7,20 +7,6 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="246dp"
-        android:layout_height="35dp"
-        android:text="Note: the deletion process will delete the class's info from the database"
-        android:textColor="#F80404"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteClass"
-        app:layout_constraintVertical_bias="0.36" />
-
     <Button
         android:id="@+id/deleteClass"
         android:layout_width="135dp"
