@@ -197,6 +197,7 @@ public class adminAddList extends AppCompatActivity {
                     // set error message on spinner
                     TextView errorTextview = (TextView) spinner.getSelectedView();
                     errorTextview.setError("Class ID is required");
+                    return;
                 }
 
                 String capCheck = Capacity.getText().toString().trim();
@@ -230,8 +231,8 @@ public class adminAddList extends AppCompatActivity {
                 //adding classes
 
 
-                String classIDPassed2 = classIDPassed[0].toString();
-                DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed2);
+                //String classIDPassed2 = classIDPassed[0];
+                DocumentReference documentReference = firebaseFirestore.collection("classes").document(classIDPassed[0]);
 
                 Map<String, Object> newClass = new HashMap<>();
                 newClass.put("roomNum", classIDPassed[0]);
