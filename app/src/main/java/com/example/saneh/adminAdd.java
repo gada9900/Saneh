@@ -139,6 +139,12 @@ public class adminAdd extends AppCompatActivity {
                     return;
                 }
 
+                int capCheck2 = Integer.parseInt(capCheck);
+                if (capCheck2 > 40 ) {
+                    Capacity.setError("max capacity is 40!");
+                    return;
+                }
+
                 newCap = Long.parseLong(Capacity.getText().toString());
                 if(projector.isChecked())
                     newPro = true;

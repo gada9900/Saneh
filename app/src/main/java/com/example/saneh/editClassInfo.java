@@ -326,6 +326,12 @@ public class editClassInfo extends AppCompatActivity {
                     return;
                 }
 
+                int capCheck2 = Integer.parseInt(capCheck);
+                if (capCheck2 > 40 ) {
+                    Capacity.setError("max capacity is 40!");
+                    return;
+                }
+
 
                 // Get a new write batch
                 //Get all the values
