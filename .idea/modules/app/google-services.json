@@ -44,6 +44,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "589526712395-aur5jm2d724c53o4cuoeh0c2r0fiu3ut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saneh",
+            "certificate_hash": "173a5773bfdd8fee9bf1eb621494767f97951920"
+          }
+        },
+        {
           "client_id": "589526712395-hes8lbtac15mnko71isjskrtk258i64l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

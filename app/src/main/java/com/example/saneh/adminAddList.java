@@ -198,19 +198,6 @@ public class adminAddList extends AppCompatActivity {
                     TextView errorTextview = (TextView) spinner.getSelectedView();
                     errorTextview.setError("Class ID is required");
                 }
-                /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(
-                            AdapterView<?> adapterView, View view,
-                            int i, long l) {
-
-                        classIDPassed[0] = spinner.getSelectedItem().toString().trim();
-                    }
-
-                    public void onNothingSelected(
-                            AdapterView<?> adapterView) {
-
-                    }
-                });*/
 
                 String capCheck = Capacity.getText().toString().trim();
                 if (TextUtils.isEmpty(capCheck)) {
@@ -219,6 +206,12 @@ public class adminAddList extends AppCompatActivity {
                 }
                 if (!TextUtils.isDigitsOnly(capCheck)) {
                     Capacity.setError("Capacity accepts digits only!");
+                    return;
+                }
+
+                int capCheck2 = Integer.parseInt(capCheck);
+                if (capCheck2 > 40 ) {
+                    Capacity.setError("max capacity is 40!");
                     return;
                 }
 
