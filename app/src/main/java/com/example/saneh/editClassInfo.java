@@ -1,6 +1,7 @@
 package com.example.saneh;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -251,22 +251,57 @@ public class editClassInfo extends AppCompatActivity {
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseFirestore.collection("classes").document(classIDPassed)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                android.app.AlertDialog.Builder alert = new AlertDialog.Builder(editClassInfo.this);
+                alert.setTitle("Delete Class");
+
+                alert.setMessage("Are you sure of that you want to delete the class ?");
+
+                alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(editClassInfo.this);
+                        alert2.setPositiveButton("Go Back", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                                Toast.makeText(editClassInfo.this, "class successfully deleted!", Toast.LENGTH_LONG).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                                Toast.makeText(editClassInfo.this, "Error!", Toast.LENGTH_SHORT).show();
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(editClassInfo.this, adminEdit.class));
+                                finish();
                             }
                         });
+                        alert2.setCancelable(false);
+
+                        firebaseFirestore.collection("classes").document(classIDPassed)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                      //  Toast.makeText(editClassInfo.this, "class successfully deleted!", Toast.LENGTH_LONG).show();
+                                        alert2.setMessage("Class successfully deleted!");
+                                        alert2.show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error deleting document", e);
+                                      //  Toast.makeText(editClassInfo.this, "Error!", Toast.LENGTH_SHORT).show();
+                                        alert2.setMessage("Error! : "+ e);
+                                        alert2.show();
+                                    }
+                                });
+
+
+
+                    }
+                });
+                alert.setNegativeButton("Cancel",null);
+
+                alert.show();
+
+
             }
         });
 
@@ -360,73 +395,43 @@ public class editClassInfo extends AppCompatActivity {
                 editedClass.put("th", th);
 
 
+
+                final android.app.AlertDialog.Builder alert = new AlertDialog.Builder(editClassInfo.this);
+                alert.setTitle("Edit Class");
+
+                alert.setPositiveButton("Go Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(editClassInfo.this, adminEdit.class));
+                        finish();
+                    }
+                });
+                alert.setNegativeButton("Cancel",null);
+
+
+
                 documentReference.set(editedClass)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(editClassInfo.this, "class edited sucessfully", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(editClassInfo.this, "class edited successfully", Toast.LENGTH_LONG).show();
+                                alert.setMessage("the class is successfully edited ");
+                                alert.show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(editClassInfo.this, "Error!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(editClassInfo.this, "Error!", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, e.toString());
+                                alert.setMessage("Error! : "+ e);
+                                alert.show();
                             }
                         });
             }
         });
     }
 
-    public void onButtonShowPopupWindowClick(View view, final String classID) {
-
-        // inflate the layout of the popup window
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.adminwindow, null);
-
-        //calling attrbuite which in class view info
-        Button AddClass = popupView.findViewById(R.id.AddClass);
-        AddClass.setText(" Go Back ");
-        // change vlaues in class view info
-        AddClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(editClassInfo.this, adminAdd.class);
-                i.putExtra("classID", classID);
-                i.putExtra("type", "new");
-                startActivity(i);
-
-            }
-        });
-
-
-        // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        popupWindow = new PopupWindow(popupView, 600, 1000, focusable);
-        popupWindow.setTouchable(true);
-
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-
-                popupWindow.dismiss();
-
-                return true;
-            }
-        });
-
-
-    }
 }
 
 

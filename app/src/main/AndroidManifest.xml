@@ -14,6 +14,7 @@
         <activity android:name=".admin_settings" />
         <activity android:name=".sign_up" />
         <activity android:name=".profile" />
+        <activity android:name=".adminAddList" />
         <activity android:name=".adminAdd" />
         <activity android:name=".search"/>
         <activity android:name=".adminEdit"/>

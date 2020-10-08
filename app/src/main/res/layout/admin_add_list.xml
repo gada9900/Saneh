@@ -454,7 +454,7 @@
         app:layout_constraintHorizontal_bias="0.708"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <TextView
         android:id="@+id/textView16"
@@ -508,7 +508,7 @@
         app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_bias="0.32"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Switch
@@ -521,7 +521,7 @@
         app:layout_constraintHorizontal_bias="0.853"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_bias="0.32"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
@@ -672,7 +672,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintVertical_bias="0.97" />
 
     <TextView
         android:id="@+id/textView29"
@@ -685,7 +685,7 @@
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/S2_3A2"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.16000003" />
 
     <ImageView
         android:id="@+id/imageView38"
@@ -722,16 +722,16 @@
 
     <EditText
         android:id="@+id/addCapacity2"
-        android:layout_width="78dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.22000003" />
 
     <ImageView
         android:id="@+id/gotoadminEdit2"
@@ -762,7 +762,7 @@
         android:id="@+id/feildReqAdd2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="* required field "
         android:textColor="#F80404"
         app:layout_constraintEnd_toEndOf="parent"
@@ -772,14 +772,14 @@
 
     <Spinner
         android:id="@+id/classesList"
-        android:layout_width="88dp"
+        android:layout_width="160dp"
         android:layout_height="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189" />
+        app:layout_constraintVertical_bias="0.22000003" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

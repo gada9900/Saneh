@@ -50,13 +50,13 @@ public class adminEdit extends AppCompatActivity {
         edit = findViewById(R.id.imageView9);
         add = findViewById(R.id.imageView17);
 
-        edit.setOnClickListener(new View.OnClickListener() {
+        /*edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),adminEdit.class);
                 startActivity(i);
             }
-        });
+        });*/
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,24 +233,6 @@ public class adminEdit extends AppCompatActivity {
                 }
             });
 
-
-                /*if(i == 49 || i == 50 || i == 48 || i == 25 || i == 24 || i == 21 ||i == 20 ||i == 13 ||i == 12|| i == 5 || i == 3|| i == 10 || i == 11  ) {
-                    classID.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onButtonShowPopupWindowClick(view , DBClassID);
-                        }
-                    });
-                }else {
-                    classID.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent i = new Intent(getApplicationContext(), editClassInfo.class);
-                            i.putExtra("classID", DBClassID);
-                            startActivity(i);
-                        }
-                    });
-                }*/
         }
 
 

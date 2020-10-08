@@ -34,13 +34,13 @@ public class admin_settings extends AppCompatActivity {
             }
         });
 
-        settings.setOnClickListener(new View.OnClickListener() {
+        /*settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),admin_settings.class);
                 startActivity(i);
             }
-        });
+        });*/
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class admin_settings extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),adminAdd.class);
+                Intent i = new Intent(getApplicationContext(),adminAddList.class);
                 startActivity(i);
             }
         });
