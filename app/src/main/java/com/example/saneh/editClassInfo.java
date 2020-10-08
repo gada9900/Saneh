@@ -412,7 +412,7 @@ public class editClassInfo extends AppCompatActivity {
                         finish();
                     }
                 });
-                
+                alert.setNegativeButton("Stay",null);
 
 
 
