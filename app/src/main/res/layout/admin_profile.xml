@@ -123,7 +123,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cir22" />
+        app:srcCompat="@drawable/cilcle_shape" />
 
     <ImageView
         android:id="@+id/imageView10"
