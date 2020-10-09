@@ -113,7 +113,7 @@ public class editProfileInfo extends AppCompatActivity {
 
     private boolean isPasswordChanged() {
         String newPassword = nPassword.getText().toString().trim();
-
+        String conPas = conPassnew.getText().toString().trim();
         if (TextUtils.isEmpty(newPassword)) {
           //  nPassword.setError("Password is required!");
             return false;
@@ -122,7 +122,7 @@ public class editProfileInfo extends AppCompatActivity {
             nPassword.setError("Password's Regulations: \n -Must contains at least one digit \n -Must contains at least one lowercase character \n -Must contains at least one uppercase character \n -Must contains at least one special symbol (@#$%) \n -The length >= 8");
             return false;
         }
-        if (!nPassword.equals(conPassnew)){
+        if (!newPassword.equals(conPas)){
             conPassnew.setError("Your password doesn't match the confirmed password!");
             return false;
         }
