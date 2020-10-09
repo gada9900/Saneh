@@ -52,7 +52,7 @@ public class editProfileInfo extends AppCompatActivity {
     private Button UpdateBu;
     private FirebaseFirestore fStore;
     final String[] oldName = new String[1];
-    
+
 
 
 
