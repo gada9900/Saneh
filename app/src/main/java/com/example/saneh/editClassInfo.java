@@ -255,7 +255,7 @@ public class editClassInfo extends AppCompatActivity {
                 android.app.AlertDialog.Builder alert = new AlertDialog.Builder(editClassInfo.this);
                 alert.setTitle("Delete Class");
 
-                alert.setMessage("Are you sure of that you want to delete the class ?");
+                alert.setMessage("Are you sure you want to delete this class ? \n \nNote: the class will no longer be available in database");
 
                 alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
