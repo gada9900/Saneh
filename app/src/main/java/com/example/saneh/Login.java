@@ -169,7 +169,7 @@ public class Login extends AppCompatActivity {
                 final EditText resetMail = new EditText(v.getContext());
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Reset Password ?");
-                passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
+                passwordResetDialog.setMessage("Enter your email to received reset link:");
                 passwordResetDialog.setView(resetMail);
 
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -180,12 +180,12 @@ public class Login extends AppCompatActivity {
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(Login.this, "Reset Link Sent To Your Email.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, "Reset link sent to your email.", Toast.LENGTH_LONG).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Login.this, "Error ! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, "Error! reset link is not sent" + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
 

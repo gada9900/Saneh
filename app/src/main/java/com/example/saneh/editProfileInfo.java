@@ -44,15 +44,13 @@ import java.util.regex.Pattern;
 
 public class editProfileInfo extends AppCompatActivity {
     private static final String TAG = "TAG";
-    private EditText name, nPassword;
+    private EditText name, nPassword,conPassnew;
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener mAuthSL;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-    //DatabaseReference reference;
+    private String userId;
+    private Button UpdateBu;
     private FirebaseFirestore fStore;
-    private Button upName, upPassword;
-    //private String _Name,_Pass;
 
 
     @Override
@@ -60,104 +58,28 @@ public class editProfileInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_info);
         name = (EditText) findViewById(R.id.editTextTextPersonName);
-        ///  cPassword=(EditText) findViewById(R.id.editTextTextPassword2);
         nPassword = (EditText) findViewById(R.id.editTextTextPassword3);
-        //  cnfPassword=(EditText) findViewById(R.id.editTextTextPassword4);
-        upName = (Button) findViewById(R.id.EditName);
-        upPassword = (Button) findViewById(R.id.editPassword);
-        //fStore = FirebaseFirestore.getInstance();
+        conPassnew =(EditText) findViewById(R.id.editTextTextPassword2);
+
+        UpdateBu = (Button) findViewById(R.id.updateBu);
+        fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-        //reference= FirebaseDatabase.getInstance().getReference("users");
-        //Intent i = getIntent();
-//        _Name = i.getStringExtra("fName");
-        //  _Pass = i.getStringExtra("password");
-        //  showAllUserData();
-
-
-
-        upName.setOnClickListener(new View.OnClickListener() {
+        userId = fAuth.getUid();
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
-            public void onClick(View v) {
-                String newName = name.getText().toString().trim();
-                if (TextUtils.isEmpty(newName)){
-                    name.setError("Full Name is required!");
-                    return;
-                }
-
-             String userId = user.getUid();
-
-             final DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(userId);
-             Map<String, Object> map = new HashMap<>();
-             map.put("fName",newName);
-             docRef.update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                 @Override
-                 public void onSuccess(Void aVoid) {
-                     Log.d(TAG,"Updated successfully! ");
-
-                 }
-             });
-               // Toast.makeText(this,"Updated successfully!",Toast.LENGTH_LONG).show();
-
-                /*  UserProfileChangeRequest profileUpdates =
-                        new UserProfileChangeRequest.Builder()
-                                .setDisplayName(newName)
-                                .setPhotoUri(Uri.parse(
-                                        "android.resource://com.example.saneh/drawable/photo"))
-                                .build();
-
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "User profile updated.");
-                                }
-                            }
-
-                        });
-*/
-              /*  UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(newName)
-
-                        .build();
-
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                      Log.d(TAG, "User profile updated.");
-                                }
-                            }
-                        });*/
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                name.setText(value.getString("fName"));
 
             }
         });
 
-        upPassword.setOnClickListener(new View.OnClickListener() {
+        //display name
+
+        UpdateBu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String newPassword = nPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(newPassword)){
-                    nPassword.setError("Password is required!");
-                    return;
-                }
-                if (!isValidPassword(newPassword)){
-                    nPassword.setError("Password's Regulations: \n -Must contains at least one digit \n -Must contains at least one lowercase character \n -Must contains at least one uppercase character \n -Must contains at least one special symbol (@#$%) \n -The length >= 8");
-                    return;
-                }
-                user.updatePassword(newPassword)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "User password updated.");
-                                }
-
-                            }
-                        });
+                update(v);
             }
         });
 
@@ -165,7 +87,7 @@ public class editProfileInfo extends AppCompatActivity {
         returnPrf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),profile.class);
+                Intent i = new Intent(getApplicationContext(), profile.class);
                 startActivity(i);
             }
         });
@@ -177,6 +99,67 @@ public class editProfileInfo extends AppCompatActivity {
     //   Intent i =getIntent();
 
     //}
+
+    public void update(View view) {
+        if (isNameChanged() ) {
+            Toast.makeText(this, " Name has been updated!", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(this, "Name is same and can not updated.", Toast.LENGTH_LONG).show();
+        if(isPasswordChanged()){
+            Toast.makeText(this, "Password has been updated!", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(this, "Password is same and can not updated.", Toast.LENGTH_LONG).show();
+    }
+
+    private boolean isPasswordChanged() {
+        String newPassword = nPassword.getText().toString().trim();
+
+        if (TextUtils.isEmpty(newPassword)) {
+          //  nPassword.setError("Password is required!");
+            return false;
+        }
+        if (!isValidPassword(newPassword)) {
+            nPassword.setError("Password's Regulations: \n -Must contains at least one digit \n -Must contains at least one lowercase character \n -Must contains at least one uppercase character \n -Must contains at least one special symbol (@#$%) \n -The length >= 8");
+            return false;
+        }
+        if (!nPassword.equals(conPassnew)){
+            conPassnew.setError("Your password doesn't match the confirmed password!");
+            return false;
+        }
+        user.updatePassword(newPassword)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User password updated.");
+                        }
+
+                    }
+                });
+        return true;
+    }
+
+    private boolean isNameChanged() {
+        String newName = name.getText().toString().trim();
+        if (TextUtils.isEmpty(newName)) {
+            name.setError("Full Name is required!");
+            return false;
+        }
+
+        String userId1 = user.getUid();
+
+        final DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(userId1);
+        Map<String, Object> map = new HashMap<>();
+        map.put("fName", newName);
+        docRef.update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "Updated successfully! ");
+
+            }
+        });
+return true;
+    }
 
     private boolean isValidPassword(final String password) {
 
@@ -191,25 +174,4 @@ public class editProfileInfo extends AppCompatActivity {
         return matcher.matches();
 
     }
-
-    /*public void update(View view){
-        if(isNameChanged()){
-            Toast.makeText(this,"Data has been updated!",Toast.LENGTH_LONG).show();
-        }
-        else
-            Toast.makeText(this,"Data is same and can not updated.",Toast.LENGTH_LONG).show();
-
-    }*/
-
-    // private boolean isPasswordChanged() {
-    //}
-
-    /*private boolean isNameChanged() {
-        String newName = name.getText().toString().trim();
-        if (!_Name.equals(newName)){
-            reference.child(_Name).setValue(newName);
-            return true;
-        }
-        return false;
-    }*/
 }

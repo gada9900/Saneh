@@ -180,11 +180,12 @@
 
     <Button
         android:id="@+id/textView3"
-        android:layout_width="40dp"
-        android:layout_height="27dp"
+        android:layout_width="72dp"
+        android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:background="#00FFFFFF"
+        android:gravity="bottom"
         android:text="Help"
         android:textColor="@android:color/tertiary_text_dark"
         android:textSize="16sp"
@@ -199,20 +200,23 @@
         android:id="@+id/fullName"
         android:layout_width="190dp"
         android:layout_height="23dp"
+        android:gravity="center_vertical"
         android:text="Full name"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toStartOf="@+id/imageView12"
         app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:layout_constraintVertical_bias="0.329" />
 
     <TextView
         android:id="@+id/EMailProf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="188dp"
+        android:layout_height="21dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
+        android:gravity="center_vertical"
         android:text="E-mail"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
@@ -220,7 +224,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView11"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.708" />
 
     <Button
         android:id="@+id/LogOut"
