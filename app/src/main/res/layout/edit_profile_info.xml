@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -37,10 +36,10 @@
         android:layout_height="183dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.151"
         app:srcCompat="@drawable/rectangle_2002_shape" />
 
     <ImageView
@@ -68,20 +67,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageView41"
         app:layout_constraintVertical_bias="0.538" />
 
-    <Button
-        android:id="@+id/EditName"
-        android:layout_width="110dp"
-        android:layout_height="44dp"
-        android:background="#acdfe3"
-        android:text="Update Name"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.913"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView38"
-        app:layout_constraintVertical_bias="0.209" />
-
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
@@ -89,26 +74,24 @@
         android:text="Edit Name:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.271"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView38"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.455" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:ems="10"
         android:hint="New Name "
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/EditName"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.518" />
 
     <TextView
         android:id="@+id/textView33"
@@ -117,10 +100,10 @@
         android:text="Edit Password:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.584" />
 
     <EditText
         android:id="@+id/editTextTextPassword3"
@@ -131,23 +114,37 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.199"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView33"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.653" />
 
     <Button
-        android:id="@+id/editPassword"
-        android:layout_width="110dp"
-        android:layout_height="44dp"
-        android:background="#acdfe3"
-        android:text="Update Password"
-        android:textColor="@color/colorPrimary"
+        android:id="@+id/updateBu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/rectangle_2004_color"
+        android:text="Update"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPassword3"
-        app:layout_constraintTop_toBottomOf="@+id/EditName"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.853" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.736" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
