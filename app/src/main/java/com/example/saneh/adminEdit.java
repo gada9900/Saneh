@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -23,6 +25,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -240,6 +244,28 @@ public class adminEdit extends AppCompatActivity {
 
     public void onButtonShowPopupWindowClick(View view , final String classID) {
 
+        android.app.AlertDialog.Builder alert = new AlertDialog.Builder(adminEdit.this);
+        alert.setTitle("Add Class");
+        alert.setMessage("This class is unavailable, Do you want to add it?");
+
+        alert.setPositiveButton("Add class", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(adminEdit.this,adminAdd.class);
+                //getApplicationContext(), editClassInfo.class);
+                i.putExtra("classID", classID);
+                i.putExtra("type", "new");
+                startActivity(i);
+                finish();
+            }
+        });
+        alert.setNegativeButton("Cancel",null);
+
+        alert.show();
+
+
+
+/*
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -260,7 +286,6 @@ public class adminEdit extends AppCompatActivity {
                 startActivity(i);
 
 
-
             }
         });
 
@@ -270,7 +295,6 @@ public class adminEdit extends AppCompatActivity {
                popupWindow.dismiss();
             }
         });
-
 
 
         // create the popup window
@@ -297,9 +321,7 @@ public class adminEdit extends AppCompatActivity {
         });
 
 
-
-
-
+*/
     }
 
 
