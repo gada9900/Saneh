@@ -247,7 +247,7 @@ public class adminEdit extends AppCompatActivity {
 
         //calling attrbuite which in class view info
         Button AddClass = popupView.findViewById(R.id.AddClass);
-
+        ImageView close = popupView.findViewById(R.id.close);
         // change vlaues in class view info
         AddClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,13 +264,20 @@ public class adminEdit extends AppCompatActivity {
             }
         });
 
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               popupWindow.dismiss();
+            }
+        });
+
 
 
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
-        popupWindow = new PopupWindow(popupView, 600, 1000, focusable);
+        popupWindow = new PopupWindow(popupView, 500, 700, focusable);
         popupWindow.setTouchable(true);
 
 

@@ -1202,6 +1202,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/pluss" />
 
     <ImageView
@@ -1213,7 +1214,7 @@
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
-        app:layout_constraintVertical_bias="0.387"
+        app:layout_constraintVertical_bias="0.47000003"
         app:srcCompat="@drawable/blus" />
 
 
