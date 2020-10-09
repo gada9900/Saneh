@@ -9,21 +9,21 @@
 
     <TextView
         android:id="@+id/textView30"
-        android:layout_width="216dp"
-        android:layout_height="99dp"
+        android:layout_width="191dp"
+        android:layout_height="147dp"
+        android:gravity="center"
         android:text="This class is not available do you want to add it ? "
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.204" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <Button
         android:id="@+id/AddClass"
-        android:layout_width="128dp"
-        android:layout_height="39dp"
+        android:layout_width="116dp"
+        android:layout_height="41dp"
         android:clickable="true"
         android:text="Add Class"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,30 +31,30 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.486" />
 
     <ImageView
         android:id="@+id/imageView26"
-        android:layout_width="393dp"
-        android:layout_height="64dp"
+        android:layout_width="248dp"
+        android:layout_height="41dp"
         app:layout_constraintBottom_toTopOf="@+id/textView30"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.683"
         app:srcCompat="@drawable/newbar" />
 
     <ImageView
         android:id="@+id/close"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView26"
         app:layout_constraintEnd_toEndOf="@+id/imageView26"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="@+id/imageView26"
         app:layout_constraintTop_toTopOf="@+id/imageView26"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_bias="0.48000002"
         app:srcCompat="@drawable/ic_baseline_close_24"
         tools:ignore="VectorDrawableCompat" />
 
