@@ -247,11 +247,51 @@ public class search extends AppCompatActivity {
 
         }//////////////////
         else{
+            Calendar cal = Calendar.getInstance();
+            int day0 = cal.get(Calendar.DAY_OF_WEEK);
+
+            String d ="s";
+            switch (day0) {
+                case 1:
+                    d="s";
+                    break;
+                case 2:
+                    d="m";
+                    break;
+                case 3:
+                    d="t";
+                    break;
+                case 4:
+                    d="w";
+                    break;
+                case 5:
+                    d="th";
+                    break;
+                case 6:
+                    d="f";
+                    break;
+                case 7:
+                    d="ss";
+                    break;
+
+            }
+            final int finalTimeIndex = index;
+            final String finalDay =d;
+            if  (finalDay.equals("f")){
+                alert.setVisibility(View.VISIBLE);
+                String msg = "Happy weekend ! please search for another date today is friday ";
+                alert.setText(msg);
+
+            }else if  (finalDay.equals("ss")){
+                alert.setVisibility(View.VISIBLE);
+                String msg = "Happy weekend ! please search for another date today is saturday ";
+                alert.setText(msg);
+            }else{
             SimpleDateFormat sdf2 = new SimpleDateFormat("HH : mm a");
             String currentTime2 = sdf2.format(new Date());
             alert.setVisibility(View.VISIBLE);
             String msg = "There are no classes at this time "+currentTime2+" you must search for a suitable time. ";
-            alert.setText(msg);
+            alert.setText(msg);}
 
         }
         date.setOnClickListener(new View.OnClickListener() {
