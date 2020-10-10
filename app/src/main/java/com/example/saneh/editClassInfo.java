@@ -57,7 +57,7 @@ public class editClassInfo extends AppCompatActivity {
     long _Capacity, currentCap, updatedCap;
     boolean _Projector, _InterActive, currentPro, currentInter, updatedPro, updatedInter;
 
-    List<Boolean> s, m, t, w, th;
+    List<Boolean> s, m, t, w, th , S , M , T , W , Th;
 
 
     private static final String TAG = "DocSnippets";
@@ -174,6 +174,11 @@ public class editClassInfo extends AppCompatActivity {
                         currentCap = document.getLong("capacity");
                         currentPro = document.getBoolean("projector");
                         currentInter = document.getBoolean("interactive");
+                        S = (List<Boolean>) document.get("s");
+                        M = (List<Boolean>) document.get("m");
+                        T = (List<Boolean>) document.get("t");
+                        W = (List<Boolean>) document.get("w");
+                        Th = (List<Boolean>) document.get("th");
                         s = (List<Boolean>) document.get("s");
                         m = (List<Boolean>) document.get("m");
                         t = (List<Boolean>) document.get("t");
@@ -347,6 +352,8 @@ public class editClassInfo extends AppCompatActivity {
                 else
                     _InterActive = false;
 
+
+
                 s.set(0, S8_9.isChecked());
                 s.set(1, S9_10.isChecked());
                 s.set(2, S10_11.isChecked());
@@ -402,6 +409,9 @@ public class editClassInfo extends AppCompatActivity {
 
 
 
+
+
+
                 final android.app.AlertDialog.Builder alert = new AlertDialog.Builder(editClassInfo.this);
                 alert.setTitle("Edit Class");
 
@@ -414,7 +424,11 @@ public class editClassInfo extends AppCompatActivity {
                 });
                 alert.setNegativeButton("Stay",null);
 
-
+               if((_Capacity==currentCap) &&( _Projector==currentPro )&& (_InterActive==currentInter )&& (s.equals(S)) && (m.equals(M))&& (t.equals(T) )&& (w.equals(W)) &&( th.equals(Th))){
+                   alert.setMessage("the class is same ");
+                   alert.show();
+                   return;
+                }
 
                 documentReference.set(editedClass)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -434,6 +448,7 @@ public class editClassInfo extends AppCompatActivity {
                                 alert.show();
                             }
                         });
+
             }
         });
     }
