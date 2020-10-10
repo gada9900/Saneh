@@ -49,7 +49,7 @@ public class editProfileInfo extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthSL;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String userId ;
-    private Button UpdateBu;
+    private Button UpdateBu1,updateBu2;
     private FirebaseFirestore fStore;
     final String[] oldName = new String[1];
 
@@ -65,7 +65,8 @@ public class editProfileInfo extends AppCompatActivity {
         nPassword = (EditText) findViewById(R.id.editTextTextPassword3);
         conPassnew =(EditText) findViewById(R.id.editTextTextPassword2);
 
-        UpdateBu = (Button) findViewById(R.id.updateBu);
+        UpdateBu1 = (Button) findViewById(R.id.updateBu2);
+        updateBu2 = (Button) findViewById(R.id.updateBu);
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         userId = fAuth.getUid();
@@ -97,13 +98,18 @@ public class editProfileInfo extends AppCompatActivity {
         });
 
 
-        UpdateBu.setOnClickListener(new View.OnClickListener() {
+        UpdateBu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 update(v);
             }
         });
-
+       updateBu2.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               update2(v);
+           }
+       });
         final ImageView returnPrf = findViewById(R.id.gotoProfile);
         returnPrf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,17 +132,24 @@ public class editProfileInfo extends AppCompatActivity {
             Toast.makeText(this, " Name has been updated!", Toast.LENGTH_LONG).show();
         } else
             Toast.makeText(this, "Name is same .", Toast.LENGTH_LONG).show();
-        if(isPasswordChanged()){
+        /*if(isPasswordChanged()){
             Toast.makeText(this, "Password has been updated!", Toast.LENGTH_LONG).show();
         } else
             Toast.makeText(this, "Password is same.", Toast.LENGTH_LONG).show();
+    */
     }
+         public void update2(View view){
+             if(isPasswordChanged()){
+                 Toast.makeText(this, "Password has been updated!", Toast.LENGTH_LONG).show();
+             } else
+                 Toast.makeText(this, "Password is same.", Toast.LENGTH_LONG).show();
+         }
 
     private boolean isPasswordChanged() {
         String newPassword = nPassword.getText().toString().trim();
         String conPas = conPassnew.getText().toString().trim();
         if (TextUtils.isEmpty(newPassword)) {
-          //  nPassword.setError("Password is required!");
+            nPassword.setError("Password is required!");
             return false;
         }
         if (!isValidPassword(newPassword)) {
@@ -162,12 +175,17 @@ public class editProfileInfo extends AppCompatActivity {
 
     private boolean isNameChanged() {
         String newName = name.getText().toString().trim();
-        if(newName.equals(oldName[0])){
+
+        if(oldName[0].equals(newName)){
             return false;
         }
 
         if (TextUtils.isEmpty(newName)) {
             name.setError("Full Name is required!");
+            return false;
+        }
+        if (newName.length()>20){
+            name.setError("the name length should be less than 20 charecters.");
             return false;
         }
 
