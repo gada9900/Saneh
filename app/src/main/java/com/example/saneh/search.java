@@ -222,6 +222,15 @@ public class search extends AppCompatActivity {
                                         th = (List<Boolean>) myListOfDocuments.get(i).get("th");
                                         b = th.get(finalTimeIndex);
                                         if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
+                                    }else if  (finalDay.equals("f")){
+                                        alert.setVisibility(View.VISIBLE);
+                                        String msg = "Happy weekend ! please search about another date this is a friday ";
+                                        alert.setText(msg);
+
+                                    }else if  (finalDay.equals("ss")){
+                                        alert.setVisibility(View.VISIBLE);
+                                        String msg = "Happy weekend ! please search about another date this is a saturday ";
+                                        alert.setText(msg);
                                     }
 
                                 }
