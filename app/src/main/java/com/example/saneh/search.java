@@ -224,12 +224,12 @@ public class search extends AppCompatActivity {
                                         if(b){room.setBackgroundColor(getResources().getColor(R.color.red));}else{room.setBackgroundColor(getResources().getColor(R.color.grean));}
                                     }else if  (finalDay.equals("f")){
                                         alert.setVisibility(View.VISIBLE);
-                                        String msg = "Happy weekend ! please search about another date this is a friday ";
+                                        String msg = "Happy weekend ! please search for another date today is friday ";
                                         alert.setText(msg);
 
                                     }else if  (finalDay.equals("ss")){
                                         alert.setVisibility(View.VISIBLE);
-                                        String msg = "Happy weekend ! please search about another date this is a saturday ";
+                                        String msg = "Happy weekend ! please search for another date today is saturday ";
                                         alert.setText(msg);
                                     }
 
