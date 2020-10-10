@@ -145,6 +145,11 @@ public class adminAdd extends AppCompatActivity {
                     return;
                 }
 
+                if (capCheck2 < 1 ) {
+                    Capacity.setError("minimum capacity is 1!");
+                    return;
+                }
+
                 newCap = Long.parseLong(Capacity.getText().toString());
                 if(projector.isChecked())
                     newPro = true;
