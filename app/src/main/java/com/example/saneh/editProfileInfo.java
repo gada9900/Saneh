@@ -48,15 +48,19 @@ public class editProfileInfo extends AppCompatActivity {
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener mAuthSL;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private String userId;
+    private String userId ;
     private Button UpdateBu;
     private FirebaseFirestore fStore;
+    final String[] oldName = new String[1];
+
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_info);
+
         name = (EditText) findViewById(R.id.editTextTextPersonName);
         nPassword = (EditText) findViewById(R.id.editTextTextPassword3);
         conPassnew =(EditText) findViewById(R.id.editTextTextPassword2);
@@ -65,6 +69,8 @@ public class editProfileInfo extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         userId = fAuth.getUid();
+
+
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -73,8 +79,23 @@ public class editProfileInfo extends AppCompatActivity {
 
             }
         });
-
         //display name
+
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        oldName[0] = document.getString("fName");
+
+                    }
+                }
+            }
+        });
+
 
         UpdateBu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +125,11 @@ public class editProfileInfo extends AppCompatActivity {
         if (isNameChanged() ) {
             Toast.makeText(this, " Name has been updated!", Toast.LENGTH_LONG).show();
         } else
-            Toast.makeText(this, "Name is same and can not updated.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Name is same .", Toast.LENGTH_LONG).show();
         if(isPasswordChanged()){
             Toast.makeText(this, "Password has been updated!", Toast.LENGTH_LONG).show();
         } else
-            Toast.makeText(this, "Password is same and can not updated.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Password is same.", Toast.LENGTH_LONG).show();
     }
 
     private boolean isPasswordChanged() {
@@ -141,6 +162,10 @@ public class editProfileInfo extends AppCompatActivity {
 
     private boolean isNameChanged() {
         String newName = name.getText().toString().trim();
+        if(newName.equals(oldName[0])){
+            return false;
+        }
+
         if (TextUtils.isEmpty(newName)) {
             name.setError("Full Name is required!");
             return false;
