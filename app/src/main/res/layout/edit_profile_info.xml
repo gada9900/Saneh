@@ -6,9 +6,47 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/bobo" />
+
+    <Button
+        android:id="@+id/updateBu2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/rectangle_2004_color"
+        android:text="Update"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.629" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="252dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintVertical_bias="0.129" />
+
+    <ImageView
         android:id="@+id/imageView41"
         android:layout_width="412dp"
-        android:layout_height="83dp"
+        android:layout_height="84dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -36,10 +74,10 @@
         android:layout_height="183dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.151"
+        app:layout_constraintTop_toBottomOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle_2002_shape" />
 
     <ImageView
@@ -47,11 +85,9 @@
         android:layout_width="116dp"
         android:layout_height="83dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView38"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView38"
+        app:layout_constraintStart_toStartOf="@+id/imageView38"
         app:layout_constraintTop_toBottomOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.48"
         app:srcCompat="@drawable/uouo1" />
 
     <TextView
@@ -72,12 +108,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Name:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toStartOf="@+id/divider3"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.476" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -91,19 +128,18 @@
         app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.539" />
 
     <TextView
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Password:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.292"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider"
+        app:layout_constraintEnd_toStartOf="@+id/divider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintTop_toTopOf="@+id/divider" />
 
     <EditText
         android:id="@+id/editTextTextPassword3"
@@ -117,7 +153,7 @@
         app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintVertical_bias="0.785" />
 
     <Button
         android:id="@+id/updateBu"
@@ -131,7 +167,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.953" />
 
     <EditText
         android:id="@+id/editTextTextPassword2"
@@ -145,6 +181,18 @@
         app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView41"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.864" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="252dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintVertical_bias="0.523" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
