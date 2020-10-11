@@ -337,6 +337,11 @@ public class editClassInfo extends AppCompatActivity {
                     return;
                 }
 
+                if (capCheck2 < 1 ) {
+                    Capacity.setError("minimum capacity is 1!");
+                    return;
+                }
+
 
                 // Get a new write batch
                 //Get all the values
