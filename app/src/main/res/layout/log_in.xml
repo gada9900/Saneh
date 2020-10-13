@@ -112,10 +112,11 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="30dp"
-                android:text="New to Saneh? Sign up here."
+                android:text="Sign up here"
                 android:textColor="#1E88E5"
                 app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.93"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -127,7 +128,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="160dp"
-                android:text="Forgot Password ?"
+                android:text="Forgot Password?"
                 android:textColor="#1E88E5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -183,6 +184,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/emailLOGIN"
                 app:srcCompat="@drawable/wr" />
+
+            <TextView
+                android:id="@+id/SIGNUPmsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New to Saneh? "
+                android:textColor="#1E88E5"
+                app:layout_constraintBottom_toBottomOf="@+id/SIGNUPbutton"
+                app:layout_constraintEnd_toStartOf="@+id/SIGNUPbutton"
+                app:layout_constraintTop_toTopOf="@+id/SIGNUPbutton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
