@@ -131,7 +131,7 @@ public class editProfileInfo extends AppCompatActivity {
         if (isNameChanged() ) {
             Toast.makeText(this, " Name has been updated!", Toast.LENGTH_LONG).show();
         } else
-            Toast.makeText(this, "Name is same .", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
         /*if(isPasswordChanged()){
             Toast.makeText(this, "Password has been updated!", Toast.LENGTH_LONG).show();
         } else
