@@ -29,7 +29,14 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         holder.textViewDate.setText("Date: "+model.getDate());
         holder.textViewTime.setText("Time: "+model.getTime());
         holder.textViewRoomType.setText("Room type: "+ model.getRoomType());
-        holder.confirm.setVisibility(View.VISIBLE);
+
+        if(model.isConfirmed()){
+            holder.confirm.setVisibility(View.GONE);
+            holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.confirm.setVisibility(View.VISIBLE);
+        }
 
         holder.confirm.setOnClickListener(new View.OnClickListener() {
             @Override
