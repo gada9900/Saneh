@@ -8,14 +8,16 @@ public class reservations {
     private String classID;
     private String date;
     private String time;
+    private String roomType;
 
 
     private reservations(){}
 
-    public reservations(String classID, String date, String time){
+    public reservations(String classID, String date, String time, String roomType){
         this.classID = classID;
         this.date = date;
         this.time =time;
+        this.roomType = roomType;
     }
 
     public String getClassID() {
@@ -42,6 +44,12 @@ public class reservations {
         this.time = time;
     }
 
+    public String getRoomType() {
+        return roomType;
+    }
 
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
 }
 

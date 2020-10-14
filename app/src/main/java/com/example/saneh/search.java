@@ -303,6 +303,16 @@ public class search extends AppCompatActivity {
             }
         });
 
+        final ImageView upcoming = findViewById(R.id.imageView9);
+
+        upcoming.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),upcomingReservations.class);
+                startActivity(i);
+            }
+        });
+
         search.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override

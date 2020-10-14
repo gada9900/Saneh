@@ -98,5 +98,15 @@ public class profile  extends AppCompatActivity {
             }
         });
 
+        final ImageView upcoming = findViewById(R.id.imageView9);
+
+        upcoming.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),upcomingReservations.class);
+                startActivity(i);
+            }
+        });
+
     }
 }

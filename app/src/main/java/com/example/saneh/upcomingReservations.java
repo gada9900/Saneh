@@ -1,6 +1,9 @@
 package com.example.saneh;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,10 +20,41 @@ public class upcomingReservations extends AppCompatActivity {
 
     private classAdapter adapter;
 
+    private ImageView profile, search, circle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upcoming_reservations);
+
+        profile = findViewById(R.id.res_profile);
+        search = findViewById(R.id.res_search);
+        circle = findViewById(R.id.res_circle);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),profile.class);
+                startActivity(i);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),search.class);
+                startActivity(i);
+            }
+        });
+
+        circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),search.class);
+                startActivity(i);
+            }
+        });
+
 
         setUpRecyclerView();
     }
