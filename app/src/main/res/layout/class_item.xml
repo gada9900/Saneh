@@ -22,7 +22,7 @@
             android:layout_toStartOf="@id/confirm_button"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Class ID"
+            android:text="Room ID: "
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/confirm_button" />
@@ -35,17 +35,21 @@
             android:background="@drawable/rectangle_2004_shape"
             android:text="Confirm"
             android:textColor="#FDFCFC"
+            android:visibility="invisible"
             android:layout_alignParentRight="true" />
-        <Button
-            android:id="@+id/cancel_button"
+
+        <TextView
+            android:id="@+id/confirmed_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Confirmed"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_below="@+id/confirm_button"
             android:layout_marginTop="8dp"
-            android:background="@drawable/rectangle_2004_shape"
-            android:text="Cancel"
-            android:textColor="#FDFCFC"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            />
+
 
         <TextView
             android:id="@+id/res_room_type"

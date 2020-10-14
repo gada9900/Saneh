@@ -9,15 +9,17 @@ public class reservations {
     private String date;
     private String time;
     private String roomType;
+    private boolean confirmed;
 
 
     private reservations(){}
 
-    public reservations(String classID, String date, String time, String roomType){
+    public reservations(String classID, String date, String time, String roomType, boolean confirmed){
         this.classID = classID;
         this.date = date;
         this.time =time;
         this.roomType = roomType;
+        this.confirmed = confirmed;
     }
 
     public String getClassID() {
@@ -50,6 +52,14 @@ public class reservations {
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
+    }
+
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }
 
