@@ -1240,7 +1240,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search"
-                android:textColor="#090808"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/searchPage5"
                 app:layout_constraintEnd_toEndOf="@+id/searchPage5"
