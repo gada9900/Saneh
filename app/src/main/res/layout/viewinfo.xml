@@ -55,13 +55,12 @@
         android:id="@+id/textView8"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/chair"
         android:textColor="#060606"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/viewInfoTime8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <ImageView
