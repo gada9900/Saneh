@@ -22,6 +22,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         holder.textViewClassID.setText(model.getClassID());
         holder.textViewDate.setText("Date: "+model.getDate());
         holder.textViewTime.setText("Time: "+model.getTime());
+        holder.textViewRoomType.setText("Room type: "+ model.getRoomType());
     }
 
     @NonNull
@@ -36,12 +37,14 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         TextView textViewClassID;
         TextView textViewDate;
         TextView textViewTime;
+        TextView textViewRoomType;
 
         public classHolder(View itemView) {
             super(itemView);
             textViewClassID = itemView.findViewById(R.id.class_id);
             textViewDate = itemView.findViewById(R.id.res_date);
             textViewTime = itemView.findViewById(R.id.res_time);
+            textViewRoomType = itemView.findViewById(R.id.res_room_type);
         }
     }
 }

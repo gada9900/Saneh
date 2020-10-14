@@ -51,7 +51,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        app:srcCompat="@drawable/call"
+        app:srcCompat="@drawable/calend"
         android:layout_gravity="bottom"
         android:layout_marginBottom="13dp"/>
 
