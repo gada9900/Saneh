@@ -8,9 +8,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -24,7 +24,6 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -34,23 +33,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
-import static com.example.saneh.R.color.red;
 
 public class search extends AppCompatActivity {
 
@@ -548,16 +539,14 @@ public class search extends AppCompatActivity {
             final Button book = popupView.findViewById(R.id.bookINFO);
             TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
             final TextView capacityV = popupView.findViewById(R.id.CapacityViewInfo);
-            final TextView projector = popupView.findViewById(R.id.answerProjectorViewInfo);
-            final TextView activity = popupView.findViewById(R.id.answerActivityClassViewInfo);
             final TextView availableT = popupView.findViewById(R.id.availableTimeViewInfo);
 
             if(colour == -1754827) {//// this code to avoid delay to hide book button
                 availableT.setText("Booked up");
                 availableT.setTextColor(Color.parseColor("#E53935"));
                 book.setVisibility(View.GONE);
-                TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
-                avai.setVisibility(View.INVISIBLE);
+               // TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
+               // avai.setVisibility(View.INVISIBLE);
             }/////
             // change vlaues in class view info thats do not need a database
             roomN.setText("" + view.getResources().getResourceEntryName(view.getId()).substring(5));
@@ -585,9 +574,14 @@ public class search extends AppCompatActivity {
                             String selectedT = selectedTime.getSelectedItem().toString();
 
 
-                            projector.setText((proj) ? "Yes" : "No");
-                            activity.setText((activ) ? "Yes" : "No");
-                            capacityV.setText("" + capacity);
+                          //  projector.setText((proj) ? "Yes" : "No");
+                           // activity.setText((activ) ? "Yes" : "No");
+                            capacityV.setText(": " + capacity);
+                            final ImageView projectorimg = popupView.findViewById(R.id.textView9);
+                            final ImageView activityimg = popupView.findViewById(R.id.textView10);///////////********************************************************************************************
+                            projectorimg.setBackgroundResource((proj) ? R.drawable.yesprogector : R.drawable.noprojectorr);
+                             activityimg.setBackgroundResource((activ) ? R.drawable.yesactivity : R.drawable.noactivity);
+
 
 
                             String sdate;
@@ -688,41 +682,35 @@ public class search extends AppCompatActivity {
 
                             final int finalTimeIndex = timeIndex;
                             boolean b;
-                            if(colour == -1754827) {
-                                availableT.setText("Booked up");
-                                availableT.setTextColor(Color.parseColor("#E53935"));
-                                 book.setVisibility(View.GONE);
-                                  TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
-                                  avai.setVisibility(View.INVISIBLE);
-                            }else {
+
                                 if (finalDay.equals("s")) {
                                     s = (List<Boolean>) document.get("s");
 
-                                    printTime(s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
+                                    printTime(popupView , s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
 
                                 } else if (finalDay.equals("m")) {
                                     m = (List<Boolean>) document.get("m");
 
-                                    printTime(m, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(popupView , m, finalTimeIndex, selectedT, timeNext, availableT);
 
                                 } else if (finalDay.equals("t")) {
                                     t = (List<Boolean>) document.get("t");
 
-                                    printTime(t, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(popupView, t, finalTimeIndex, selectedT, timeNext, availableT);
 
                                 } else if (finalDay.equals("w")) {
                                     w = (List<Boolean>) document.get("w");
 
-                                    printTime(w, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(popupView ,w, finalTimeIndex, selectedT, timeNext, availableT);
 
                                 } else if (finalDay.equals("th")) {
                                     th = (List<Boolean>) document.get("th");
 
-                                    printTime(th, finalTimeIndex, selectedT, timeNext, availableT);
+                                    printTime(popupView , th, finalTimeIndex, selectedT, timeNext, availableT);
 
 
                                 }
-                            }
+
 
 
                         } else {
@@ -743,7 +731,7 @@ public class search extends AppCompatActivity {
             int width = LinearLayout.LayoutParams.WRAP_CONTENT;
             int height = LinearLayout.LayoutParams.WRAP_CONTENT;
             boolean focusable = true; // lets taps outside the popup also dismiss it
-            popupWindow = new PopupWindow(popupView, 600, 1000, focusable);
+            popupWindow = new PopupWindow(popupView, 600, 1200, focusable);
             popupWindow.setTouchable(true);
 
 
@@ -807,55 +795,68 @@ public class search extends AppCompatActivity {
 
 
     }
-public void printTime(List<Boolean> s , int finalTimeIndex , String selectedT , String timeNext ,TextView  availableT){
-    int i ;
-    String avTime = selectedT+"-";
-    for( i = finalTimeIndex+1 ; i < 7 ; i ++){
-        if(s.get(i)){
-            break;
+public void printTime(View popupView ,List<Boolean> s , int finalTimeIndex , String selectedT , String timeNext ,TextView  availableT){
+    int i= 0 ;
 
-        }
+    TextView t8 =popupView.findViewById(R.id.viewInfoTime8);
+
+
+    TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
+    TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
+    TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
+    TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
+    TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
+    TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
+
+    String avTime = selectedT+"-";
+    for( i = 0 ; i < 7 ; i++){
+        Boolean b = s.get(i);
+
+
+        switch (i){
+            case 0 :
+                if(b)
+                    t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                break;
+
+            case 1 :
+                if(b)
+                    t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                break;
+
+            case 2 :
+                if(b)
+                    t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            case 3 :
+                if(b)
+                    t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                break;
+
+            case 4 :
+                if(b)
+                    t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                break;
+
+            case 5 :
+                if(b)
+                    t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                break;
+
+            case 6 :
+                if(b)
+                    t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                break;
+
+
+        }//end switch
 
     }
-    String timeNext2 = "null";
-    switch (i){
-        case 0 :
-            timeNext2 = "8:00 AM" ;
-            break;
-
-        case 1 :
-            timeNext2 = "9:00 AM" ;
-            break;
-
-        case 2 :
-            timeNext2 = "10:00 AM" ;
-            break;
-
-        case 3 :
-            timeNext2 = "11:00 PM" ;
-            break;
-
-        case 4 :
-            timeNext2 = "12:00 PM" ;
-            break;
-
-        case 5 :
-            timeNext2 = "1:00 PM" ;
-            break;
-
-        case 6 :
-            timeNext2 = "2:00 PM" ;
-            break;
-        case 7 :
-            timeNext2 = "3:00 PM" ;
-            break;
-
-    }//end switch
-    if(i == finalTimeIndex)avTime = avTime+timeNext;
-    else avTime = avTime+timeNext2 ;
-
-    availableT.setText(avTime);
-
 
 
 
