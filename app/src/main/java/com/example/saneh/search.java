@@ -517,7 +517,9 @@ public class search extends AppCompatActivity {
 
         };
 
-        new DatePickerDialog(search.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+        DatePickerDialog datePickerDialog = new  DatePickerDialog(search.this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
     public void onButtonShowPopupWindowClick(View view  ) {
 
