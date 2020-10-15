@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="UPCOMING RESERVATIONS"
+        android:text="MY RESERVATIONS"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
         app:layout_constraintHorizontal_bias="0.496"
@@ -51,7 +51,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        app:srcCompat="@drawable/call"
+        app:srcCompat="@drawable/calend"
         android:layout_gravity="bottom"
         android:layout_marginBottom="13dp"/>
 

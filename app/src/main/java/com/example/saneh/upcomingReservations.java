@@ -1,8 +1,17 @@
 package com.example.saneh;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,16 +20,49 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 public class upcomingReservations extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference classesRef = db.collection("reservations");
 
     private classAdapter adapter;
 
+    private ImageView profile, search, circle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upcoming_reservations);
+
+        profile = findViewById(R.id.res_profile);
+        search = findViewById(R.id.res_search);
+        circle = findViewById(R.id.res_circle);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),profile.class);
+                startActivity(i);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),search.class);
+                startActivity(i);
+            }
+        });
+
+        circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),search.class);
+                startActivity(i);
+            }
+        });
+
 
         setUpRecyclerView();
     }
@@ -35,6 +77,43 @@ public class upcomingReservations extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
+                android.app.AlertDialog.Builder alert = new AlertDialog.Builder(upcomingReservations.this);
+                alert.setTitle("Delete reservation");
+                alert.setMessage("Are you sure you want to delete this reservation?");
+
+                alert.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.deleteItem(viewHolder.getAdapterPosition());
+                    }
+                });
+                alert.setNegativeButton("Cancel",null);
+
+                alert.show();
+
+            }
+
+            public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive){
+
+                new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                        .addBackgroundColor(ContextCompat.getColor(upcomingReservations.this, R.color.red))
+                        .addActionIcon(R.drawable.ic_delete_white)
+                        .create()
+                        .decorate();
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override

@@ -22,7 +22,7 @@
             android:layout_toStartOf="@id/confirm_button"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Class ID"
+            android:text="Room ID: "
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/confirm_button" />
@@ -32,21 +32,40 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:background="@drawable/rectangle_2004_shape"
             android:text="Confirm"
+            android:textColor="#FDFCFC"
+            android:visibility="invisible"
             android:layout_alignParentRight="true" />
-        <Button
-            android:id="@+id/cancel_button"
+
+        <TextView
+            android:id="@+id/confirmed_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Confirmed"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_below="@+id/confirm_button"
-            android:text="Cancel"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginTop="8dp"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            />
+
+
+        <TextView
+            android:id="@+id/res_room_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/class_id"
+            android:text="Room Type: classroom or studyroom"
+            android:layout_alignParentLeft="true" />
+
         <TextView
             android:id="@+id/res_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/class_id"
+            android:layout_below="@id/res_room_type"
             android:text="Date: 00/00/0000"
             android:layout_alignParentLeft="true" />
 
