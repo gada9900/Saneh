@@ -841,7 +841,7 @@ public void printTime(View popupView ,List<Boolean> s , int finalTimeIndex , Str
             case 2 :
                 if(b)
                     t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
+                   break;
             case 3 :
                 if(b)
                     t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
