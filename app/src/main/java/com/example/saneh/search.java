@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -552,6 +553,7 @@ public class search extends AppCompatActivity {
             TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
             final TextView capacityV = popupView.findViewById(R.id.CapacityViewInfo);
             final TextView availableT = popupView.findViewById(R.id.availableTimeViewInfo);
+            final View view1 = view;
 
             if(colour == -1754827) {//// this code to avoid delay to hide book button
                 availableT.setText("Booked up");
@@ -565,9 +567,48 @@ public class search extends AppCompatActivity {
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(getApplicationContext(), search.class);
-                    startActivity(i);
-                }
+                    // H & SH code
+
+                    String d= date.getText().toString().trim();
+                    String time =selectedTime.getSelectedItem().toString();
+
+                    // subString for the time since the format is 00:00
+                    if (time.charAt(1)== ':')
+                        time = time.substring(0,1);
+                    else
+                        time = time.substring(0,2);
+                    // calendar so we can set the date in calendar to the day user want not today date
+                    final Calendar calendar= Calendar.getInstance();
+                    calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
+                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
+                    calendar.set(Calendar.HOUR,Integer.parseInt(time));
+                    calendar.set(Calendar.MINUTE,00);
+
+                    // create an event then send it to google calendar
+                    Intent intent = new Intent(Intent.ACTION_INSERT);
+                    intent.setData(CalendarContract.Events.CONTENT_URI);
+                    intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
+                    intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked "+view1.getResources().getResourceEntryName(view1.getId()).substring(5)+" on "+date.getText().toString().trim()+" at "+ selectedTime.getSelectedItem().toString() +" using Saneh application");
+                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTimeInMillis());
+
+
+
+                    //this if to check if the user have app can handel this action
+                    if (intent.resolveActivity(getPackageManager()) != null){
+
+                        startActivity(intent);
+
+                    }else {
+                        alert.setVisibility(View.VISIBLE);
+                        String msg = "your reservation did not save in your application app for some issues,";
+                        alert.setText(msg);
+                    }
+
+                } // H & SH END code
+
+
             });
             //here some attrbuite values which we have to fetch it form database
             ///////////////////////////
