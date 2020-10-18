@@ -1,6 +1,7 @@
 package com.example.saneh;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -15,6 +16,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,16 +34,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class search extends AppCompatActivity {
 
@@ -59,7 +69,8 @@ public class search extends AppCompatActivity {
     List<Boolean> s,m,t,w,th;
     String dayOfWeek;
     TextView  alert  ;
-
+    private FirebaseAuth firebaseAuth ;
+    private FirebaseFirestore fireStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -531,7 +542,7 @@ public class search extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
     }
-    public void onButtonShowPopupWindowClick(View view  ) {
+    public void onButtonShowPopupWindowClick(final View view  ) {
 
         int color = Color.TRANSPARENT;
         Drawable background = view.getBackground();
@@ -552,6 +563,7 @@ public class search extends AppCompatActivity {
             TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
             final TextView capacityV = popupView.findViewById(R.id.CapacityViewInfo);
             final TextView availableT = popupView.findViewById(R.id.availableTimeViewInfo);
+            final View view1 = view;
 
             if(colour == -1754827) {//// this code to avoid delay to hide book button
                 availableT.setText("Booked up");
@@ -562,12 +574,57 @@ public class search extends AppCompatActivity {
             }/////
             // change vlaues in class view info thats do not need a database
             roomN.setText("" + view.getResources().getResourceEntryName(view.getId()).substring(5));
+
+            final String ClassID1= view.getResources().getResourceEntryName(view.getId()).substring(5);
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(getApplicationContext(), search.class);
-                    startActivity(i);
-                }
+                    // H & SH code
+
+                    String d= date.getText().toString().trim();
+                    String time =selectedTime.getSelectedItem().toString();
+
+
+                    bookClass(ClassID1,d,time);
+
+                    // subString for the time since the format is 00:00
+                    if (time.charAt(1)== ':')
+                        time = time.substring(0,1);
+                    else
+                        time = time.substring(0,2);
+                    // calendar so we can set the date in calendar to the day user want not today date
+                    final Calendar calendar= Calendar.getInstance();
+                    calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
+                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
+                    calendar.set(Calendar.HOUR,Integer.parseInt(time));
+                    calendar.set(Calendar.MINUTE,00);
+
+                    // create an event then send it to google calendar
+                    Intent intent = new Intent(Intent.ACTION_INSERT);
+                    intent.setData(CalendarContract.Events.CONTENT_URI);
+                    intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
+                    intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked "+view1.getResources().getResourceEntryName(view1.getId()).substring(5)+" on "+date.getText().toString().trim()+" at "+ selectedTime.getSelectedItem().toString() +" using Saneh application");
+                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTimeInMillis());
+
+
+
+                    //this if to check if the user have app can handel this action
+                    if (intent.resolveActivity(getPackageManager()) != null){
+
+                        startActivity(intent);
+
+                    }else {
+                        alert.setVisibility(View.VISIBLE);
+                        String msg = "your reservation did not save in your application app for some issues,";
+                        alert.setText(msg);
+                    }
+
+
+                } // H & SH END code
+
+
             });
             //here some attrbuite values which we have to fetch it form database
             ///////////////////////////
@@ -738,7 +795,6 @@ public class search extends AppCompatActivity {
             });
 /////////////////////////////////////////////////////
 
-
             // create the popup window
             int width = LinearLayout.LayoutParams.WRAP_CONTENT;
             int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -874,5 +930,55 @@ public void printTime(View popupView ,List<Boolean> s , int finalTimeIndex , Str
 
 }
 
+public void bookClass(final String ClassID1 , String Date , String time){
+        firebaseAuth = FirebaseAuth.getInstance();
+        String currentUserId = firebaseAuth.getUid();
+        fireStore = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = fireStore.collection("reservations").document();
 
+        String timecut;
+        if (time.charAt(1)== ':')
+            timecut = time.substring(0,1);
+        else
+            timecut = time.substring(0,2);
+
+        int timeparse = Integer.parseInt(timecut);
+        if (timeparse < 12){
+            timeparse++;
+            if(timeparse == 12){
+                time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+"PM";
+            }else
+            time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
+        }else
+            if(timeparse == 12){
+                timeparse = 1;
+                time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
+            }
+
+
+    Map<String, Object> newReservation = new HashMap<>();
+        newReservation.put("classID", ClassID1);
+        newReservation.put("confirmed", false);
+        newReservation.put("date", Date);
+        newReservation.put("time", time);
+        newReservation.put("userID", currentUserId);
+        newReservation.put("roomType", "classroom");
+
+        documentReference.set(newReservation)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, e.toString());
+
+                }
+            });
+}
 }

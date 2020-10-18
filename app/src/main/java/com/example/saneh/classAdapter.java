@@ -29,10 +29,14 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         holder.textViewDate.setText("Date: "+model.getDate());
         holder.textViewTime.setText("Time: "+model.getTime());
         holder.textViewRoomType.setText("Room type: "+ model.getRoomType());
+        holder.textViewConfirmedMsg.setText("Confirmed");
+        holder.textViewConfirmedMsg.setVisibility(View.GONE);
 
         if(model.isConfirmed()){
             holder.confirm.setVisibility(View.GONE);
+            //holder.textViewConfirmedMsg.setText("Confirmed");
             holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
+            return;
         }
         else {
             holder.confirm.setVisibility(View.VISIBLE);
@@ -49,8 +53,8 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         confirmItem(position);
-                        holder.confirm.setVisibility(View.GONE);
-                        holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
+                        //holder.confirm.setVisibility(View.GONE);
+                        //holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
                     }
                 });
                 alert.setNegativeButton("No, cancel",null);
