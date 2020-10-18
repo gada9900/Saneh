@@ -71,12 +71,10 @@ public class search extends AppCompatActivity {
     TextView  alert  ;
     private FirebaseAuth firebaseAuth ;
     private FirebaseFirestore fireStore;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
-
 
           alert = findViewById(R.id.alertSearch) ;
 
@@ -341,6 +339,7 @@ public class search extends AppCompatActivity {
                    //
                }
                  sdate = date.getText().toString().trim();
+               final String finalDate = sdate ;
                 int year=Integer.parseInt(sdate.substring(6,10));
                 int month=Integer.parseInt(sdate.substring(3,5));;
                 int day=Integer.parseInt(sdate.substring(0,2));;
@@ -398,6 +397,8 @@ public class search extends AppCompatActivity {
 
                     //time input
                     String stime = selectedTime.getSelectedItem().toString();
+                   final String finalTime = stime.substring(0,stime.indexOf(' ')) ;
+
                     int timeIndex = -1;
 
                     switch (stime) {
@@ -513,6 +514,40 @@ public class search extends AppCompatActivity {
 
 
                             });
+                     Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                            .collection("reservations")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @SuppressLint("ResourceAsColor")
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                       int myListOfDocumentsLen = myListOfDocuments.size();
+
+                                       for(int i = 0; i < myListOfDocumentsLen; i++){
+                                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                            int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                            TextView room = (TextView) findViewById(id);
+                                           if(finalDate.equals(myListOfDocuments.get(i).getString("date"))){
+                                               if(finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                   room.setBackgroundColor(getResources().getColor(R.color.red));
+
+
+
+                                               }
+                                           }
+
+                                        }
+
+
+
+
+                                    }
+                                }
+                            });
+
+
                 }//if the day not f or ss
             }});
 
@@ -569,7 +604,51 @@ public class search extends AppCompatActivity {
                 availableT.setText("Booked up");
                 availableT.setTextColor(Color.parseColor("#E53935"));
                 book.setVisibility(View.GONE);
-               // TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
+
+
+                TextView t8 =popupView.findViewById(R.id.viewInfoTime8);
+                TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
+                TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
+                TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
+                TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
+                TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
+                TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
+
+                String stime = selectedTime.getSelectedItem().toString();
+
+                switch (stime) {
+                    case "8:00 AM":
+                        t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "9:00 AM":
+                        t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "10:00 AM":
+                        t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "11:00 AM":
+                        t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "12:00 PM":
+                        t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "1:00 PM":
+                        t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "2:00 PM":
+                        t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                }//end switch
+
+
+                // TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
                // avai.setVisibility(View.INVISIBLE);
             }/////
             // change vlaues in class view info thats do not need a database
@@ -867,8 +946,6 @@ public void printTime(View popupView ,List<Boolean> s , int finalTimeIndex , Str
     int i= 0 ;
 
     TextView t8 =popupView.findViewById(R.id.viewInfoTime8);
-
-
     TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
     TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
     TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
