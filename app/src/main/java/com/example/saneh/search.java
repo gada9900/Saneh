@@ -947,7 +947,7 @@ public void bookClass(final String ClassID1 , String Date , String time){
             timeparse++;
             if(timeparse == 12){
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+"PM";
-            }
+            }else
             time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
         }else
             if(timeparse == 12){
