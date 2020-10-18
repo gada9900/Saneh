@@ -552,7 +552,6 @@ public class search extends AppCompatActivity {
             TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
             final TextView capacityV = popupView.findViewById(R.id.CapacityViewInfo);
             final TextView availableT = popupView.findViewById(R.id.availableTimeViewInfo);
-
             if(colour == -1754827) {//// this code to avoid delay to hide book button
                 availableT.setText("Booked up");
                 availableT.setTextColor(Color.parseColor("#E53935"));
