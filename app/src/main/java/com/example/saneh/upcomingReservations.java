@@ -118,9 +118,10 @@ public class upcomingReservations extends AppCompatActivity {
                 alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  //not removing items if cancel is done
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                adapter.notifyItemRemoved(position + 1);    //notifies the RecyclerView Adapter that data in adapter has been removed at a particular position.
-                                adapter.notifyItemRangeChanged(position, adapter.getItemCount());   //notifies the RecyclerView Adapter that positions of element in adapter has been changed from position(removed element index to end of list), please update it.
-                                return;
+                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                                //adapter.notifyItemRemoved(position + 1);    //notifies the RecyclerView Adapter that data in adapter has been removed at a particular position.
+                                //adapter.notifyItemRangeChanged(position, adapter.getItemCount());   //notifies the RecyclerView Adapter that positions of element in adapter has been changed from position(removed element index to end of list), please update it.
+                                //return;
                             }
                         }).show();
 
