@@ -140,6 +140,10 @@ public class sign_up extends AppCompatActivity {
                     mPassword2.setError("Your password doesn't match the confirmed password!");
                     return;
                 }
+                if (fullName.length()>20){
+                    mFullName.setError("the name length should be less than 20 charecters.");
+                    return;
+                }
 
                 progressBar.setVisibility(View.VISIBLE);
 
