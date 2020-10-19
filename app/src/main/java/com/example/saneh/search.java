@@ -683,7 +683,7 @@ public class search extends AppCompatActivity {
                     alert1.show();
 
 
-/*
+
 
                     // subString for the time since the format is 00:00
                     if (time.charAt(1)== ':')
@@ -718,7 +718,7 @@ public class search extends AppCompatActivity {
                         String msg = "your reservation did not save in your application app for some issues,";
                         alert.setText(msg);
                     }
-*/
+
 
                 } // H & SH END code
 
