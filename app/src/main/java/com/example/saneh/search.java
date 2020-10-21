@@ -674,6 +674,56 @@ public class search extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             bookClass(ClassID1,d, finalTime);
+                            final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
+                            alert2.setTitle("Google calander");
+                            alert2.setMessage("Do you want to save your reservation in your google calander ?");
+
+                            alert2.setPositiveButton("save", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String ftime2 ;
+                                    // subString for the time since the format is 00:00
+                                    if (finalTime.charAt(1)== ':')
+                                        ftime2 = finalTime.substring(0,1);
+                                    else
+                                        ftime2 = finalTime.substring(0,2);
+                                    // calendar so we can set the date in calendar to the day user want not today date
+                                    final Calendar calendar= Calendar.getInstance();
+                                    calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+                                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
+                                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
+                                    calendar.set(Calendar.HOUR,Integer.parseInt(ftime2));
+                                    calendar.set(Calendar.MINUTE,00);
+
+                                    // create an event then send it to google calendar
+                                    Intent intent = new Intent(Intent.ACTION_INSERT);
+                                    intent.setData(CalendarContract.Events.CONTENT_URI);
+                                    intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
+                                    intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked "+view1.getResources().getResourceEntryName(view1.getId()).substring(5)+" on "+date.getText().toString().trim()+" at "+ selectedTime.getSelectedItem().toString() +" using Saneh application");
+                                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTimeInMillis());
+
+
+
+                                    //this if to check if the user have app can handel this action
+                                    if (intent.resolveActivity(getPackageManager()) != null){
+
+                                        startActivity(intent);
+
+                                    }else {
+                                        alert.setVisibility(View.VISIBLE);
+                                        String msg = "your reservation did not save in your application app for some issues,";
+                                        alert.setText(msg);
+                                    }
+
+                                }
+                            });
+                            alert2.setNegativeButton("Cancel",null);
+                            alert2.setCancelable(true);
+
+                            alert2.show();
+                            popupWindow.dismiss();
+
                         }
                     });
                     alert1.setNegativeButton("Cancel",null);
@@ -681,43 +731,6 @@ public class search extends AppCompatActivity {
                     alert1.setCancelable(true);
 
                     alert1.show();
-
-
-
-
-                    // subString for the time since the format is 00:00
-                    if (time.charAt(1)== ':')
-                        time = time.substring(0,1);
-                    else
-                        time = time.substring(0,2);
-                    // calendar so we can set the date in calendar to the day user want not today date
-                    final Calendar calendar= Calendar.getInstance();
-                    calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
-                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
-                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
-                    calendar.set(Calendar.HOUR,Integer.parseInt(time));
-                    calendar.set(Calendar.MINUTE,00);
-
-                    // create an event then send it to google calendar
-                    Intent intent = new Intent(Intent.ACTION_INSERT);
-                    intent.setData(CalendarContract.Events.CONTENT_URI);
-                    intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
-                    intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked "+view1.getResources().getResourceEntryName(view1.getId()).substring(5)+" on "+date.getText().toString().trim()+" at "+ selectedTime.getSelectedItem().toString() +" using Saneh application");
-                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
-                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTimeInMillis());
-
-
-
-                    //this if to check if the user have app can handel this action
-                    if (intent.resolveActivity(getPackageManager()) != null){
-
-                        startActivity(intent);
-
-                    }else {
-                        alert.setVisibility(View.VISIBLE);
-                        String msg = "your reservation did not save in your application app for some issues,";
-                        alert.setText(msg);
-                    }
 
 
                 } // H & SH END code
@@ -1051,7 +1064,6 @@ public void bookClass(final String ClassID1 , String Date , String time){
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
             }
 
-
     Map<String, Object> newReservation = new HashMap<>();
         newReservation.put("classID", ClassID1);
         newReservation.put("confirmed", false);
@@ -1065,6 +1077,7 @@ public void bookClass(final String ClassID1 , String Date , String time){
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                    refreshAfterBooking(date.getText().toString().trim());
 
                 }
             })
@@ -1076,5 +1089,46 @@ public void bookClass(final String ClassID1 , String Date , String time){
 
                 }
             });
+}
+
+public void refreshAfterBooking(String finalDate){
+        final String fd = finalDate;
+    String stime = selectedTime.getSelectedItem().toString();
+    final String finalTime1 = stime.substring(0,stime.indexOf(' ')) ;
+    Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+            .collection("reservations")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @SuppressLint("ResourceAsColor")
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                        int myListOfDocumentsLen = myListOfDocuments.size();
+
+                        for(int i = 0; i < myListOfDocumentsLen; i++){
+                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                            int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                            TextView room = (TextView) findViewById(id);
+                            if(fd.equals(myListOfDocuments.get(i).getString("date"))){
+                                if(finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+
+
+
+                                }
+                            }
+
+                        }
+
+
+
+
+                    }
+                }
+            });
+
+
+
 }
 }
