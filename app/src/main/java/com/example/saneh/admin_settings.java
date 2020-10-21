@@ -1,6 +1,7 @@
 package com.example.saneh;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class admin_settings extends AppCompatActivity {
     private FirebaseAuth firebaseAuth ;
-    private Button  logout;
+    private Button  logout,help;
     private ImageView edit, settings, add;
 
     @Override
@@ -24,7 +25,7 @@ public class admin_settings extends AppCompatActivity {
         edit = findViewById(R.id.imageView32);
         settings = findViewById(R.id.imageView27);
         add = findViewById(R.id.imageView21);
-
+        help=findViewById(R.id.logOut2);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,16 @@ public class admin_settings extends AppCompatActivity {
                 startActivity(i);
             }
         });*/
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_VIEW
+                        , Uri.parse("mailto:" + "appsaneh@gmail.com"));
+                startActivity(intent);
+
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -660,11 +661,29 @@ public class search extends AppCompatActivity {
                 public void onClick(View view) {
                     // H & SH code
 
-                    String d= date.getText().toString().trim();
+                    final String d= date.getText().toString().trim();
                     String time =selectedTime.getSelectedItem().toString();
 
 
-                    bookClass(ClassID1,d,time);
+                    final android.app.AlertDialog.Builder alert1 = new AlertDialog.Builder(search.this);
+                    alert1.setTitle("Book Class");
+                    alert1.setMessage("Are you sure that you want to book this class ?");
+
+                    final String finalTime = time;
+                    alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            bookClass(ClassID1,d, finalTime);
+                        }
+                    });
+                    alert1.setNegativeButton("Cancel",null);
+
+                    alert1.setCancelable(true);
+
+                    alert1.show();
+
+
+
 
                     // subString for the time since the format is 00:00
                     if (time.charAt(1)== ':')

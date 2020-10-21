@@ -56,15 +56,11 @@ public class profile  extends AppCompatActivity {
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //try {
+
                 Intent intent = new Intent(Intent.ACTION_VIEW
                         , Uri.parse("mailto:" + "appsaneh@gmail.com"));
                 startActivity(intent);
-                //}catch(Exception e){
-                //    Toast.makeText(this, "Sorry we can not find the email application",Toast.LENGTH_LONG).show();
-                //  }
-               /* Intent i=new Intent(getApplicationContext(),send_email.class);
-                startActivity(i);*/
+
             }
         });
         firebaseAuth = FirebaseAuth.getInstance();
