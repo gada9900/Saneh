@@ -1071,13 +1071,11 @@ public class search extends AppCompatActivity {
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+"PM";
             }else
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
-        }else
-        if(timeparse == 12){
-            timeparse = 1;
-            time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
-        }
 
-        Map<String, Object> newReservation = new HashMap<>();
+            }
+
+    Map<String, Object> newReservation = new HashMap<>();
+
         newReservation.put("classID", ClassID1);
         newReservation.put("confirmed", false);
         newReservation.put("date", Date);
@@ -1086,11 +1084,13 @@ public class search extends AppCompatActivity {
         newReservation.put("roomType", "classroom");
 
         documentReference.set(newReservation)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
-                        refreshAfterBooking(date.getText().toString().trim());
+
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                    refreshAfterBooking(date.getText().toString().trim());
+
 
                     }
                 })
@@ -1100,48 +1100,50 @@ public class search extends AppCompatActivity {
                         //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, e.toString());
 
-                    }
-                });
-    }
 
-    public void refreshAfterBooking(String finalDate){
+                }
+            });
+}
+
+public void refreshAfterBooking(String finalDate){
         final String fd = finalDate;
-        String stime = selectedTime.getSelectedItem().toString();
-        final String finalTime1 = stime.substring(0,stime.indexOf(' ')) ;
-        Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
-                .collection("reservations")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @SuppressLint("ResourceAsColor")
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
-                            int myListOfDocumentsLen = myListOfDocuments.size();
+    String stime = selectedTime.getSelectedItem().toString();
+    final String finalTime1 = stime.substring(0,stime.indexOf(' ')) ;
+    Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+            .collection("reservations")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @SuppressLint("ResourceAsColor")
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                        int myListOfDocumentsLen = myListOfDocuments.size();
 
-                            for(int i = 0; i < myListOfDocumentsLen; i++){
-                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
-                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
-                                TextView room = (TextView) findViewById(id);
-                                if(fd.equals(myListOfDocuments.get(i).getString("date"))){
-                                    if(finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                        for(int i = 0; i < myListOfDocumentsLen; i++){
+                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                            int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                            TextView room = (TextView) findViewById(id);
+                            if(fd.equals(myListOfDocuments.get(i).getString("date"))){
+                                if(finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                    room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
 
-                                    }
                                 }
-
                             }
 
-
-
-
                         }
+
+
+
+
                     }
-                });
+                }
+            });
 
 
 
-    }
+}
+
 }
