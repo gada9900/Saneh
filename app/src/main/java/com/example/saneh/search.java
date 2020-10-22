@@ -1,5 +1,5 @@
 package com.example.saneh;
-
+///written by Saneh team <3
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -1072,9 +1072,9 @@ public class search extends AppCompatActivity {
             }else
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
 
-            }
+        }
 
-    Map<String, Object> newReservation = new HashMap<>();
+        Map<String, Object> newReservation = new HashMap<>();
 
         newReservation.put("classID", ClassID1);
         newReservation.put("confirmed", false);
@@ -1085,11 +1085,11 @@ public class search extends AppCompatActivity {
 
         documentReference.set(newReservation)
 
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
-                    refreshAfterBooking(date.getText().toString().trim());
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                        refreshAfterBooking(date.getText().toString().trim());
 
 
                     }
@@ -1101,49 +1101,49 @@ public class search extends AppCompatActivity {
                         Log.d(TAG, e.toString());
 
 
-                }
-            });
-}
+                    }
+                });
+    }
 
-public void refreshAfterBooking(String finalDate){
+    public void refreshAfterBooking(String finalDate){
         final String fd = finalDate;
-    String stime = selectedTime.getSelectedItem().toString();
-    final String finalTime1 = stime.substring(0,stime.indexOf(' ')) ;
-    Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
-            .collection("reservations")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @SuppressLint("ResourceAsColor")
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
-                        int myListOfDocumentsLen = myListOfDocuments.size();
+        String stime = selectedTime.getSelectedItem().toString();
+        final String finalTime1 = stime.substring(0,stime.indexOf(' ')) ;
+        Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                .collection("reservations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("ResourceAsColor")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                            int myListOfDocumentsLen = myListOfDocuments.size();
 
-                        for(int i = 0; i < myListOfDocumentsLen; i++){
-                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
-                            int id = getResources().getIdentifier(_classID, "id", getPackageName());
-                            TextView room = (TextView) findViewById(id);
-                            if(fd.equals(myListOfDocuments.get(i).getString("date"))){
-                                if(finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                            for(int i = 0; i < myListOfDocumentsLen; i++){
+                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                TextView room = (TextView) findViewById(id);
+                                if(fd.equals(myListOfDocuments.get(i).getString("date"))){
+                                    if(finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
 
+                                    }
                                 }
+
                             }
 
+
+
+
                         }
-
-
-
-
                     }
-                }
-            });
+                });
 
 
 
-}
+    }
 
 }
