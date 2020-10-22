@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -76,16 +77,16 @@ public class search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
-          alert = findViewById(R.id.alertSearch) ;
+        alert = findViewById(R.id.alertSearch) ;
 
         //prevent bottom toolbar from moving (its important)
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH");
-          String currentTime = sdf.format(new Date());
-          /// here we want to know the time of the user to change drop list atomaticly
-           boolean morning = false ;
-           int index = -1 ;
+        String currentTime = sdf.format(new Date());
+        /// here we want to know the time of the user to change drop list atomaticly
+        boolean morning = false ;
+        int index = -1 ;
         switch (currentTime) {
             case "08":
                 morning = true ;
@@ -143,7 +144,7 @@ public class search extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
         if(morning){
-    mySpinner.setSelection(index);        //////////////here we changed drop list time
+            mySpinner.setSelection(index);        //////////////here we changed drop list time
 
 ////////////////////////// here we want to change class colur according to current time
             Calendar cal = Calendar.getInstance();
@@ -243,6 +244,18 @@ public class search extends AppCompatActivity {
 
                     });
 
+            String sdate ;
+            if(date.length() == 0 ) { // if the user did not enter a date it will be by default today's date for the user's device
+                Date today1 = new Date();
+                SimpleDateFormat simple1 = new SimpleDateFormat("dd-MM-yyyy");
+                date.setText(simple1.format(today1));
+                sdate = simple.format(today1);//
+            }
+            sdate = date.getText().toString().trim();
+            final String finalDate1 = sdate ;
+            refreshAfterBooking(finalDate1);
+
+
 
 
         }//////////////////
@@ -287,11 +300,11 @@ public class search extends AppCompatActivity {
                 String msg = "Happy weekend ! please search for another date today is saturday ";
                 alert.setText(msg);
             }else{
-            SimpleDateFormat sdf2 = new SimpleDateFormat("HH : mm a");
-            String currentTime2 = sdf2.format(new Date());
-            alert.setVisibility(View.VISIBLE);
-            String msg = "There are no classes at this time "+currentTime2+" you must search for a suitable time. ";
-            alert.setText(msg);}
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH : mm a");
+                String currentTime2 = sdf2.format(new Date());
+                alert.setVisibility(View.VISIBLE);
+                String msg = "There are no classes at this time "+currentTime2+" you must search for a suitable time. ";
+                alert.setText(msg);}
 
         }
         date.setOnClickListener(new View.OnClickListener() {
@@ -326,20 +339,20 @@ public class search extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                     alert.setVisibility(View.INVISIBLE);
+                alert.setVisibility(View.INVISIBLE);
                 //here we need to write a code that will take date and time and change the color of classrooms
 
                 //date input
                 String sdate ;
-               if(date.length() == 0 ) { // if the user did not enter a date it will be by default today's date for the user's device
-                   Date today = new Date();
-                   SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
-                   date.setText(simple.format(today));
-                   sdate = simple.format(today);
-                   //
-               }
-                 sdate = date.getText().toString().trim();
-               final String finalDate = sdate ;
+                if(date.length() == 0 ) { // if the user did not enter a date it will be by default today's date for the user's device
+                    Date today = new Date();
+                    SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+                    date.setText(simple.format(today));
+                    sdate = simple.format(today);
+                    //
+                }
+                sdate = date.getText().toString().trim();
+                final String finalDate = sdate ;
                 int year=Integer.parseInt(sdate.substring(6,10));
                 int month=Integer.parseInt(sdate.substring(3,5));;
                 int day=Integer.parseInt(sdate.substring(0,2));;
@@ -386,7 +399,7 @@ public class search extends AppCompatActivity {
                     AlertDialog.Builder alert = new AlertDialog.Builder(search.this);
                     alert.setTitle("wrong date");
                     if (finalDay.equals("f")){
-                    alert.setMessage("Friday! the weekend is not supported");}
+                        alert.setMessage("Friday! the weekend is not supported");}
                     else if (finalDay.equals("ss")){
                         alert.setMessage("Saturday! the weekend is not supported");}
                     alert.setPositiveButton("OK",null);
@@ -397,7 +410,7 @@ public class search extends AppCompatActivity {
 
                     //time input
                     String stime = selectedTime.getSelectedItem().toString();
-                   final String finalTime = stime.substring(0,stime.indexOf(' ')) ;
+                    final String finalTime = stime.substring(0,stime.indexOf(' ')) ;
 
                     int timeIndex = -1;
 
@@ -514,7 +527,7 @@ public class search extends AppCompatActivity {
 
 
                             });
-                     Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                    Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
                             .collection("reservations")
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -523,20 +536,20 @@ public class search extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
                                         List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
-                                       int myListOfDocumentsLen = myListOfDocuments.size();
+                                        int myListOfDocumentsLen = myListOfDocuments.size();
 
-                                       for(int i = 0; i < myListOfDocumentsLen; i++){
+                                        for(int i = 0; i < myListOfDocumentsLen; i++){
                                             _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                             int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                             TextView room = (TextView) findViewById(id);
-                                           if(finalDate.equals(myListOfDocuments.get(i).getString("date"))){
-                                               if(finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                                   room.setBackgroundColor(getResources().getColor(R.color.red));
+                                            if(finalDate.equals(myListOfDocuments.get(i).getString("date"))){
+                                                if(finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
 
-                                               }
-                                           }
+                                                }
+                                            }
 
                                         }
 
@@ -546,13 +559,14 @@ public class search extends AppCompatActivity {
                                     }
                                 }
                             });
+                    refreshAfterBooking(finalDate);
 
 
                 }//if the day not f or ss
             }});
 
 
-       init();
+        init();
     }
 
     private void showDateDialog(final TextView date) {
@@ -649,7 +663,7 @@ public class search extends AppCompatActivity {
 
 
                 // TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
-               // avai.setVisibility(View.INVISIBLE);
+                // avai.setVisibility(View.INVISIBLE);
             }/////
             // change vlaues in class view info thats do not need a database
             roomN.setText("" + view.getResources().getResourceEntryName(view.getId()).substring(5));
@@ -660,45 +674,76 @@ public class search extends AppCompatActivity {
                 public void onClick(View view) {
                     // H & SH code
 
-                    String d= date.getText().toString().trim();
+                    final String d= date.getText().toString().trim();
                     String time =selectedTime.getSelectedItem().toString();
 
 
-                    bookClass(ClassID1,d,time);
+                    final android.app.AlertDialog.Builder alert1 = new AlertDialog.Builder(search.this);
+                    alert1.setTitle("Book Class");
+                    alert1.setMessage("Are you sure that you want to book this class ?");
 
-                    // subString for the time since the format is 00:00
-                    if (time.charAt(1)== ':')
-                        time = time.substring(0,1);
-                    else
-                        time = time.substring(0,2);
-                    // calendar so we can set the date in calendar to the day user want not today date
-                    final Calendar calendar= Calendar.getInstance();
-                    calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
-                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
-                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
-                    calendar.set(Calendar.HOUR,Integer.parseInt(time));
-                    calendar.set(Calendar.MINUTE,00);
+                    final String finalTime = time;
+                    alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            bookClass(ClassID1,d, finalTime);
+                            final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
+                            alert2.setTitle("Google calander");
+                            alert2.setMessage("Do you want to save your reservation in your google calander ?");
 
-                    // create an event then send it to google calendar
-                    Intent intent = new Intent(Intent.ACTION_INSERT);
-                    intent.setData(CalendarContract.Events.CONTENT_URI);
-                    intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
-                    intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked "+view1.getResources().getResourceEntryName(view1.getId()).substring(5)+" on "+date.getText().toString().trim()+" at "+ selectedTime.getSelectedItem().toString() +" using Saneh application");
-                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
-                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTimeInMillis());
+                            alert2.setPositiveButton("save", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String ftime2 ;
+                                    // subString for the time since the format is 00:00
+                                    if (finalTime.charAt(1)== ':')
+                                        ftime2 = finalTime.substring(0,1);
+                                    else
+                                        ftime2 = finalTime.substring(0,2);
+                                    // calendar so we can set the date in calendar to the day user want not today date
+                                    final Calendar calendar= Calendar.getInstance();
+                                    calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+                                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
+                                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
+                                    calendar.set(Calendar.HOUR,Integer.parseInt(ftime2));
+                                    calendar.set(Calendar.MINUTE,00);
+
+                                    // create an event then send it to google calendar
+                                    Intent intent = new Intent(Intent.ACTION_INSERT);
+                                    intent.setData(CalendarContract.Events.CONTENT_URI);
+                                    intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
+                                    intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked "+view1.getResources().getResourceEntryName(view1.getId()).substring(5)+" on "+date.getText().toString().trim()+" at "+ selectedTime.getSelectedItem().toString() +" using Saneh application");
+                                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTimeInMillis());
 
 
 
-                    //this if to check if the user have app can handel this action
-                    if (intent.resolveActivity(getPackageManager()) != null){
+                                    //this if to check if the user have app can handel this action
+                                    if (intent.resolveActivity(getPackageManager()) != null){
 
-                        startActivity(intent);
+                                        startActivity(intent);
 
-                    }else {
-                        alert.setVisibility(View.VISIBLE);
-                        String msg = "your reservation did not save in your application app for some issues,";
-                        alert.setText(msg);
-                    }
+                                    }else {
+                                        alert.setVisibility(View.VISIBLE);
+                                        String msg = "your reservation did not save in your application app for some issues,";
+                                        alert.setText(msg);
+                                    }
+
+                                }
+                            });
+                            alert2.setNegativeButton("Cancel",null);
+                            alert2.setCancelable(true);
+
+                            alert2.show();
+                            popupWindow.dismiss();
+
+                        }
+                    });
+                    alert1.setNegativeButton("Cancel",null);
+
+                    alert1.setCancelable(true);
+
+                    alert1.show();
 
 
                 } // H & SH END code
@@ -722,13 +767,13 @@ public class search extends AppCompatActivity {
                             String selectedT = selectedTime.getSelectedItem().toString();
 
 
-                          //  projector.setText((proj) ? "Yes" : "No");
-                           // activity.setText((activ) ? "Yes" : "No");
+                            //  projector.setText((proj) ? "Yes" : "No");
+                            // activity.setText((activ) ? "Yes" : "No");
                             capacityV.setText(": " + capacity);
                             final ImageView projectorimg = popupView.findViewById(R.id.textView9);
                             final ImageView activityimg = popupView.findViewById(R.id.textView10);///////////********************************************************************************************
                             projectorimg.setBackgroundResource((proj) ? R.drawable.yesprogector : R.drawable.noprojectorr);
-                             activityimg.setBackgroundResource((activ) ? R.drawable.yesactivity : R.drawable.noactivity);
+                            activityimg.setBackgroundResource((activ) ? R.drawable.yesactivity : R.drawable.noactivity);
 
 
 
@@ -831,33 +876,33 @@ public class search extends AppCompatActivity {
                             final int finalTimeIndex = timeIndex;
                             boolean b;
 
-                                if (finalDay.equals("s")) {
-                                    s = (List<Boolean>) document.get("s");
+                            if (finalDay.equals("s")) {
+                                s = (List<Boolean>) document.get("s");
 
-                                    printTime(popupView , s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
+                                printTime(popupView , s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
 
-                                } else if (finalDay.equals("m")) {
-                                    m = (List<Boolean>) document.get("m");
+                            } else if (finalDay.equals("m")) {
+                                m = (List<Boolean>) document.get("m");
 
-                                    printTime(popupView , m, finalTimeIndex, selectedT, timeNext, availableT);
+                                printTime(popupView , m, finalTimeIndex, selectedT, timeNext, availableT);
 
-                                } else if (finalDay.equals("t")) {
-                                    t = (List<Boolean>) document.get("t");
+                            } else if (finalDay.equals("t")) {
+                                t = (List<Boolean>) document.get("t");
 
-                                    printTime(popupView, t, finalTimeIndex, selectedT, timeNext, availableT);
+                                printTime(popupView, t, finalTimeIndex, selectedT, timeNext, availableT);
 
-                                } else if (finalDay.equals("w")) {
-                                    w = (List<Boolean>) document.get("w");
+                            } else if (finalDay.equals("w")) {
+                                w = (List<Boolean>) document.get("w");
 
-                                    printTime(popupView ,w, finalTimeIndex, selectedT, timeNext, availableT);
+                                printTime(popupView ,w, finalTimeIndex, selectedT, timeNext, availableT);
 
-                                } else if (finalDay.equals("th")) {
-                                    th = (List<Boolean>) document.get("th");
+                            } else if (finalDay.equals("th")) {
+                                th = (List<Boolean>) document.get("th");
 
-                                    printTime(popupView , th, finalTimeIndex, selectedT, timeNext, availableT);
+                                printTime(popupView , th, finalTimeIndex, selectedT, timeNext, availableT);
 
 
-                                }
+                            }
 
 
 
@@ -942,72 +987,72 @@ public class search extends AppCompatActivity {
 
 
     }
-public void printTime(View popupView ,List<Boolean> s , int finalTimeIndex , String selectedT , String timeNext ,TextView  availableT){
-    int i= 0 ;
+    public void printTime(View popupView ,List<Boolean> s , int finalTimeIndex , String selectedT , String timeNext ,TextView  availableT){
+        int i= 0 ;
 
-    TextView t8 =popupView.findViewById(R.id.viewInfoTime8);
-    TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
-    TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
-    TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
-    TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
-    TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
-    TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
+        TextView t8 =popupView.findViewById(R.id.viewInfoTime8);
+        TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
+        TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
+        TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
+        TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
+        TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
+        TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
 
-    String avTime = selectedT+"-";
-    for( i = 0 ; i < 7 ; i++){
-        Boolean b = s.get(i);
-
-
-        switch (i){
-            case 0 :
-                if(b)
-                    t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                break;
-
-            case 1 :
-                if(b)
-                    t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                break;
-
-            case 2 :
-                if(b)
-                    t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                   break;
-            case 3 :
-                if(b)
-                    t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                break;
-
-            case 4 :
-                if(b)
-                    t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                break;
-
-            case 5 :
-                if(b)
-                    t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                break;
-
-            case 6 :
-                if(b)
-                    t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-                break;
+        String avTime = selectedT+"-";
+        for( i = 0 ; i < 7 ; i++){
+            Boolean b = s.get(i);
 
 
-        }//end switch
+            switch (i){
+                case 0 :
+                    if(b)
+                        t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+                case 1 :
+                    if(b)
+                        t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+                case 2 :
+                    if(b)
+                        t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    break;
+                case 3 :
+                    if(b)
+                        t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+                case 4 :
+                    if(b)
+                        t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+                case 5 :
+                    if(b)
+                        t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    break;
+
+                case 6 :
+                    if(b)
+                        t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+
+            }//end switch
+
+        }
+
+
 
     }
 
-
-
-}
-
-public void bookClass(final String ClassID1 , String Date , String time){
+    public void bookClass(final String ClassID1 , String Date , String time){
         firebaseAuth = FirebaseAuth.getInstance();
         String currentUserId = firebaseAuth.getUid();
         fireStore = FirebaseFirestore.getInstance();
@@ -1025,15 +1070,14 @@ public void bookClass(final String ClassID1 , String Date , String time){
             if(timeparse == 12){
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+"PM";
             }else
-            time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
-        }else
-            if(timeparse == 12){
-                timeparse = 1;
                 time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
-            }
+        }else
+        if(timeparse == 12){
+            timeparse = 1;
+            time = time.substring(0,time.length()-2) + " - "+timeparse +":00 "+time.substring(time.length()-2);
+        }
 
-
-    Map<String, Object> newReservation = new HashMap<>();
+        Map<String, Object> newReservation = new HashMap<>();
         newReservation.put("classID", ClassID1);
         newReservation.put("confirmed", false);
         newReservation.put("date", Date);
@@ -1042,20 +1086,62 @@ public void bookClass(final String ClassID1 , String Date , String time){
         newReservation.put("roomType", "classroom");
 
         documentReference.set(newReservation)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                        refreshAfterBooking(date.getText().toString().trim());
 
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, e.toString());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
 
-                }
-            });
-}
+                    }
+                });
+    }
+
+    public void refreshAfterBooking(String finalDate){
+        final String fd = finalDate;
+        String stime = selectedTime.getSelectedItem().toString();
+        final String finalTime1 = stime.substring(0,stime.indexOf(' ')) ;
+        Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                .collection("reservations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("ResourceAsColor")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                            int myListOfDocumentsLen = myListOfDocuments.size();
+
+                            for(int i = 0; i < myListOfDocumentsLen; i++){
+                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                TextView room = (TextView) findViewById(id);
+                                if(fd.equals(myListOfDocuments.get(i).getString("date"))){
+                                    if(finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+
+
+
+                                    }
+                                }
+
+                            }
+
+
+
+
+                        }
+                    }
+                });
+
+
+
+    }
 }
