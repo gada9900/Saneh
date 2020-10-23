@@ -106,16 +106,16 @@ public class upcomingReservations extends AppCompatActivity {
                 final int position = viewHolder.getAdapterPosition();
 
                 android.app.AlertDialog.Builder alert = new AlertDialog.Builder(upcomingReservations.this);
-                alert.setTitle("Delete reservation");
-                alert.setMessage("Are you sure you want to delete this reservation?");
+                alert.setTitle("Cancel reservation");
+                alert.setMessage("Are you sure you want to cancel this reservation?");
 
-                alert.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Yes, cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         adapter.deleteItem(viewHolder.getAdapterPosition());
                     }
                 });
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  //not removing items if cancel is done
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {  //not removing items if cancel is done
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 adapter.notifyItemChanged(viewHolder.getAdapterPosition());
