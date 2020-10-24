@@ -32,7 +32,7 @@ import java.util.Locale;
 
 public class upcomingReservations extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference classesRef = db.collection("reservations");
+    private CollectionReference reservationsRef = db.collection("reservations");
     private FirebaseAuth fAuth;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String userId ;
@@ -84,7 +84,8 @@ public class upcomingReservations extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        Query query = classesRef.whereEqualTo("userID", userId);
+
+        Query query = reservationsRef.whereEqualTo("userID", userId);
         FirestoreRecyclerOptions<reservations> options = new FirestoreRecyclerOptions.Builder<reservations>()
                 .setQuery(query, reservations.class)
                 .build();
