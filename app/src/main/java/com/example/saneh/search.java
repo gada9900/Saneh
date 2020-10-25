@@ -703,7 +703,7 @@ public class search extends AppCompatActivity {
                                     // calendar so we can set the date in calendar to the day user want not today date
                                     final Calendar calendar= Calendar.getInstance();
                                     calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
-                                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5)));
+                                    calendar.set(Calendar.MONTH,Integer.parseInt(d.substring(3,5))-1);
                                     calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(d.substring(0,2)));
                                     calendar.set(Calendar.HOUR,Integer.parseInt(ftime2));
                                     calendar.set(Calendar.MINUTE,00);
