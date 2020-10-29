@@ -17,6 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAdapter.classHolder> {
 
     public classAdapter(@NonNull FirestoreRecyclerOptions<reservations> options) {
@@ -25,43 +30,100 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
 
     @Override
     protected void onBindViewHolder(@NonNull final classHolder holder, final int position, @NonNull reservations model) {
-        holder.textViewClassID.setText("Room ID: "+model.getClassID());
-        holder.textViewDate.setText("Date: "+model.getDate());
-        holder.textViewTime.setText("Time: "+model.getTime());
-        holder.textViewRoomType.setText("Room type: "+ model.getRoomType());
-        holder.textViewConfirmedMsg.setText("Confirmed");
-        holder.textViewConfirmedMsg.setVisibility(View.GONE);
+        //*******************************************************
+        String reservationTime = model.getTime();
+        String nextReservationTime1 = model.getTime().substring(model.getTime().indexOf("-")+2);
 
-        if(model.isConfirmed()){
-            holder.confirm.setVisibility(View.GONE);
-            //holder.textViewConfirmedMsg.setText("Confirmed");
-            holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
-            return;
+        if (reservationTime.charAt(1) == ':') {
+            reservationTime = "0" + reservationTime.substring(0, 1);
+        } else {
+            reservationTime = reservationTime.substring(0, 2);
         }
-        else {
-            holder.confirm.setVisibility(View.VISIBLE);
+        if (nextReservationTime1.charAt(1) == ':') {
+            nextReservationTime1 = "0" + nextReservationTime1.substring(0, 1);
+        } else {
+            nextReservationTime1 = nextReservationTime1.substring(0, 2);
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm aa");
+        String noww = simpleDateFormat.format(new Date().getTime());
+        long now = 0;
+        long res = 0;
+        long date2 = 0;
+        String aa ;
+        String aa2 ;
+        if(reservationTime.equals("12") || reservationTime.equals("01") ||reservationTime.equals("02") ) {
+            aa = " PM";
+        }else{ aa= " AM";}
+        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") ) {
+            aa2 = " PM";
+        }else{ aa2= " AM";}
+
+        String reDate = model.getDate() + " " + reservationTime +model.getTime().substring(model.getTime().indexOf(":"),model.getTime().indexOf(":")+3)+aa ;
+        String Date2 = model.getDate()+" "+nextReservationTime1+":00"+aa2;
+        try {
+            now = simpleDateFormat.parse(noww).getTime();
+            res = simpleDateFormat.parse(reDate).getTime();
+            date2 = simpleDateFormat.parse(Date2).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
-        holder.confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
-                alert.setTitle("Confirm reservation");
-                alert.setMessage("To confirm your reservation, you must be at the reserved room\n\nAre you in the reserved room right now?");
+            ////////////////////////////////////////******************************************
+            holder.textViewClassID.setText("Room ID: " + model.getClassID());
+            holder.textViewDate.setText("Date: " + model.getDate());
+            holder.textViewTime.setText("Time: " + model.getTime());
+            holder.textViewRoomType.setText("Room type: " + model.getRoomType());
+            holder.textViewConfirmedMsg.setText("Confirmed");
+            holder.textViewConfirmedMsg.setVisibility(View.GONE);
+/////*****************************************
+        if(now > res){
 
-                alert.setPositiveButton("Yes, confirm", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        confirmItem(position);
-                        //holder.confirm.setVisibility(View.GONE);
-                        //holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
-                    }
-                });
-                alert.setNegativeButton("No, cancel",null);
-                alert.show();
+           // long remaining = now - res;
+            long remining2 = date2 - now  ;
+           // long minutes = TimeUnit.MILLISECONDS.toMinutes(remaining);
+            long minutesTomillies = TimeUnit.MINUTES.toMillis(15);
+            long total = res + minutesTomillies ;
+
+            if(now > total )
+                if(!model.isConfirmed() ){
+                    deleteItem(position);
+                }
+            if(remining2 <= 0){
+                deleteItem(position);
 
             }
-        });
+        }
+//*************************************************
+
+        if (model.isConfirmed()) {
+                holder.confirm.setVisibility(View.GONE);
+                //holder.textViewConfirmedMsg.setText("Confirmed");
+                holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
+                return;
+            } else {
+                holder.confirm.setVisibility(View.VISIBLE);
+            }
+
+            holder.confirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                    alert.setTitle("Confirm reservation");
+                    alert.setMessage("To confirm your reservation, you must be at the reserved room\n\nAre you in the reserved room right now?");
+
+                    alert.setPositiveButton("Yes, confirm", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            confirmItem(position);
+                            //holder.confirm.setVisibility(View.GONE);
+                            //holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
+                        }
+                    });
+                    alert.setNegativeButton("No, cancel", null);
+                    alert.show();
+
+                }
+            });
     }
 
     @NonNull
