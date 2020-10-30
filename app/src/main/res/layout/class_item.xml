@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -32,22 +33,24 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
             android:background="@drawable/rectangle_2004_shape"
             android:text="Confirm"
             android:textColor="#FDFCFC"
-            android:visibility="invisible"
-            android:layout_alignParentRight="true" />
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/confirmed_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_below="@+id/confirm_button"
-            android:layout_marginTop="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="55dp"
             android:visibility="gone"
-            />
+            android:text="Confirmed" />
 
 
         <TextView
@@ -76,6 +79,16 @@
             android:layout_below="@id/res_date"
             android:text="Time: 00:00"
             android:layout_alignParentLeft="true" />
+
+        <ImageView
+            android:id="@+id/res_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_share"
+            tools:ignore="VectorDrawableCompat" />
 
 
     </RelativeLayout>
