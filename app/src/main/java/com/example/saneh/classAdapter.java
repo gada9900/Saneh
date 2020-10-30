@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final classHolder holder, final int position, @NonNull reservations model) {
+    protected void onBindViewHolder(@NonNull final classHolder holder, final int position, @NonNull final reservations model) {
         //*******************************************************
         String reservationTime = model.getTime();
         String nextReservationTime1 = model.getTime().substring(model.getTime().indexOf("-")+2);
@@ -73,7 +74,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
             holder.textViewDate.setText("Date: " + model.getDate());
             holder.textViewTime.setText("Time: " + model.getTime());
             holder.textViewRoomType.setText("Room type: " + model.getRoomType());
-            holder.textViewConfirmedMsg.setText("Confirmed");
+            //holder.textViewConfirmedMsg.setText("Confirmed");
             holder.textViewConfirmedMsg.setVisibility(View.GONE);
 /////*****************************************
         if(now > res){
@@ -95,10 +96,13 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         }
 //*************************************************
 
+        shareInfo(holder, model);
+
         if (model.isConfirmed()) {
                 holder.confirm.setVisibility(View.GONE);
                 //holder.textViewConfirmedMsg.setText("Confirmed");
                 holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
+                shareInfo(holder, model);
                 return;
             } else {
                 holder.confirm.setVisibility(View.VISIBLE);
@@ -106,7 +110,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
 
             holder.confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(final View view) {
                     android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
                     alert.setTitle("Confirm reservation");
                     alert.setMessage("To confirm your reservation, you must be at the reserved room\n\nAre you in the reserved room right now?");
@@ -115,6 +119,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             confirmItem(position);
+                            shareInfo(holder, model);
                             //holder.confirm.setVisibility(View.GONE);
                             //holder.textViewConfirmedMsg.setVisibility(View.VISIBLE);
                         }
@@ -124,6 +129,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
 
                 }
             });
+
     }
 
     @NonNull
@@ -132,6 +138,21 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_item,
                 parent, false);
         return new classHolder(v);
+    }
+
+    public void shareInfo(classHolder holder, final reservations model) {
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                String shareSub = "My reservation in CCIS";
+                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType();
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                view.getContext().startActivity(Intent.createChooser(shareIntent, "Share my reservation using:"));
+            }
+        });
     }
 
     public void deleteItem(int position){
@@ -149,6 +170,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         TextView textViewTime;
         TextView textViewRoomType;
         TextView textViewConfirmedMsg;
+        ImageView share;
         Button confirm, cancel;
 
         public classHolder(View itemView) {
@@ -159,6 +181,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
             textViewRoomType = itemView.findViewById(R.id.res_room_type);
             textViewConfirmedMsg = itemView.findViewById(R.id.confirmed_msg);
             confirm = itemView.findViewById(R.id.confirm_button);
+            share = itemView.findViewById(R.id.res_share);
             /*cancel = itemView.findViewById(R.id.cancel_button);
             <Button
                         android:id="@+id/cancel_button"
