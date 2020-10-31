@@ -19,14 +19,17 @@
 
         <activity android:name=".adminEdit"/>
         <activity android:name=".upcomingReservations"/>
-            <activity android:name=".search"/>
-                <activity android:name=".Login">
+        <activity android:name=".search"/>
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".Remainder">
+        </receiver>
 
     </application>
 
