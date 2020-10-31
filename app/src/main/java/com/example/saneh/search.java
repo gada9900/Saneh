@@ -5,10 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -74,6 +78,8 @@ public class search extends AppCompatActivity {
     TextView alert;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore fireStore;
+    private static final String CHANNEL_ID = "Saneh_Channel";
+    private static final int NOTIFICATION_ID=001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -706,6 +712,7 @@ public class search extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                            if(bookClass(ClassID1, d, finalTime)){
+                               notification();
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
                                 alert2.setTitle("Google calander");
                                 alert2.setMessage("Do you want to save your reservation in your google calander ?");
@@ -1100,6 +1107,8 @@ public class search extends AppCompatActivity {
                 noww = timecut + ":" + minutes;
 
                 b = true;
+
+
             }
 
         } catch (ParseException e) {
@@ -1276,6 +1285,34 @@ public class search extends AppCompatActivity {
         }
 return b ;
 
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Saneh Notification";
+            String description = "this notification is provided by Snaeh APP when you book a class in CCIS";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+    public void notification(){
+        //Set the notification content
+        createNotificationChannel();
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.bill)
+                .setContentTitle("Saneh")
+                .setContentText("notification content")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
     }
 
 
