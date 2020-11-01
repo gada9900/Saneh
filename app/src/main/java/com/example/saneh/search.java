@@ -714,8 +714,9 @@ public class search extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                            if(bookClass(ClassID1, d, finalTime)){
-                               notification();
-                               //majd notification
+
+                               notification(ClassID1,d);
+                             //majd notification
                                createNotificationChannel();
                                Intent intent1 = new Intent (search.this,Remainder.class);
                                PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
@@ -752,6 +753,7 @@ public class search extends AppCompatActivity {
 
                                alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
                              //majd end
+                             
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
                                 alert2.setTitle("Google calander");
                                 alert2.setMessage("Do you want to save your reservation in your google calander ?");
@@ -1341,13 +1343,16 @@ return b ;
             notificationManager.createNotificationChannel(channel);
         }
     }
-    public void notification(){
+    public void notification(String ClassID1, String d){
         //Set the notification content
         createNotificationChannel();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.bill)
-                .setContentTitle("Saneh ")
-                .setContentText("notification content")
+
+
+                .setContentTitle("Saneh")
+                .setContentText("you booked class "+ClassID1 + " on "+d)
+
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
