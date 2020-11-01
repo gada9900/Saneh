@@ -9,10 +9,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -713,6 +715,43 @@ public class search extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                            if(bookClass(ClassID1, d, finalTime)){
                                notification();
+                               //majd notification
+                               createNotificationChannel();
+                               Intent intent1 = new Intent (search.this,Remainder.class);
+                               PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
+
+                               AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                               //get reservation time
+                               String ftime2;
+                               // subString for the time since the format is 00:00
+                               if (finalTime.charAt(1) == ':')
+                                   ftime2 = finalTime.substring(0, 1);
+                               else
+                                   ftime2 = finalTime.substring(0, 2);
+                               int timetodecrease = Integer.parseInt(ftime2);
+                               if(timetodecrease==1){
+                                   timetodecrease = 12;
+                               }
+                               else {
+                                   timetodecrease= --timetodecrease;
+                               }
+                               Date currentdat  = new Date();//initializes to now
+                               // calendar so we can set the date in calendar to the day user want not today date
+                               final Calendar cal_alarm = Calendar.getInstance();
+                               Calendar cal_now = Calendar.getInstance();
+                               cal_now.setTime(currentdat);
+                               cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+                               cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
+                               cal_alarm.set(Calendar.DAY_OF_MONTH, Integer.parseInt(d.substring(0, 2)));
+                               cal_alarm.set(Calendar.HOUR, timetodecrease);
+                               cal_alarm.set(Calendar.MINUTE, 45);
+                               cal_alarm.set(Calendar.SECOND,0);
+                              /* if(cal_now.before(cal_alarm)){//if its in the past increment
+                                   cal_alarm.add(Calendar.DATE,1);
+                               }*/
+
+                               alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
+                             //majd end
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
                                 alert2.setTitle("Google calander");
                                 alert2.setMessage("Do you want to save your reservation in your google calander ?");
@@ -1307,7 +1346,7 @@ return b ;
         createNotificationChannel();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.bill)
-                .setContentTitle("Saneh")
+                .setContentTitle("Saneh ")
                 .setContentText("notification content")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
