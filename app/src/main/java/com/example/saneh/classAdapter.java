@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
+
+import java.net.InetAddress;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +37,11 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
     @Override
     protected void onBindViewHolder(@NonNull final classHolder holder, final int position, @NonNull final reservations model) {
         //*******************************************************
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         String reservationTime = model.getTime();
         String nextReservationTime1 = model.getTime().substring(model.getTime().indexOf("-")+2);
 
@@ -46,7 +56,10 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
             nextReservationTime1 = nextReservationTime1.substring(0, 2);
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm aa");
-        String noww = simpleDateFormat.format(new Date().getTime());
+        Util g12 = new Util();
+            final long ff = g12.getCurrentNetworkTime();
+            String noww= simpleDateFormat.format(ff);
+        //String noww = simpleDateFormat.format(new Date().getTime());
         long now = 0;
         long res = 0;
         long date2 = 0;
@@ -55,7 +68,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         if(reservationTime.equals("12") || reservationTime.equals("01") ||reservationTime.equals("02") ) {
             aa = " PM";
         }else{ aa= " AM";}
-        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") ) {
+        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") || nextReservationTime1.equals("03") ) {
             aa2 = " PM";
         }else{ aa2= " AM";}
 
@@ -197,4 +210,28 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
 
         }
     }
+}
+class Util {
+    //NTP server list: http://tf.nist.gov/tf-cgi/servers.cgi
+    public static final String TIME_SERVER = "pool.ntp.org";
+
+    public static long getCurrentNetworkTime() {
+        NTPUDPClient lNTPUDPClient = new NTPUDPClient();
+        lNTPUDPClient.setDefaultTimeout(3000);
+        long returnTime = 0;
+        try {
+            lNTPUDPClient.open();
+            InetAddress lInetAddress = InetAddress.getByName(TIME_SERVER);
+            TimeInfo lTimeInfo = lNTPUDPClient.getTime(lInetAddress);
+            // returnTime =  lTimeInfo.getReturnTime(); // local time
+            returnTime = lTimeInfo.getMessage().getTransmitTimeStamp().getTime();   //server time
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lNTPUDPClient.close();
+        }
+
+        return returnTime;
+    }
+
 }

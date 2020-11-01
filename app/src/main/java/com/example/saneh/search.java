@@ -23,6 +23,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.Gravity;
@@ -369,7 +370,6 @@ public class search extends AppCompatActivity {
             public void onClick(View view) {
                 alert.setVisibility(View.INVISIBLE);
                 //here we need to write a code that will take date and time and change the color of classrooms
-
                 //date input
                 String sdate;
                 if (date.length() == 0) { // if the user did not enter a date it will be by default today's date for the user's device
@@ -590,8 +590,11 @@ public class search extends AppCompatActivity {
 
 
                 }//if the day not f or ss
+                refreshReservations();///here to refresh reservation
+
             }
         });
+        refreshReservations();
         init();
     }
 
@@ -1357,6 +1360,103 @@ return b ;
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
+    }
+    public void refreshReservations() {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                .collection("reservations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("ResourceAsColor")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                            int myListOfDocumentsLen = myListOfDocuments.size();
+                            String resDate;
+                            String time;
+                            boolean isConfirmed;
+                            for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                resDate = myListOfDocuments.get(i).getString("date");
+                                time = myListOfDocuments.get(i).getString("time");
+                                isConfirmed = myListOfDocuments.get(i).getBoolean("confirmed");
+
+                                String reservationTime = time ;
+                                String nextReservationTime1 = time.substring(time.indexOf("-")+2);
+
+                                if (reservationTime.charAt(1) == ':') {
+                                    reservationTime = "0" + reservationTime.substring(0, 1);
+                                } else {
+                                    reservationTime = reservationTime.substring(0, 2);
+                                }
+                                if (nextReservationTime1.charAt(1) == ':') {
+                                    nextReservationTime1 = "0" + nextReservationTime1.substring(0, 1);
+                                } else {
+                                    nextReservationTime1 = nextReservationTime1.substring(0, 2);
+                                }
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm aa");
+                                Util g12 = new Util();
+                                final long ff = g12.getCurrentNetworkTime();
+                                String noww= simpleDateFormat.format(ff);
+                                //String noww = simpleDateFormat.format(new Date().getTime());
+                                long now = 0;
+                                long res = 0;
+                                long date2 = 0;
+                                String aa2 ;
+                                String aa ;
+                                if(reservationTime.equals("12") || reservationTime.equals("01") ||reservationTime.equals("02") ) {
+                                    aa = " PM";
+                                }else{ aa= " AM";}
+                                if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") || nextReservationTime1.equals("03")  ) {
+                                    aa2 = " PM";
+                                }else{ aa2= " AM";}
+
+                                String reDate = resDate+ " " + reservationTime +time.substring(time.indexOf(":"),time.indexOf(":")+3)+aa ;
+                                String Date2 = resDate+" "+nextReservationTime1+":00"+aa2;
+                                try {
+                                    now = simpleDateFormat.parse(noww).getTime();
+                                    res = simpleDateFormat.parse(reDate).getTime();
+                                    date2 = simpleDateFormat.parse(Date2).getTime();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if(now > res){
+                                    _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                    int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                    TextView room = (TextView) findViewById(id);
+
+                                    long remining2 = date2 - now  ;
+                                    long minutesTomillies = TimeUnit.MINUTES.toMillis(15);
+                                    long total = res + minutesTomillies ;
+
+                                    if(now > total )
+                                        if(!isConfirmed){
+                                             myListOfDocuments.get(i).getReference().delete();
+                                            room.setBackgroundColor(getResources().getColor(R.color.grean));
+
+                                        }
+                                    if(remining2 <= 0){
+                                         myListOfDocuments.get(i).getReference().delete();
+                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+
+
+                                    }
+                                }
+
+
+
+                            } // for loop close
+
+                        }// if (task successful ) close
+
+                    }
+
+                });
+
     }
 
 
