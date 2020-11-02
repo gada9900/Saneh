@@ -390,7 +390,7 @@ public class search extends AppCompatActivity {
 
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
-                cal.set(Calendar.MONTH, month); //Set month, starts with JANUARY = 0
+                cal.set(Calendar.MONTH, month-1); //Set month, starts with JANUARY = 0
                 cal.set(Calendar.YEAR, year); //Set year
                 int day0 = cal.get(Calendar.DAY_OF_WEEK);
                 String d = "s";
@@ -398,32 +398,31 @@ public class search extends AppCompatActivity {
 
                 switch (day0) {
                     case 1:
-                        d = "th";
-                        break;
-                    case 2:
-                        d = "f";
-                        break;
-                    case 3:
-                        d = "ss";
-                        break;
-                    case 4:
                         d = "s";
                         break;
-                    case 5:
+                    case 2:
                         d = "m";
                         break;
-                    case 6:
+                    case 3:
                         d = "t";
                         break;
-                    case 7:
+                    case 4:
                         d = "w";
+                        break;
+                    case 5:
+                        d = "th";
+                        break;
+                    case 6:
+                        d = "f";
+                        break;
+                    case 7:
+                        d = "ss";
                         break;
 
 
                 }
 
                 final String finalDay = d;
-
                 if (finalDay.equals("f") || finalDay.equals("ss")) {
 
                     AlertDialog.Builder alert = new AlertDialog.Builder(search.this);
@@ -863,32 +862,32 @@ public class search extends AppCompatActivity {
 
                             Calendar cal = Calendar.getInstance();
                             cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
-                            cal.set(Calendar.MONTH, month); //Set month, starts with JANUARY = 0
+                            cal.set(Calendar.MONTH, month-1); //Set month, starts with JANUARY = 0
                             cal.set(Calendar.YEAR, year); //Set year
                             int day0 = cal.get(Calendar.DAY_OF_WEEK);
                             String d = "s";
 
                             switch (day0) {
                                 case 1:
-                                    d = "th";
-                                    break;
-                                case 2:
-                                    d = "f";
-                                    break;
-                                case 3:
-                                    d = "ss";
-                                    break;
-                                case 4:
                                     d = "s";
                                     break;
-                                case 5:
+                                case 2:
                                     d = "m";
                                     break;
-                                case 6:
+                                case 3:
                                     d = "t";
                                     break;
-                                case 7:
+                                case 4:
                                     d = "w";
+                                    break;
+                                case 5:
+                                    d = "th";
+                                    break;
+                                case 6:
+                                    d = "f";
+                                    break;
+                                case 7:
+                                    d = "ss";
                                     break;
 
                             }
