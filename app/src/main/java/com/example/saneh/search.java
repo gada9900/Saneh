@@ -1268,7 +1268,7 @@ public class search extends AppCompatActivity {
         if(reservationTime.equals("12") || reservationTime.equals("01") ||reservationTime.equals("02") ) {
             aa = " PM";
         }else{ aa= " AM";}
-        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") ) {
+        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") || nextReservationTime1.equals("03")) {
             aa2 = " PM";
         }else{ aa2= " AM";}
 
