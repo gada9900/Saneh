@@ -724,6 +724,7 @@ public class search extends AppCompatActivity {
                                notificationBeforeDay(finalTime,d);
 
                              //end notifications
+
                              
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
                                 alert2.setTitle("Google calander");
