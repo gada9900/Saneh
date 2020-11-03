@@ -1248,11 +1248,11 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="12dp"
                 android:background="#3EBB49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -1266,16 +1266,17 @@
                 android:layout_marginTop="16dp"
                 android:text="Available"
                 android:textColor="#060606"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="29dp"
-                android:layout_marginLeft="29dp"
-                android:layout_marginTop="6dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
                 android:background="#E53935"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -1290,16 +1291,17 @@
                 android:layout_marginTop="16dp"
                 android:text="Booked up"
                 android:textColor="#090808"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <TextView
                 android:id="@+id/textView31"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="29dp"
-                android:layout_marginLeft="29dp"
-                android:layout_marginTop="6dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                 android:text=""
                 app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -1314,6 +1316,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Unavailable"
                 android:textColor="#060606"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -1349,6 +1352,31 @@
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchbtn" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/rectangle_116_color"
+                android:text=""
+                app:layout_constraintStart_toEndOf="@+id/textView32"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="72dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="12dp"
+                android:text="Excluded classes"
+                android:textColor="#060606"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
