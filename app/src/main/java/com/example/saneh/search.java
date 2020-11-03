@@ -717,7 +717,7 @@ public class search extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                            if(bookClass(ClassID1, d, finalTime)){
 
-                               notification(ClassID1,d);
+
                              //majd notification
                                createNotificationChannel();
                                Intent intent1 = new Intent (search.this,Remainder.class);
