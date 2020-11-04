@@ -160,7 +160,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 String shareSub = "My reservation in CCIS";
-                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType();
+                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType()+"\n\nBooked via Saneh app";
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 view.getContext().startActivity(Intent.createChooser(shareIntent, "Share my reservation using:"));
