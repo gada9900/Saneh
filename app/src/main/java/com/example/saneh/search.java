@@ -1128,7 +1128,7 @@ public class search extends AppCompatActivity {
                                         calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
                                         calendar.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
                                         calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(d.substring(0, 2)));
-                                        calendar.set(Calendar.HOUR, Integer.parseInt(ftime2));
+                                        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ftime2)==1 || Integer.parseInt(ftime2) == 2? Integer.parseInt(ftime2)+12 :Integer.parseInt(ftime2));
                                         calendar.set(Calendar.MINUTE, 00);
 
                                         // create an event then send it to google calendar
