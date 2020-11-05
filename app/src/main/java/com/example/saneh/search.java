@@ -1705,21 +1705,7 @@ return b ;
             notificationManager.createNotificationChannel(channel);
         }
     }
-    public void notification(String ClassID1, String d){
-        //Set the notification content
-        createNotificationChannel();
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.bill)
 
-
-                .setContentTitle("Saneh")
-                .setContentText("you booked class "+ClassID1 + " on "+d)
-
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
-    }
     public void refreshReservations() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -1832,7 +1818,7 @@ return b ;
         else
             ftime2 = finalTime.substring(0, 2);
         int timetodecrease = Integer.parseInt(ftime2);
-        if(timetodecrease == 1 ||timetodecrease == 2 || timetodecrease == 3 ) {
+        if(timetodecrease == 1 ||timetodecrease == 2 ) {
             timetodecrease = 12 + timetodecrease;
         }
         timetodecrease= --timetodecrease;
@@ -1862,7 +1848,7 @@ return b ;
         else
             ftime2 = finalTime.substring(0, 2);
         int timeInt = Integer.parseInt(ftime2);
-        if(timeInt == 1 ||timeInt == 2 || timeInt == 3 ) {
+        if(timeInt == 1 ||timeInt == 2 ) {
             timeInt = 12 + timeInt;
         }
 

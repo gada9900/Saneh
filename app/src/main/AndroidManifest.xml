@@ -31,6 +31,9 @@
         <receiver
             android:name=".Remainder">
         </receiver>
+        <receiver
+            android:name=".Remainder2">
+        </receiver>
 
     </application>
 
