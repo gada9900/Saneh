@@ -72,7 +72,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
             aa2 = " PM";
         }else{ aa2= " AM";}
 
-        String reDate = model.getDate() + " " + reservationTime +model.getTime().substring(model.getTime().indexOf(":"),model.getTime().indexOf(":")+3)+aa ;
+        final String reDate = model.getDate() + " " + reservationTime +model.getTime().substring(model.getTime().indexOf(":"),model.getTime().indexOf(":")+3)+aa ;
         String Date2 = model.getDate()+" "+nextReservationTime1+":00"+aa2;
         try {
             now = simpleDateFormat.parse(noww).getTime();
@@ -121,9 +121,13 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                 holder.confirm.setVisibility(View.VISIBLE);
             }
 
-            holder.confirm.setOnClickListener(new View.OnClickListener() {
+        final long finalNow = now;
+        final long finalRes = res;
+        holder.confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
+                    if (finalNow >= finalRes) {
+
                     android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
                     alert.setTitle("Confirm reservation");
                     alert.setMessage("To confirm your reservation, you must be at the reserved room\n\nAre you in the reserved room right now?");
@@ -139,7 +143,14 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                     });
                     alert.setNegativeButton("No, cancel", null);
                     alert.show();
+                } else {
+                        android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                        alert.setTitle("Can not confirm reservation");
+                        alert.setMessage("The reservation time hasn't started yet\n\nTry again at: "+reDate );
 
+                        alert.setNegativeButton("Ok", null);
+                        alert.show();
+                    }
                 }
             });
 
@@ -160,7 +171,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 String shareSub = "My reservation in CCIS";
-                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType();
+                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType()+"\n\nBooked via Saneh app";
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 view.getContext().startActivity(Intent.createChooser(shareIntent, "Share my reservation using:"));
