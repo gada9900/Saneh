@@ -28,12 +28,23 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/confirmNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="89dp"
+        android:text="Note: The reservation will be cancelled if you didn't confirm it within 15min from the beginning of the reservation's time."
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintVertical_bias="0.0" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="63dp"
         />
 
     <ImageView
