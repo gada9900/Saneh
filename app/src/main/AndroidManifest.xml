@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.saneh">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -19,8 +20,8 @@
 
         <activity android:name=".adminEdit"/>
         <activity android:name=".upcomingReservations"/>
-        <activity android:name=".search"/>
-        <activity android:name=".Login">
+        <activity android:name=".Login"/>
+        <activity android:name=".search">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

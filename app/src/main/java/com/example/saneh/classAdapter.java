@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
+
+import java.net.InetAddress;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +37,11 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
     @Override
     protected void onBindViewHolder(@NonNull final classHolder holder, final int position, @NonNull final reservations model) {
         //*******************************************************
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         String reservationTime = model.getTime();
         String nextReservationTime1 = model.getTime().substring(model.getTime().indexOf("-")+2);
 
@@ -46,7 +56,10 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
             nextReservationTime1 = nextReservationTime1.substring(0, 2);
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm aa");
-        String noww = simpleDateFormat.format(new Date().getTime());
+        Util g12 = new Util();
+            final long ff = g12.getCurrentNetworkTime();
+            String noww= simpleDateFormat.format(ff);
+        //String noww = simpleDateFormat.format(new Date().getTime());
         long now = 0;
         long res = 0;
         long date2 = 0;
@@ -55,11 +68,11 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
         if(reservationTime.equals("12") || reservationTime.equals("01") ||reservationTime.equals("02") ) {
             aa = " PM";
         }else{ aa= " AM";}
-        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") ) {
+        if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") || nextReservationTime1.equals("03") ) {
             aa2 = " PM";
         }else{ aa2= " AM";}
 
-        String reDate = model.getDate() + " " + reservationTime +model.getTime().substring(model.getTime().indexOf(":"),model.getTime().indexOf(":")+3)+aa ;
+        final String reDate = model.getDate() + " " + reservationTime +model.getTime().substring(model.getTime().indexOf(":"),model.getTime().indexOf(":")+3)+aa ;
         String Date2 = model.getDate()+" "+nextReservationTime1+":00"+aa2;
         try {
             now = simpleDateFormat.parse(noww).getTime();
@@ -108,9 +121,13 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                 holder.confirm.setVisibility(View.VISIBLE);
             }
 
-            holder.confirm.setOnClickListener(new View.OnClickListener() {
+        final long finalNow = now;
+        final long finalRes = res;
+        holder.confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
+                    if (finalNow >= finalRes) {
+
                     android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
                     alert.setTitle("Confirm reservation");
                     alert.setMessage("To confirm your reservation, you must be at the reserved room\n\nAre you in the reserved room right now?");
@@ -126,7 +143,14 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                     });
                     alert.setNegativeButton("No, cancel", null);
                     alert.show();
+                } else {
+                        android.app.AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                        alert.setTitle("Can not confirm reservation");
+                        alert.setMessage("The reservation time hasn't started yet\n\nTry again at: "+reDate );
 
+                        alert.setNegativeButton("Ok", null);
+                        alert.show();
+                    }
                 }
             });
 
@@ -147,7 +171,7 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 String shareSub = "My reservation in CCIS";
-                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType();
+                String shareBody = "Join me in my CCIS reservation \n Room id: "+ model.getClassID()+"\n Date: " + model.getDate() +"\n Time: " + model.getTime() +"\n Room type: " + model.getRoomType()+"\n\nBooked via Saneh app";
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 view.getContext().startActivity(Intent.createChooser(shareIntent, "Share my reservation using:"));
@@ -197,4 +221,28 @@ public class classAdapter extends FirestoreRecyclerAdapter<reservations, classAd
 
         }
     }
+}
+class Util {
+    //NTP server list: http://tf.nist.gov/tf-cgi/servers.cgi
+    public static final String TIME_SERVER = "pool.ntp.org";
+
+    public static long getCurrentNetworkTime() {
+        NTPUDPClient lNTPUDPClient = new NTPUDPClient();
+        lNTPUDPClient.setDefaultTimeout(3000);
+        long returnTime = 0;
+        try {
+            lNTPUDPClient.open();
+            InetAddress lInetAddress = InetAddress.getByName(TIME_SERVER);
+            TimeInfo lTimeInfo = lNTPUDPClient.getTime(lInetAddress);
+            // returnTime =  lTimeInfo.getReturnTime(); // local time
+            returnTime = lTimeInfo.getMessage().getTransmitTimeStamp().getTime();   //server time
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lNTPUDPClient.close();
+        }
+
+        return returnTime;
+    }
+
 }
