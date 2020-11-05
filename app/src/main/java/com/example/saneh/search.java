@@ -1824,6 +1824,9 @@ public class search extends AppCompatActivity {
         timetodecrease= --timetodecrease;
 
         // calendar so we can set the date in notification to the day user booked class
+        Date date2 = new Date();
+        Calendar cal_now = Calendar.getInstance();
+        cal_now.setTime(date2);
         final Calendar cal_alarm = Calendar.getInstance();
         cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
         cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
@@ -1831,6 +1834,9 @@ public class search extends AppCompatActivity {
         cal_alarm.set(Calendar.HOUR_OF_DAY, timetodecrease);
         cal_alarm.set(Calendar.MINUTE, 45);
         cal_alarm.set(Calendar.SECOND,0);
+
+        if(cal_alarm.before(cal_now))
+            return;
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
@@ -1853,6 +1859,9 @@ public class search extends AppCompatActivity {
         }
 
         // calendar so we can set the date in notification to the day before user booked class
+        Date date2 = new Date();
+        Calendar cal_now = Calendar.getInstance();
+        cal_now.setTime(date2);
         final Calendar cal_alarm = Calendar.getInstance();
         cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
         cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
@@ -1860,6 +1869,9 @@ public class search extends AppCompatActivity {
         cal_alarm.set(Calendar.HOUR_OF_DAY,  timeInt );
         cal_alarm.set(Calendar.MINUTE, 0);
         cal_alarm.set(Calendar.SECOND,0);
+
+        if(cal_alarm.before(cal_now))
+            return;
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
