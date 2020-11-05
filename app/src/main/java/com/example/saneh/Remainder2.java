@@ -21,6 +21,6 @@ public class Remainder2 extends BroadcastReceiver {
                 .addLine("go to the app and cancel it"));
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(200, builder.build());
+        notificationManager.notify(201, builder.build());
     }
 }
