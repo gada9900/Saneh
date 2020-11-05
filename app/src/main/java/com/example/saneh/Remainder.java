@@ -13,8 +13,13 @@ public class Remainder extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Saneh_Channel")
                 .setSmallIcon(R.drawable.bill)
                 .setContentTitle("Saneh App reminder")
-                .setContentText("hey there \n prepare to your booking class it will be in 15 minutes")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setContentText("hey there prepare for your booking class, your reservation time")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setStyle(new NotificationCompat.InboxStyle()
+               // .addLine("hey there")
+                .addLine("prepare for your booking class, your reservation time will")
+                .addLine("start soon"));
+
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(200,builder.build());
