@@ -1493,7 +1493,13 @@ public class search extends AppCompatActivity {
         }
         String selectedTD = Date + " " + timecut + aa;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh aa");
-        String noww = simpleDateFormat.format(new Date().getTime());
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        Util g12 = new Util();
+        final long ff = g12.getCurrentNetworkTime();
+        String noww = simpleDateFormat.format(ff);
         boolean b = false;
         String minutes;
         try {
