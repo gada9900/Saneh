@@ -528,7 +528,7 @@ public class search extends AppCompatActivity {
                                             }
                                             else if (rCheckted==ca40){
                                                 Rcapa=40;
-                                        }
+                                            }
                                             //filter
                                             /*if(proj.isChecked()&&inter.isChecked()){
                                                 if(_Projector==false&&_InterActive==false){
@@ -539,397 +539,397 @@ public class search extends AppCompatActivity {
                                             if (finalDay.equals("s")) {
                                                 s = (List<Boolean>) myListOfDocuments.get(i).get("s");
                                                 b = s.get(finalTimeIndex);
-                                                    if (b) {
+                                                if (b) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
                                                 } else {
                                                     room.setBackgroundColor(getResources().getColor(R.color.grean));
                                                 }
-                                                   if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
+                                                    if(_Projector==false||_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
+                                                    if(_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
+                                                    if(_Projector==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0) {
+                                                    if (_InterActive == false) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
                                                 }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0) {
-                                                     if (_InterActive == false) {
-                                                         room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                     }
-                                                 }
 
                                             } else if (finalDay.equals("m")) {
                                                 m = (List<Boolean>) myListOfDocuments.get(i).get("m");
                                                 b = m.get(finalTimeIndex);
-                                               if (b) {
+                                                if (b) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
                                                 } else {
                                                     room.setBackgroundColor(getResources().getColor(R.color.grean));
                                                 }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
+                                                    if(_Projector==false||_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
+                                                    if(_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
+                                                    if(_Projector==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
+                                                    if(_InterActive==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
                                                 }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }
 
                                             } else if (finalDay.equals("t")) {
                                                 t = (List<Boolean>) myListOfDocuments.get(i).get("t");
                                                 b = t.get(finalTimeIndex);
-                                             if (b) {
+                                                if (b) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
                                                 } else {
                                                     room.setBackgroundColor(getResources().getColor(R.color.grean));
                                                 }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
+                                                    if(_Projector==false||_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
+                                                    if(_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
+                                                    if(_Projector==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
+                                                    if(_InterActive==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
                                                 }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }
                                             } else if (finalDay.equals("w")) {
                                                 w = (List<Boolean>) myListOfDocuments.get(i).get("w");
                                                 b = w.get(finalTimeIndex);
-                                               if (b) {
+                                                if (b) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
                                                 } else {
                                                     room.setBackgroundColor(getResources().getColor(R.color.grean));
                                                 }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
+                                                    if(_Projector==false||_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
+                                                    if(_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
+                                                    if(_Projector==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
+                                                    if(_InterActive==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
                                                 }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }
                                             } else if (finalDay.equals("th")) {
                                                 th = (List<Boolean>) myListOfDocuments.get(i).get("th");
                                                 b = th.get(finalTimeIndex);
-                                              if (b) {
+                                                if (b) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
                                                 } else {
                                                     room.setBackgroundColor(getResources().getColor(R.color.grean));
                                                 }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
+                                                    if(_Projector==false||_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>20){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_InterActive==false||_Capacity>30){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
+                                                    if(_Projector==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
+                                                    if(_InterActive==false||_Capacity>40){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
+                                                    if(_Projector==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
+                                                }else
+                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
+                                                    if(_InterActive==false){
+                                                        room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                    }
                                                 }
                                             }
-                                            }
-                                         // Rcapa=0;
+                                            // Rcapa=0;
                                         }
 
                                     }
@@ -1099,17 +1099,17 @@ public class search extends AppCompatActivity {
                     alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                           if(bookClass(ClassID1, d, finalTime)){
+                            if(bookClass(ClassID1, d, finalTime)){
 
 
-                             //notifications
+                                //notifications
 
-                               notificationBefore15min(finalTime,d);
-                               notificationBeforeDay(finalTime,d);
+                                notificationBefore15min(finalTime,d);
+                                notificationBeforeDay(finalTime,d);
 
-                             //end notifications
+                                //end notifications
 
-                             
+
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
                                 alert2.setTitle("Google calander");
                                 alert2.setMessage("Do you want to save your reservation in your google calander ?");
@@ -1559,26 +1559,26 @@ public class search extends AppCompatActivity {
         if(!checkDateAndTimebeforeBoikng(time,Date)){
 
 
-        documentReference.set(newReservation)
+            documentReference.set(newReservation)
 
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
-                        refreshAfterBooking(date.getText().toString().trim());
-
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                            refreshAfterBooking(date.getText().toString().trim());
 
 
-                    }
-                }); }else bb = false ;
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, e.toString());
+
+
+                        }
+                    }); }else bb = false ;
         return bb ;
     }
 
@@ -1682,11 +1682,11 @@ public class search extends AppCompatActivity {
 
             if(remining2 <= 0){
                 Toast.makeText(getApplication(),"Time is invalid",Toast.LENGTH_LONG).show();
-                 b = true ;
+                b = true ;
 
             }
         }
-return b ;
+        return b ;
 
     }
 
@@ -1780,12 +1780,12 @@ return b ;
 
                                     if(now > total )
                                         if(!isConfirmed){
-                                             myListOfDocuments.get(i).getReference().delete();
+                                            myListOfDocuments.get(i).getReference().delete();
                                             room.setBackgroundColor(getResources().getColor(R.color.grean));
 
                                         }
                                     if(remining2 <= 0){
-                                         myListOfDocuments.get(i).getReference().delete();
+                                        myListOfDocuments.get(i).getReference().delete();
                                         room.setBackgroundColor(getResources().getColor(R.color.grean));
 
 
@@ -1824,6 +1824,9 @@ return b ;
         timetodecrease= --timetodecrease;
 
         // calendar so we can set the date in notification to the day user booked class
+        Date date2 = new Date();
+        Calendar cal_now = Calendar.getInstance();
+        cal_now.setTime(date2);
         final Calendar cal_alarm = Calendar.getInstance();
         cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
         cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
@@ -1831,6 +1834,9 @@ return b ;
         cal_alarm.set(Calendar.HOUR_OF_DAY, timetodecrease);
         cal_alarm.set(Calendar.MINUTE, 45);
         cal_alarm.set(Calendar.SECOND,0);
+
+        if(cal_alarm.before(cal_now))
+            return;
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
@@ -1853,6 +1859,9 @@ return b ;
         }
 
         // calendar so we can set the date in notification to the day before user booked class
+        Date date2 = new Date();
+        Calendar cal_now = Calendar.getInstance();
+        cal_now.setTime(date2);
         final Calendar cal_alarm = Calendar.getInstance();
         cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
         cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
@@ -1860,6 +1869,9 @@ return b ;
         cal_alarm.set(Calendar.HOUR_OF_DAY,  timeInt );
         cal_alarm.set(Calendar.MINUTE, 0);
         cal_alarm.set(Calendar.SECOND,0);
+
+        if(cal_alarm.before(cal_now))
+            return;
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }

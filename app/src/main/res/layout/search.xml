@@ -1275,8 +1275,8 @@
                 android:id="@+id/textView5"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
                 android:layout_marginTop="12dp"
                 android:background="#E53935"
                 android:textColor="#FFFFFF"
@@ -1300,8 +1300,8 @@
                 android:id="@+id/textView31"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="12dp"
                 android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                 android:text=""
@@ -1353,31 +1353,6 @@
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchbtn" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/rectangle_116_color"
-                android:text=""
-                app:layout_constraintStart_toEndOf="@+id/textView32"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
-
-            <TextView
-                android:id="@+id/textView34"
-                android:layout_width="72dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="12dp"
-                android:text="Excluded classes"
-                android:textColor="#060606"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
