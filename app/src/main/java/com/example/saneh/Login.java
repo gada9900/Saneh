@@ -1,9 +1,11 @@
 package com.example.saneh;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +29,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Login extends AppCompatActivity {
     EditText mEmail,mPassword;
@@ -37,12 +45,13 @@ public class Login extends AppCompatActivity {
     public static final String TAG = "TAG";
     String type = null ;
     String id ;
+    String _classID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
-
+            refreshReservations();
         mEmail = findViewById(R.id.emailLOGIN);
         mPassword = findViewById(R.id.passwordLOGIN);
         progressBar = findViewById(R.id.progressBarLOGIN);
@@ -204,6 +213,103 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
+    }
+    public void refreshReservations() {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                .collection("reservations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("ResourceAsColor")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                            int myListOfDocumentsLen = myListOfDocuments.size();
+                            String resDate;
+                            String time;
+                            boolean isConfirmed;
+                            for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                resDate = myListOfDocuments.get(i).getString("date");
+                                time = myListOfDocuments.get(i).getString("time");
+                                isConfirmed = myListOfDocuments.get(i).getBoolean("confirmed");
+
+                                String reservationTime = time ;
+                                String nextReservationTime1 = time.substring(time.indexOf("-")+2);
+
+                                if (reservationTime.charAt(1) == ':') {
+                                    reservationTime = "0" + reservationTime.substring(0, 1);
+                                } else {
+                                    reservationTime = reservationTime.substring(0, 2);
+                                }
+                                if (nextReservationTime1.charAt(1) == ':') {
+                                    nextReservationTime1 = "0" + nextReservationTime1.substring(0, 1);
+                                } else {
+                                    nextReservationTime1 = nextReservationTime1.substring(0, 2);
+                                }
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm aa");
+                                Util g12 = new Util();
+                                final long ff = g12.getCurrentNetworkTime();
+                                String noww= simpleDateFormat.format(ff);
+                                //String noww = simpleDateFormat.format(new Date().getTime());
+                                long now = 0;
+                                long res = 0;
+                                long date2 = 0;
+                                String aa2 ;
+                                String aa ;
+                                if(reservationTime.equals("12") || reservationTime.equals("01") ||reservationTime.equals("02") ) {
+                                    aa = " PM";
+                                }else{ aa= " AM";}
+                                if(nextReservationTime1.equals("12") || nextReservationTime1.equals("01") ||nextReservationTime1.equals("02") || nextReservationTime1.equals("03")  ) {
+                                    aa2 = " PM";
+                                }else{ aa2= " AM";}
+
+                                String reDate = resDate+ " " + reservationTime +time.substring(time.indexOf(":"),time.indexOf(":")+3)+aa ;
+                                String Date2 = resDate+" "+nextReservationTime1+":00"+aa2;
+                                try {
+                                    now = simpleDateFormat.parse(noww).getTime();
+                                    res = simpleDateFormat.parse(reDate).getTime();
+                                    date2 = simpleDateFormat.parse(Date2).getTime();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if(now > res){
+                                    _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                    int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                    TextView room = (TextView) findViewById(id);
+
+                                    long remining2 = date2 - now  ;
+                                    long minutesTomillies = TimeUnit.MINUTES.toMillis(15);
+                                    long total = res + minutesTomillies ;
+
+                                    if(now > total )
+                                        if(!isConfirmed){
+                                            myListOfDocuments.get(i).getReference().delete();
+                                            room.setBackgroundColor(getResources().getColor(R.color.grean));
+
+                                        }
+                                    if(remining2 <= 0){
+                                        myListOfDocuments.get(i).getReference().delete();
+                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+
+
+                                    }
+                                }
+
+
+
+                            } // for loop close
+
+                        }// if (task successful ) close
+
+                    }
+
+                });
 
     }
 }

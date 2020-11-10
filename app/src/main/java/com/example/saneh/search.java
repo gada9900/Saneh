@@ -973,11 +973,11 @@ public class search extends AppCompatActivity {
 
 
                 }//if the day not f or ss
-                refreshReservations();///here to refresh reservation
+               // refreshReservations();///here to refresh reservation
 
             }
         });
-        refreshReservations();
+       // refreshReservations();
         init();
     }
 
@@ -1493,13 +1493,14 @@ public class search extends AppCompatActivity {
         }
         String selectedTD = Date + " " + timecut + aa;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh aa");
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+     /*   if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         Util g12 = new Util();
         final long ff = g12.getCurrentNetworkTime();
-        String noww = simpleDateFormat.format(ff);
+        String noww = simpleDateFormat.format(ff);*/
+        String noww = simpleDateFormat.format(new Date().getTime());
         boolean b = false;
         String minutes;
         try {
@@ -1706,7 +1707,7 @@ public class search extends AppCompatActivity {
         }
     }
 
-    public void refreshReservations() {
+/*    public void refreshReservations() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -1802,7 +1803,7 @@ public class search extends AppCompatActivity {
 
                 });
 
-    }
+    }*/
 
     public void notificationBefore15min(final String finalTime,final String d ){
         createNotificationChannel();
