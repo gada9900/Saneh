@@ -125,6 +125,55 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/floorg" />
 
+                    <TextView
+                        android:id="@+id/SR04"
+                        android:layout_width="43dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR04"
+                        android:textColor="#040404"
+                        app:layout_constraintStart_toStartOf="@+id/SR03"
+                        app:layout_constraintTop_toBottomOf="@+id/SR03" />
+
+                    <TextView
+                        android:id="@+id/SR01"
+                        android:layout_width="46dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="63dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR01"
+                        android:textColor="#040404"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F25"
+                        tools:layout_editor_absoluteX="484dp" />
+
+                    <TextView
+                        android:id="@+id/SR02"
+                        android:layout_width="46dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR02"
+                        android:textColor="#040404"
+                        app:layout_constraintTop_toBottomOf="@+id/SR01"
+                        tools:layout_editor_absoluteX="485dp" />
+
+                    <TextView
+                        android:id="@+id/SR03"
+                        android:layout_width="43dp"
+                        android:layout_height="29dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR03"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F17"
+                        tools:layout_editor_absoluteY="145dp" />
+
                     <ImageView
                         android:id="@+id/floorg"
                         android:layout_width="348dp"
@@ -813,7 +862,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/floorg"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.259" />
+                        app:layout_constraintVertical_bias="0.263" />
 
                     <TextView
                         android:id="@+id/class6G13"
