@@ -1139,7 +1139,7 @@
                 android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EDIT"
+                android:text="Edit"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/searchPage5"
                 app:layout_constraintEnd_toEndOf="parent"

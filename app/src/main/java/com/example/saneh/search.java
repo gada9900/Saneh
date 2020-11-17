@@ -1143,8 +1143,8 @@ public class search extends AppCompatActivity {
 
                                 //notifications
 
-                                notificationBefore15min(finalTime,d);
-                                notificationBeforeDay(finalTime,d);
+                                notificationBefore15min(finalTime,d,ClassID1);
+                                notificationBeforeDay(finalTime,d,ClassID1);
 
                                 //end notifications
 
@@ -1909,9 +1909,10 @@ public class search extends AppCompatActivity {
 
     }*/
 
-    public void notificationBefore15min(final String finalTime,final String d ){
+    public void notificationBefore15min(final String finalTime,final String d , final String classID){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -1945,9 +1946,10 @@ public class search extends AppCompatActivity {
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
-    public void notificationBeforeDay(final String finalTime,final String d ){
+    public void notificationBeforeDay(final String finalTime,final String d ,final String classID ){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder2.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
