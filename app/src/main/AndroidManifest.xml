@@ -20,9 +20,9 @@
 
         <activity android:name=".adminEdit"/>
         <activity android:name=".upcomingReservations"/>
-        <activity android:name=".search"/>
+        <activity android:name=".SplashscreenActivity"/>
         <activity android:name=".Login"/>
-        <activity android:name=".SplashscreenActivity">
+        <activity android:name=".search">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

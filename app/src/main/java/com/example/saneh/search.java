@@ -1024,14 +1024,15 @@ public class search extends AppCompatActivity {
                                                 _classID =  myListOfDocuments.get(i).getString("classID");
                                                 int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                                 TextView room = (TextView) findViewById(id);
-                                                if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
-                                                    if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                if(room != null) {
+                                                    if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                        if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
+                                                        }
                                                     }
                                                 }
-
 
 
                                             }
@@ -1753,14 +1754,15 @@ public class search extends AppCompatActivity {
                                     _classID =  myListOfDocuments.get(i).getString("classID");
                                     int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                     TextView room = (TextView) findViewById(id);
-                                    if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
-                                        if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                            room.setBackgroundColor(getResources().getColor(R.color.red));
+                                    if(room != null) {
+                                        if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
+                                            if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
+                                            }
                                         }
                                     }
-
 
                                 }
 
