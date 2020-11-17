@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
                 android:layout_marginLeft="56dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="60dp"
                 app:layout_constraintStart_toEndOf="@+id/filterSearch"
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="32dp"
                 android:layout_marginStart="100dp"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="60dp"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
 
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="97dp"
                 app:layout_constraintStart_toEndOf="@+id/acticityClassSearch"
                 app:layout_constraintTop_toTopOf="@+id/spinnerSearch"
                 app:srcCompat="@drawable/icons_class_i" />
@@ -86,9 +86,9 @@
                 android:layout_height="47dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="6dp"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
-                app:layout_constraintTop_toBottomOf="@+id/dateSearch"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupSearch2"
                 app:srcCompat="@drawable/projecterr" />
 
             <HorizontalScrollView
@@ -123,7 +123,84 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
                         app:srcCompat="@drawable/floorg" />
+
+                    <TextView
+                        android:id="@+id/SR06"
+                        android:layout_width="43dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR06"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/SR05"
+                        app:layout_constraintTop_toBottomOf="@+id/SR05" />
+
+                    <TextView
+                        android:id="@+id/SR05"
+                        android:layout_width="43dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR05"
+                        android:textColor="#040404"
+                        app:layout_constraintStart_toStartOf="@+id/SR04"
+                        app:layout_constraintTop_toBottomOf="@+id/SR04" />
+
+                    <TextView
+                        android:id="@+id/SR01"
+                        android:layout_width="46dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="63dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR01"
+                        android:textColor="#040404"
+                        app:layout_constraintStart_toEndOf="@+id/class6F35"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F25" />
+
+                    <TextView
+                        android:id="@+id/SR02"
+                        android:layout_width="46dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR02"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/SR01"
+                        app:layout_constraintTop_toBottomOf="@+id/SR01" />
+
+                    <TextView
+                        android:id="@+id/SR03"
+                        android:layout_width="46dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR03"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/SR02"
+                        app:layout_constraintTop_toBottomOf="@+id/SR02" />
+
+                    <TextView
+                        android:id="@+id/SR04"
+                        android:layout_width="43dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="63dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR04"
+                        android:textColor="#040404"
+                        app:layout_constraintEnd_toStartOf="@+id/class6F17"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F21" />
 
                     <ImageView
                         android:id="@+id/floorg"
@@ -813,7 +890,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/floorg"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.259" />
+                        app:layout_constraintVertical_bias="0.263" />
 
                     <TextView
                         android:id="@+id/class6G13"
@@ -1197,8 +1274,7 @@
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="0-40"
-                    />
+                    android:text="0-40" />
 
             </RadioGroup>
 
@@ -1216,7 +1292,7 @@
                 android:id="@+id/filterSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="65dp"
                 android:text="Filter:"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1230,7 +1306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="27dp"
                 android:text="Capacity:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1348,11 +1424,52 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:textColor="#D70B0B"
                 android:textSize="16sp"
-                android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchbtn" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="18dp"
+                android:text="Room type :"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateSearch" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupSearch2"
+                android:layout_width="244dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/dateSearch">
+
+                <RadioButton
+                    android:id="@+id/classRoomSearch"
+                    android:layout_width="79dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Class room" />
+
+                <RadioButton
+                    android:id="@+id/studyRoomSearch"
+                    android:layout_width="79dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Study room" />
+
+
+            </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
