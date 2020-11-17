@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="28dp"
-        android:text="UPCOMING RESERVATION"
+        android:text="Upcoming Reservations"
         android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintVertical_bias="0.0" />

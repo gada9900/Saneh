@@ -103,6 +103,47 @@ public class search extends AppCompatActivity {
         capaR = findViewById(R.id.radioGroupSearch);
         alert = findViewById(R.id.alertSearch);
 
+        final RadioGroup classType = findViewById(R.id.radioGroupSearch2);
+        RadioButton classRoom = findViewById(R.id.classRoomSearch);
+        RadioButton studyRoom = findViewById(R.id.studyRoomSearch);
+        classType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                ImageView projectorImg = findViewById(R.id.imageView46);
+                ImageView InteractiveImg = findViewById(R.id.imageView47);
+                TextView filterTxt = findViewById(R.id.filterSearch);
+                TextView capacityTxt = findViewById(R.id.capacitySearch);
+                CheckBox checkB = findViewById(R.id.projectorSearch);
+                if(classType.getCheckedRadioButtonId() == R.id.studyRoomSearch){
+                    proj.setVisibility(View.GONE);
+                    inter.setVisibility(View.GONE);
+                    ca20.setVisibility(View.GONE);
+                    ca30.setVisibility(View.GONE);
+                    ca40.setVisibility(View.GONE);
+                    capaR.setVisibility(View.GONE);
+                    filterTxt.setVisibility(View.GONE);
+                    capacityTxt.setVisibility(View.GONE);
+                    projectorImg.setVisibility(View.GONE);
+                    InteractiveImg.setVisibility(View.GONE);
+
+                }else{
+                    proj.setVisibility(View.VISIBLE);
+                    inter.setVisibility(View.VISIBLE);
+                    ca20.setVisibility(View.VISIBLE);
+                    ca30.setVisibility(View.VISIBLE);
+                    ca40.setVisibility(View.VISIBLE);
+                    capaR.setVisibility(View.VISIBLE);
+                    filterTxt.setVisibility(View.VISIBLE);
+                    capacityTxt.setVisibility(View.VISIBLE);
+                    projectorImg.setVisibility(View.VISIBLE);
+                    InteractiveImg.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
         //prevent bottom toolbar from moving (its important)
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -159,7 +200,7 @@ public class search extends AppCompatActivity {
         date = findViewById(R.id.dateSearch);
 //////////////////  current day
         Date today = new Date();
-        SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+        final SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
         date.setHint(simple.format(today));
         ///////////////////////
         Spinner mySpinner = (Spinner) findViewById(R.id.spinnerSearch);
@@ -402,11 +443,45 @@ public class search extends AppCompatActivity {
 
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
-                cal.set(Calendar.MONTH, month-1); //Set month, starts with JANUARY = 0
+                cal.set(Calendar.MONTH, month - 1); //Set month, starts with JANUARY = 0
                 cal.set(Calendar.YEAR, year); //Set year
-                int day0 = cal.get(Calendar.DAY_OF_WEEK);
-                String d = "s";
+                SimpleDateFormat simple2 = new SimpleDateFormat("dd-MM-yyyy HH:mm aa");
 
+                String tim;
+                if (selectedTime.getSelectedItem().toString().charAt(1) == ':')
+                    tim = selectedTime.getSelectedItem().toString().substring(0, 1);
+                else
+                    tim = selectedTime.getSelectedItem().toString().substring(0, 2);
+
+                Calendar cal2 = Calendar.getInstance();
+                cal2.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
+                cal2.set(Calendar.MONTH, month - 1); //Set month, starts with JANUARY = 0
+                cal2.set(Calendar.YEAR, year); //Set year
+                cal2.set(Calendar.HOUR_OF_DAY, Integer.parseInt(tim)==1 || Integer.parseInt(tim) == 2? Integer.parseInt(tim)+12 :Integer.parseInt(tim)) ;
+
+                String a = simple2.format(cal2.getTime());
+                String b = simple2.format(new Date().getTime());
+
+                try {
+                    Date SD = simple2.parse(a);
+                    Date today2 = simple2.parse(b);
+                    if (SD.getTime() < today2.getTime()) {
+
+                        AlertDialog.Builder alert9 = new AlertDialog.Builder(search.this);
+                        alert9.setTitle("Wrong selected time");
+                        alert9.setMessage("Error! you are trying to reach a previous time");
+                        alert9.setPositiveButton("OK", null);
+                        alert9.show();
+
+                    } else {
+
+
+
+
+
+
+                        int day0 = cal.get(Calendar.DAY_OF_WEEK);
+                String d = "s";
 
                 switch (day0) {
                     case 1:
@@ -492,453 +567,392 @@ public class search extends AppCompatActivity {
 
                     //get all the Documents
                     final int finalTimeIndex = timeIndex;
+                    if(classType.getCheckedRadioButtonId() != R.id.studyRoomSearch) {
 
-                    Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
-                            .collection("classes")
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @SuppressLint("ResourceAsColor")
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
-                                        int myListOfDocumentsLen = myListOfDocuments.size();
-                                        boolean b = false;
-
-
-                                        for (int i = 0; i < myListOfDocumentsLen; i++) {
-                                            _classID = "class" + myListOfDocuments.get(i).getString("roomNum");
+                        Task<QuerySnapshot> querySnapshotTask = FirebaseFirestore.getInstance()
+                                .collection("classes")
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @SuppressLint("ResourceAsColor")
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                            int myListOfDocumentsLen = myListOfDocuments.size();
+                                            boolean b = false;
 
 
-                                            int id = getResources().getIdentifier(_classID, "id", getPackageName());
-                                            TextView room = (TextView) findViewById(id);
+                                            for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                                _classID = "class" + myListOfDocuments.get(i).getString("roomNum");
 
-                                            _Projector = (boolean) myListOfDocuments.get(i).get("projector");
-                                            _InterActive= (boolean) myListOfDocuments.get(i).get("interactive");
-                                            _Capacity = (long) myListOfDocuments.get(i).get("capacity");
-                                            int rBCh= capaR.getCheckedRadioButtonId();
-                                            rCheckted=findViewById(rBCh);
-                                            long Rcapa=0;
-                                            if(rCheckted==ca20){
-                                                Rcapa=20;
-                                            }
-                                            else if(rCheckted==ca30){
-                                                Rcapa=30;
 
-                                            }
-                                            else if (rCheckted==ca40){
-                                                Rcapa=40;
-                                        }
-                                            //filter
+                                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                                TextView room = (TextView) findViewById(id);
+
+                                                _Projector = (boolean) myListOfDocuments.get(i).get("projector");
+                                                _InterActive = (boolean) myListOfDocuments.get(i).get("interactive");
+                                                _Capacity = (long) myListOfDocuments.get(i).get("capacity");
+                                                int rBCh = capaR.getCheckedRadioButtonId();
+                                                rCheckted = findViewById(rBCh);
+                                                long Rcapa = 0;
+                                                if (rCheckted == ca20) {
+                                                    Rcapa = 20;
+                                                } else if (rCheckted == ca30) {
+                                                    Rcapa = 30;
+
+                                                } else if (rCheckted == ca40) {
+                                                    Rcapa = 40;
+                                                }
+                                                //filter
                                             /*if(proj.isChecked()&&inter.isChecked()){
                                                 if(_Projector==false&&_InterActive==false){
                                                     room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
                                                 }
                                             }*/
 
-                                            if (finalDay.equals("s")) {
-                                                s = (List<Boolean>) myListOfDocuments.get(i).get("s");
-                                                b = s.get(finalTimeIndex);
+                                                if (finalDay.equals("s")) {
+                                                    s = (List<Boolean>) myListOfDocuments.get(i).get("s");
+                                                    b = s.get(finalTimeIndex);
                                                     if (b) {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
-                                                } else {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
-                                                }
-                                                   if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0) {
-                                                     if (_InterActive == false) {
-                                                         room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                     }
-                                                 }
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                    } else {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                    }
+                                                    if (proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 0) {
+                                                        if (_Projector == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 0) {
+                                                        if (_InterActive == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    }
 
-                                            } else if (finalDay.equals("m")) {
-                                                m = (List<Boolean>) myListOfDocuments.get(i).get("m");
-                                                b = m.get(finalTimeIndex);
-                                               if (b) {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
-                                                } else {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                } else if (finalDay.equals("m")) {
+                                                    m = (List<Boolean>) myListOfDocuments.get(i).get("m");
+                                                    b = m.get(finalTimeIndex);
+                                                    if (b) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                    } else {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                    }
+                                                    if (proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 0) {
+                                                        if (_Projector == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 0) {
+                                                        if (_InterActive == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    }
+
+                                                } else if (finalDay.equals("t")) {
+                                                    t = (List<Boolean>) myListOfDocuments.get(i).get("t");
+                                                    b = t.get(finalTimeIndex);
+                                                    if (b) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                    } else {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                    }
+                                                    if (proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 0) {
+                                                        if (_Projector == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 0) {
+                                                        if (_InterActive == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    }
+                                                } else if (finalDay.equals("w")) {
+                                                    w = (List<Boolean>) myListOfDocuments.get(i).get("w");
+                                                    b = w.get(finalTimeIndex);
+                                                    if (b) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                    } else {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                    }
+                                                    if (proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 0) {
+                                                        if (_Projector == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 0) {
+                                                        if (_InterActive == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    }
+                                                } else if (finalDay.equals("th")) {
+                                                    th = (List<Boolean>) myListOfDocuments.get(i).get("th");
+                                                    b = th.get(finalTimeIndex);
+                                                    if (b) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
+                                                    } else {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.grean));
+                                                    }
+                                                    if (proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 20) {
+                                                        if (_Projector == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 20) {
+                                                        if (_InterActive == false || _Capacity > 20) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 30) {
+                                                        if (_Projector == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 30) {
+                                                        if (_InterActive == false || _Capacity > 30) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 40) {
+                                                        if (_Projector == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 40) {
+                                                        if (_InterActive == false || _Capacity > 40) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (proj.isChecked() && !inter.isChecked() && Rcapa == 0) {
+                                                        if (_Projector == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    } else if (!proj.isChecked() && inter.isChecked() && Rcapa == 0) {
+                                                        if (_InterActive == false) {
+                                                            room.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                                        }
+                                                    }
                                                 }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
+                                                // Rcapa=0;
                                             }
 
-                                            } else if (finalDay.equals("t")) {
-                                                t = (List<Boolean>) myListOfDocuments.get(i).get("t");
-                                                b = t.get(finalTimeIndex);
-                                             if (b) {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
-                                                } else {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
-                                                }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }
-                                            } else if (finalDay.equals("w")) {
-                                                w = (List<Boolean>) myListOfDocuments.get(i).get("w");
-                                                b = w.get(finalTimeIndex);
-                                               if (b) {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
-                                                } else {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
-                                                }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }
-                                            } else if (finalDay.equals("th")) {
-                                                th = (List<Boolean>) myListOfDocuments.get(i).get("th");
-                                                b = th.get(finalTimeIndex);
-                                              if (b) {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
-                                                } else {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.grean));
-                                                }
-                                                     if(proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==20){
-                                                if(_Projector==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==20){
-                                                if(_InterActive==false||_Capacity>20){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==30){
-                                                if(_Projector==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==30){
-                                                if(_InterActive==false||_Capacity>30){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(proj.isChecked()&&!inter.isChecked()&&Rcapa==40){
-                                                if(_Projector==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                if(!proj.isChecked()&&inter.isChecked()&&Rcapa==40){
-                                                if(_InterActive==false||_Capacity>40){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(proj.isChecked()&&!inter.isChecked()&&Rcapa==0){
-                                                if(_Projector==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }else
-                                                 if(!proj.isChecked()&&inter.isChecked()&&Rcapa==0){
-                                                if(_InterActive==false){
-                                                    room.setBackgroundColor(getResources().getColor(R.color.rectangle_116_color));
-                                                }
-                                            }
-                                            }
-                                         // Rcapa=0;
                                         }
+
 
                                     }
 
 
-                                }
+                                });/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// end of return class from firebase
+                    }else{
 
+                      colorAfterchoiceStudyRoom();
 
-                            });
+                    }
                     Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
                             .collection("reservations")
                             .get()
@@ -949,22 +963,43 @@ public class search extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                                         int myListOfDocumentsLen = myListOfDocuments.size();
-
-                                        for(int i = 0; i < myListOfDocumentsLen; i++){
-                                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                        if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                          for(int i = 1 ; i < 7 ;i++ ) {
+                                              int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+                                              TextView classes = (TextView) findViewById(id);
+                                              classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                          }
+                                      }
+                                        for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                            if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                             int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                             TextView room = (TextView) findViewById(id);
-                                            if(finalDate.equals(myListOfDocuments.get(i).getString("date"))){
-                                                if(finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                            if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
-
 
 
                                                 }
                                             }
 
-                                        }
+                                        }//end if
+                                            else{
+                                                _classID =  myListOfDocuments.get(i).getString("classID");
+                                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                                TextView room = (TextView) findViewById(id);
+                                                if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                    if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
+
+                                                    }
+                                                }
+
+
+
+                                            }
+                                    }//end for
 
                                     }
                                 }
@@ -973,11 +1008,15 @@ public class search extends AppCompatActivity {
 
 
                 }//if the day not f or ss
-                refreshReservations();///here to refresh reservation
+               // refreshReservations();///here to refresh reservation
+                    } } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });
-        refreshReservations();
+       // refreshReservations();
         init();
     }
 
@@ -1099,17 +1138,17 @@ public class search extends AppCompatActivity {
                     alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                           if(bookClass(ClassID1, d, finalTime)){
+                            if(bookClass(ClassID1, d, finalTime)){
 
 
-                             //notifications
+                                //notifications
 
-                               notificationBefore15min(finalTime,d);
-                               notificationBeforeDay(finalTime,d);
+                                notificationBefore15min(finalTime,d,ClassID1);
+                                notificationBeforeDay(finalTime,d,ClassID1);
 
-                             //end notifications
+                                //end notifications
 
-                             
+
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
                                 alert2.setTitle("Google calander");
                                 alert2.setMessage("Do you want to save your reservation in your google calander ?");
@@ -1409,6 +1448,24 @@ public class search extends AppCompatActivity {
 
     public void printTime(View popupView, List<Boolean> s, int finalTimeIndex, String selectedT, String timeNext, TextView availableT) {
         int i = 0;
+        String ftime2 = selectedTime.getSelectedItem().toString();
+        String d = date.getText().toString();
+        final SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH aa");
+         Date today = new Date();
+         String today2 = simple.format(today);
+        Date todayWithT = today ;
+        Date calen2 = today ;
+        int t = 0 ;
+        // subString for the time since the format is 00:00
+        if (ftime2.charAt(1) == ':') {
+            ftime2 = ftime2.substring(0, 1);
+            t = Integer.parseInt(ftime2);
+            if(t == 1 || t ==2 || t==3 )
+                t = t+12 ;
+        }else{
+            ftime2 = ftime2.substring(0, 2);
+            t = Integer.parseInt(ftime2);
+        }
 
         TextView t8 = popupView.findViewById(R.id.viewInfoTime8);
         TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
@@ -1421,45 +1478,71 @@ public class search extends AppCompatActivity {
         String avTime = selectedT + "-";
         for (i = 0; i < 7; i++) {
             Boolean b = s.get(i);
+            final Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+            calendar.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
+            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(d.substring(0, 2)));
+            calendar.set(Calendar.HOUR_OF_DAY, i+8);
+            calendar.set(Calendar.MINUTE, 00);
+            try {
+                todayWithT = simple.parse(today2);
+                calen2 = simple.parse(simple.format(calendar.getTime()));
 
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             switch (i) {
                 case 0:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                       if(t == (i+8))
+                           t8.setBackgroundColor(getResources().getColor(R.color.Yellow));
 
                     break;
 
                 case 1:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    if(t == (i+8))
+                        t9.setBackgroundColor(getResources().getColor(R.color.Yellow));
 
                     break;
 
                 case 2:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    if(t ==(i+8))
+                        t10.setBackgroundColor(getResources().getColor(R.color.Yellow));
                     break;
                 case 3:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    if(t ==(i+8))
+                        t11.setBackgroundColor(getResources().getColor(R.color.Yellow));
 
                     break;
 
                 case 4:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    if(t == (i+8))
+                        t12.setBackgroundColor(getResources().getColor(R.color.Yellow));
 
                     break;
 
                 case 5:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    if(t == (i+8))
+                        t1.setBackgroundColor(getResources().getColor(R.color.Yellow));
                     break;
 
                 case 6:
-                    if (b)
+                    if (b || calen2.getTime() < todayWithT.getTime())
                         t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    if(t == (i+8))
+                        t2.setBackgroundColor(getResources().getColor(R.color.Yellow));
 
                     break;
 
@@ -1493,13 +1576,14 @@ public class search extends AppCompatActivity {
         }
         String selectedTD = Date + " " + timecut + aa;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh aa");
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+     /*   if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         Util g12 = new Util();
         final long ff = g12.getCurrentNetworkTime();
-        String noww = simpleDateFormat.format(ff);
+        String noww = simpleDateFormat.format(ff);*/
+        String noww = simpleDateFormat.format(new Date().getTime());
         boolean b = false;
         String minutes;
         try {
@@ -1559,26 +1643,26 @@ public class search extends AppCompatActivity {
         if(!checkDateAndTimebeforeBoikng(time,Date)){
 
 
-        documentReference.set(newReservation)
+            documentReference.set(newReservation)
 
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
-                        refreshAfterBooking(date.getText().toString().trim());
-
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                            refreshAfterBooking(date.getText().toString().trim());
 
 
-                    }
-                }); }else bb = false ;
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //  Toast.makeText(adminAdd.this, "Error!", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, e.toString());
+
+
+                        }
+                    }); }else bb = false ;
         return bb ;
     }
 
@@ -1596,9 +1680,17 @@ public class search extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                             int myListOfDocumentsLen = myListOfDocuments.size();
-
+                            final RadioGroup classType = findViewById(R.id.radioGroupSearch2);
+                            if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                for(int i = 1 ; i < 7 ;i++ ) {
+                                    int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+                                    TextView classes = (TextView) findViewById(id);
+                                    classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                }
+                            }
                             for (int i = 0; i < myListOfDocumentsLen; i++) {
-                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                    _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                 int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                 TextView room = (TextView) findViewById(id);
                                 if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
@@ -1621,9 +1713,22 @@ public class search extends AppCompatActivity {
 
 
                                     }
+                                }}else{
+                                    _classID =  myListOfDocuments.get(i).getString("classID");
+                                    int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                    TextView room = (TextView) findViewById(id);
+                                    if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
+                                        if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                            room.setBackgroundColor(getResources().getColor(R.color.red));
+
+
+                                        }
+                                    }
+
+
                                 }
 
-                            }
+                            }//end for
 
 
                         }
@@ -1682,11 +1787,11 @@ public class search extends AppCompatActivity {
 
             if(remining2 <= 0){
                 Toast.makeText(getApplication(),"Time is invalid",Toast.LENGTH_LONG).show();
-                 b = true ;
+                b = true ;
 
             }
         }
-return b ;
+        return b ;
 
     }
 
@@ -1706,7 +1811,7 @@ return b ;
         }
     }
 
-    public void refreshReservations() {
+/*    public void refreshReservations() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -1780,12 +1885,12 @@ return b ;
 
                                     if(now > total )
                                         if(!isConfirmed){
-                                             myListOfDocuments.get(i).getReference().delete();
+                                            myListOfDocuments.get(i).getReference().delete();
                                             room.setBackgroundColor(getResources().getColor(R.color.grean));
 
                                         }
                                     if(remining2 <= 0){
-                                         myListOfDocuments.get(i).getReference().delete();
+                                        myListOfDocuments.get(i).getReference().delete();
                                         room.setBackgroundColor(getResources().getColor(R.color.grean));
 
 
@@ -1802,11 +1907,12 @@ return b ;
 
                 });
 
-    }
+    }*/
 
-    public void notificationBefore15min(final String finalTime,final String d ){
+    public void notificationBefore15min(final String finalTime,final String d , final String classID){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -1824,6 +1930,9 @@ return b ;
         timetodecrease= --timetodecrease;
 
         // calendar so we can set the date in notification to the day user booked class
+        Date date2 = new Date();
+        Calendar cal_now = Calendar.getInstance();
+        cal_now.setTime(date2);
         final Calendar cal_alarm = Calendar.getInstance();
         cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
         cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
@@ -1832,11 +1941,15 @@ return b ;
         cal_alarm.set(Calendar.MINUTE, 45);
         cal_alarm.set(Calendar.SECOND,0);
 
+        if(cal_alarm.before(cal_now))
+            return;
+
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
-    public void notificationBeforeDay(final String finalTime,final String d ){
+    public void notificationBeforeDay(final String finalTime,final String d ,final String classID ){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder2.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -1853,6 +1966,9 @@ return b ;
         }
 
         // calendar so we can set the date in notification to the day before user booked class
+        Date date2 = new Date();
+        Calendar cal_now = Calendar.getInstance();
+        cal_now.setTime(date2);
         final Calendar cal_alarm = Calendar.getInstance();
         cal_alarm.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
         cal_alarm.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
@@ -1861,7 +1977,39 @@ return b ;
         cal_alarm.set(Calendar.MINUTE, 0);
         cal_alarm.set(Calendar.SECOND,0);
 
+        if(cal_alarm.before(cal_now))
+            return;
+
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
+    }
+    public void colorAfterchoiceStudyRoom() {
+        TextView classes;
+
+        /////// initiate a clickable classes in floor 1
+        for (int i = 1; i < 57; i++) {
+
+            if (i == 18 || i == 22 || i == 23 || i == 28 || i == 29 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 39 || i == 40 || i == 41 || i == 42 || i == 43 || i == 44 || i == 45 || i == 46 || i == 47)
+                continue;
+            int id = getResources().getIdentifier("class6F" + i, "id", getPackageName());
+            classes = (TextView) findViewById(id);
+            classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+
+        }
+        /////// initiate a clickable classes in floor G
+        for (int i = 3; i < 52; i++) {
+
+            if (i == 8 || i == 10 || i == 17 || i == 19 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 32 || i == 33 || i == 34 || i == 39 || i == 45)
+                continue;
+            int id = getResources().getIdentifier("class6G" + i, "id", getPackageName());
+            classes = (TextView) findViewById(id);
+            classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+
+        }
+    for(int i = 1 ; i < 7 ;i++ ) {
+        int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+        classes = (TextView) findViewById(id);
+        classes.setBackgroundColor(getResources().getColor(R.color.grean));
+    }
     }
 
 
