@@ -443,9 +443,44 @@ public class search extends AppCompatActivity {
 
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
-                cal.set(Calendar.MONTH, month-1); //Set month, starts with JANUARY = 0
+                cal.set(Calendar.MONTH, month - 1); //Set month, starts with JANUARY = 0
                 cal.set(Calendar.YEAR, year); //Set year
-                int day0 = cal.get(Calendar.DAY_OF_WEEK);
+                SimpleDateFormat simple2 = new SimpleDateFormat("dd-MM-yyyy HH:mm aa");
+
+                String tim;
+                if (selectedTime.getSelectedItem().toString().charAt(1) == ':')
+                    tim = selectedTime.getSelectedItem().toString().substring(0, 1);
+                else
+                    tim = selectedTime.getSelectedItem().toString().substring(0, 2);
+
+                Calendar cal2 = Calendar.getInstance();
+                cal2.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
+                cal2.set(Calendar.MONTH, month - 1); //Set month, starts with JANUARY = 0
+                cal2.set(Calendar.YEAR, year); //Set year
+                cal2.set(Calendar.HOUR_OF_DAY, Integer.parseInt(tim)==1 || Integer.parseInt(tim) == 2? Integer.parseInt(tim)+12 :Integer.parseInt(tim)) ;
+
+                String a = simple2.format(cal2.getTime());
+                String b = simple2.format(new Date().getTime());
+
+                try {
+                    Date SD = simple2.parse(a);
+                    Date today2 = simple2.parse(b);
+                    if (SD.getTime() < today2.getTime()) {
+
+                        AlertDialog.Builder alert9 = new AlertDialog.Builder(search.this);
+                        alert9.setTitle("Wrong selected time");
+                        alert9.setMessage("Error! you are trying to reach a previous time");
+                        alert9.setPositiveButton("OK", null);
+                        alert9.show();
+
+                    } else {
+
+
+
+
+
+
+                        int day0 = cal.get(Calendar.DAY_OF_WEEK);
                 String d = "s";
 
                 switch (day0) {
@@ -953,6 +988,10 @@ public class search extends AppCompatActivity {
 
                 }//if the day not f or ss
                // refreshReservations();///here to refresh reservation
+                    } } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });
