@@ -19,9 +19,7 @@ public class SplashscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.splashscreen);
-
        // getSupportActionBar().hide();
         splash = (VideoView)findViewById(R.id.videoView);
         Uri video = Uri.parse("android.resource://" + getPackageName() + "/"+ R.raw.splash);

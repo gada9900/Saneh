@@ -15,6 +15,7 @@ import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -81,7 +82,7 @@ public class search extends AppCompatActivity {
     boolean _Projector, _InterActive;
     List<Boolean> s, m, t, w, th;
     String dayOfWeek;
-    TextView alert;
+    TextView alert, roomType;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore fireStore;
     private static final String CHANNEL_ID = "Saneh_Channel";
@@ -89,6 +90,7 @@ public class search extends AppCompatActivity {
     CheckBox proj, inter;
     RadioGroup capaR;
     RadioButton ca20,ca30,ca40,rCheckted;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +106,42 @@ public class search extends AppCompatActivity {
         alert = findViewById(R.id.alertSearch);
 
         final RadioGroup classType = findViewById(R.id.radioGroupSearch2);
-        RadioButton classRoom = findViewById(R.id.classRoomSearch);
-        RadioButton studyRoom = findViewById(R.id.studyRoomSearch);
+        final RadioButton classRoom = findViewById(R.id.classRoomSearch);
+        final RadioButton studyRoom = findViewById(R.id.studyRoomSearch);
+        firebaseAuth = FirebaseAuth.getInstance();
+        fireStore=FirebaseFirestore.getInstance();
+        userId=firebaseAuth.getUid();
+        DocumentReference documentReference=fireStore.collection("users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+               // Toast.makeText(search.this, "out if "+value.getString("userType"), Toast.LENGTH_LONG).show();
+
+                if(value.getString("userType").equals("Instructor")){
+                   studyRoom.setVisibility(View.GONE);
+                    classRoom.setVisibility(View.GONE);
+                    roomType= findViewById(R.id.textView7);
+                    roomType.setVisibility(View.GONE);
+                    ImageView projectorImg = findViewById(R.id.imageView46);
+                    projectorImg.setY(projectorImg.getY() + -80);
+                    ImageView InteractiveImg = findViewById(R.id.imageView47);
+                    InteractiveImg.setY(InteractiveImg.getY() + -80);
+                    CheckBox projectorSearch = findViewById(R.id.projectorSearch);
+                    projectorSearch.setY(projectorSearch.getY() + -80);
+                    CheckBox acticityClassSearch = findViewById(R.id.acticityClassSearch);
+                    acticityClassSearch.setY(acticityClassSearch.getY() + -80);
+                    TextView filterSearch = findViewById(R.id.filterSearch);
+                    filterSearch.setY(filterSearch.getY() + -80);
+                    TextView capacitySearch = findViewById(R.id.capacitySearch);
+                    capacitySearch.setY(capacitySearch.getY() + -80);
+                    RadioGroup radioGroupSearch = findViewById(R.id.radioGroupSearch);
+                    radioGroupSearch.setY(radioGroupSearch.getY() + -80);
+                    search.setY(search.getY() + -60);
+
+                }
+            }
+        });
+
         classType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -1143,8 +1179,8 @@ public class search extends AppCompatActivity {
 
                                 //notifications
 
-                                notificationBefore15min(finalTime,d);
-                                notificationBeforeDay(finalTime,d);
+                                notificationBefore15min(finalTime,d,ClassID1);
+                                notificationBeforeDay(finalTime,d,ClassID1);
 
                                 //end notifications
 
@@ -1909,9 +1945,10 @@ public class search extends AppCompatActivity {
 
     }*/
 
-    public void notificationBefore15min(final String finalTime,final String d ){
+    public void notificationBefore15min(final String finalTime,final String d , final String classID){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -1945,9 +1982,10 @@ public class search extends AppCompatActivity {
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
-    public void notificationBeforeDay(final String finalTime,final String d ){
+    public void notificationBeforeDay(final String finalTime,final String d ,final String classID ){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder2.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);

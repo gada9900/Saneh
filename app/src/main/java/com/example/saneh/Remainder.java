@@ -17,8 +17,8 @@ public class Remainder extends BroadcastReceiver {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setStyle(new NotificationCompat.InboxStyle()
                // .addLine("hey there")
-                .addLine("prepare for your booking class, your reservation time will")
-                .addLine("start soon"));
+                .addLine("prepare for your booking class "+intent.getStringExtra("classID")+" , your reservation")
+                .addLine("time will start soon"));
 
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
