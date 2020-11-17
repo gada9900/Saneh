@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
                 android:layout_marginLeft="56dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="60dp"
                 app:layout_constraintStart_toEndOf="@+id/filterSearch"
                 app:layout_constraintTop_toBottomOf="@+id/dateSearch" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="32dp"
                 android:layout_marginStart="100dp"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="60dp"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSearch" />
 
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="97dp"
                 app:layout_constraintStart_toEndOf="@+id/acticityClassSearch"
                 app:layout_constraintTop_toTopOf="@+id/spinnerSearch"
                 app:srcCompat="@drawable/icons_class_i" />
@@ -86,9 +86,9 @@
                 android:layout_height="47dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="6dp"
                 app:layout_constraintStart_toEndOf="@+id/projectorSearch"
-                app:layout_constraintTop_toBottomOf="@+id/dateSearch"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupSearch2"
                 app:srcCompat="@drawable/projecterr" />
 
             <HorizontalScrollView
@@ -1216,7 +1216,7 @@
                 android:id="@+id/filterSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="65dp"
                 android:text="Filter:"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1230,7 +1230,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="27dp"
                 android:text="Capacity:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1353,6 +1353,47 @@
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchbtn" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="18dp"
+                android:text="Room type :"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateSearch" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupSearch2"
+                android:layout_width="244dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/dateSearch">
+
+                <RadioButton
+                    android:id="@+id/classRoomSearch"
+                    android:layout_width="79dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Class room" />
+
+                <RadioButton
+                    android:id="@+id/studyRoomSearch"
+                    android:layout_width="79dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Study room" />
+
+
+            </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
