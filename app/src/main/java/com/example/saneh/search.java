@@ -445,7 +445,6 @@ public class search extends AppCompatActivity {
                 cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
                 cal.set(Calendar.MONTH, month - 1); //Set month, starts with JANUARY = 0
                 cal.set(Calendar.YEAR, year); //Set year
-//  Toast.makeText(search.this, "S d "+cal.getTime()+ "and D t"+ today , Toast.LENGTH_LONG).show();
                 SimpleDateFormat simple2 = new SimpleDateFormat("dd-MM-yyyy HH:mm aa");
 
                 String tim;
