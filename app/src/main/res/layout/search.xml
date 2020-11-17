@@ -123,56 +123,84 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
                         app:srcCompat="@drawable/floorg" />
 
                     <TextView
-                        android:id="@+id/SR04"
+                        android:id="@+id/SR06"
                         android:layout_width="43dp"
-                        android:layout_height="29dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
                         android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                         android:gravity="center"
-                        android:text="SR04"
+                        android:text="SR06"
                         android:textColor="#040404"
-                        app:layout_constraintStart_toStartOf="@+id/SR03"
-                        app:layout_constraintTop_toBottomOf="@+id/SR03" />
+                        app:layout_constraintEnd_toEndOf="@+id/SR05"
+                        app:layout_constraintTop_toBottomOf="@+id/SR05" />
+
+                    <TextView
+                        android:id="@+id/SR05"
+                        android:layout_width="43dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR05"
+                        android:textColor="#040404"
+                        app:layout_constraintStart_toStartOf="@+id/SR04"
+                        app:layout_constraintTop_toBottomOf="@+id/SR04" />
 
                     <TextView
                         android:id="@+id/SR01"
                         android:layout_width="46dp"
-                        android:layout_height="29dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="63dp"
                         android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                         android:gravity="center"
                         android:text="SR01"
                         android:textColor="#040404"
-                        app:layout_constraintTop_toBottomOf="@+id/class6F25"
-                        tools:layout_editor_absoluteX="484dp" />
+                        app:layout_constraintStart_toEndOf="@+id/class6F35"
+                        app:layout_constraintTop_toBottomOf="@+id/class6F25" />
 
                     <TextView
                         android:id="@+id/SR02"
                         android:layout_width="46dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
                         android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                         android:gravity="center"
                         android:text="SR02"
                         android:textColor="#040404"
-                        app:layout_constraintTop_toBottomOf="@+id/SR01"
-                        tools:layout_editor_absoluteX="485dp" />
+                        app:layout_constraintEnd_toEndOf="@+id/SR01"
+                        app:layout_constraintTop_toBottomOf="@+id/SR01" />
 
                     <TextView
                         android:id="@+id/SR03"
-                        android:layout_width="43dp"
-                        android:layout_height="29dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_marginRight="3dp"
+                        android:layout_width="46dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="1dp"
                         android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
                         android:gravity="center"
                         android:text="SR03"
                         android:textColor="#040404"
+                        app:layout_constraintEnd_toEndOf="@+id/SR02"
+                        app:layout_constraintTop_toBottomOf="@+id/SR02" />
+
+                    <TextView
+                        android:id="@+id/SR04"
+                        android:layout_width="43dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="63dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color"
+                        android:gravity="center"
+                        android:text="SR04"
+                        android:textColor="#040404"
                         app:layout_constraintEnd_toStartOf="@+id/class6F17"
-                        tools:layout_editor_absoluteY="145dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/class6F21" />
 
                     <ImageView
                         android:id="@+id/floorg"
@@ -1246,8 +1274,7 @@
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="0-40"
-                    />
+                    android:text="0-40" />
 
             </RadioGroup>
 
@@ -1397,9 +1424,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:textColor="#D70B0B"
                 android:textSize="16sp"
-                android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchbtn" />
 
