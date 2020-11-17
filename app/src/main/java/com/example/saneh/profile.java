@@ -58,7 +58,7 @@ public class profile  extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(Intent.ACTION_VIEW
-                        , Uri.parse("mailto:" + "appsaneh@gmail.com"));
+                        , Uri.parse("mailto:" + "SanehSupportTeam@gmail.com"));
                 startActivity(intent);
 
             }
