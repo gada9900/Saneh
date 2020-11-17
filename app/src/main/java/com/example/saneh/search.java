@@ -963,22 +963,43 @@ public class search extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                                         int myListOfDocumentsLen = myListOfDocuments.size();
-
-                                        for(int i = 0; i < myListOfDocumentsLen; i++){
-                                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                        if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                          for(int i = 1 ; i < 7 ;i++ ) {
+                                              int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+                                              TextView classes = (TextView) findViewById(id);
+                                              classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                          }
+                                      }
+                                        for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                            if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                             int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                             TextView room = (TextView) findViewById(id);
-                                            if(finalDate.equals(myListOfDocuments.get(i).getString("date"))){
-                                                if(finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                            if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
-
 
 
                                                 }
                                             }
 
-                                        }
+                                        }//end if
+                                            else{
+                                                _classID =  myListOfDocuments.get(i).getString("classID");
+                                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                                TextView room = (TextView) findViewById(id);
+                                                if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                    if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
+
+                                                    }
+                                                }
+
+
+
+                                            }
+                                    }//end for
 
                                     }
                                 }
@@ -1659,9 +1680,17 @@ public class search extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                             int myListOfDocumentsLen = myListOfDocuments.size();
-
+                            final RadioGroup classType = findViewById(R.id.radioGroupSearch2);
+                            if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                for(int i = 1 ; i < 7 ;i++ ) {
+                                    int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+                                    TextView classes = (TextView) findViewById(id);
+                                    classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                }
+                            }
                             for (int i = 0; i < myListOfDocumentsLen; i++) {
-                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                    _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                 int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                 TextView room = (TextView) findViewById(id);
                                 if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
@@ -1684,9 +1713,22 @@ public class search extends AppCompatActivity {
 
 
                                     }
+                                }}else{
+                                    _classID =  myListOfDocuments.get(i).getString("classID");
+                                    int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                    TextView room = (TextView) findViewById(id);
+                                    if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
+                                        if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                            room.setBackgroundColor(getResources().getColor(R.color.red));
+
+
+                                        }
+                                    }
+
+
                                 }
 
-                            }
+                            }//end for
 
 
                         }
@@ -1960,7 +2002,13 @@ public class search extends AppCompatActivity {
             classes = (TextView) findViewById(id);
             classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
 
-        }}
+        }
+    for(int i = 1 ; i < 7 ;i++ ) {
+        int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+        classes = (TextView) findViewById(id);
+        classes.setBackgroundColor(getResources().getColor(R.color.grean));
+    }
+    }
 
 
 }
