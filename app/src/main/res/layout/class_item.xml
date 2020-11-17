@@ -29,12 +29,12 @@
             android:layout_toLeftOf="@id/confirm_button" />
         <Button
             android:id="@+id/confirm_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width= "wrap_content"
+            android:layout_height="35dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="55dp"
             android:background="@drawable/rectangle_2004_shape"
             android:text="Confirm"
             android:textColor="#FDFCFC"
