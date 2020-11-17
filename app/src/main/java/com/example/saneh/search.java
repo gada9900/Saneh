@@ -999,22 +999,43 @@ public class search extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                                         int myListOfDocumentsLen = myListOfDocuments.size();
-
-                                        for(int i = 0; i < myListOfDocumentsLen; i++){
-                                            _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                        if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                          for(int i = 1 ; i < 7 ;i++ ) {
+                                              int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+                                              TextView classes = (TextView) findViewById(id);
+                                              classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                          }
+                                      }
+                                        for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                            if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                             int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                             TextView room = (TextView) findViewById(id);
-                                            if(finalDate.equals(myListOfDocuments.get(i).getString("date"))){
-                                                if(finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                            if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
                                                     room.setBackgroundColor(getResources().getColor(R.color.red));
-
 
 
                                                 }
                                             }
 
-                                        }
+                                        }//end if
+                                            else{
+                                                _classID =  myListOfDocuments.get(i).getString("classID");
+                                                int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                                TextView room = (TextView) findViewById(id);
+                                                if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                    if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
+
+                                                    }
+                                                }
+
+
+
+                                            }
+                                    }//end for
 
                                     }
                                 }
@@ -1158,8 +1179,8 @@ public class search extends AppCompatActivity {
 
                                 //notifications
 
-                                notificationBefore15min(finalTime,d);
-                                notificationBeforeDay(finalTime,d);
+                                notificationBefore15min(finalTime,d,ClassID1);
+                                notificationBeforeDay(finalTime,d,ClassID1);
 
                                 //end notifications
 
@@ -1695,9 +1716,17 @@ public class search extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                             int myListOfDocumentsLen = myListOfDocuments.size();
-
+                            final RadioGroup classType = findViewById(R.id.radioGroupSearch2);
+                            if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                for(int i = 1 ; i < 7 ;i++ ) {
+                                    int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+                                    TextView classes = (TextView) findViewById(id);
+                                    classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
+                                }
+                            }
                             for (int i = 0; i < myListOfDocumentsLen; i++) {
-                                _classID = "class" + myListOfDocuments.get(i).getString("classID");
+                                if (classType.getCheckedRadioButtonId() != R.id.studyRoomSearch){
+                                    _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                 int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                 TextView room = (TextView) findViewById(id);
                                 if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
@@ -1720,9 +1749,22 @@ public class search extends AppCompatActivity {
 
 
                                     }
+                                }}else{
+                                    _classID =  myListOfDocuments.get(i).getString("classID");
+                                    int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                    TextView room = (TextView) findViewById(id);
+                                    if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
+                                        if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                            room.setBackgroundColor(getResources().getColor(R.color.red));
+
+
+                                        }
+                                    }
+
+
                                 }
 
-                            }
+                            }//end for
 
 
                         }
@@ -1903,9 +1945,10 @@ public class search extends AppCompatActivity {
 
     }*/
 
-    public void notificationBefore15min(final String finalTime,final String d ){
+    public void notificationBefore15min(final String finalTime,final String d , final String classID){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -1939,9 +1982,10 @@ public class search extends AppCompatActivity {
 
         alarmManager.set(AlarmManager.RTC,cal_alarm.getTimeInMillis(),pendingIntent);
     }
-    public void notificationBeforeDay(final String finalTime,final String d ){
+    public void notificationBeforeDay(final String finalTime,final String d ,final String classID ){
         createNotificationChannel();
         Intent intent1 = new Intent (search.this,Remainder2.class);
+        intent1.putExtra("classID",classID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(search.this,0,intent1,0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -1996,7 +2040,13 @@ public class search extends AppCompatActivity {
             classes = (TextView) findViewById(id);
             classes.setBackgroundColor(getResources().getColor(R.color.room_type__study_room_floor__second_roomno__2_time__10_00_am___12_00_pm__color));
 
-        }}
+        }
+    for(int i = 1 ; i < 7 ;i++ ) {
+        int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+        classes = (TextView) findViewById(id);
+        classes.setBackgroundColor(getResources().getColor(R.color.grean));
+    }
+    }
 
 
 }

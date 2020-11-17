@@ -1260,21 +1260,21 @@
                     android:id="@+id/Search20"
                     android:layout_width="71dp"
                     android:layout_height="match_parent"
-                    android:text="0-20" />
+                    android:text="1-20" />
 
                 <RadioButton
                     android:id="@+id/Search30"
                     android:layout_width="79dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="0-30" />
+                    android:text="1-30" />
 
                 <RadioButton
                     android:id="@+id/Search40"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="0-40" />
+                    android:text="1-40" />
 
             </RadioGroup>
 
