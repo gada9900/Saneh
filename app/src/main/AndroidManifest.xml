@@ -23,7 +23,6 @@
         <activity android:name=".search"/>
         <activity android:name=".Login"/>
         <activity android:name=".SplashscreenActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
