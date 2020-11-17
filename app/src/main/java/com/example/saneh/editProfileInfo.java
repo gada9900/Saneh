@@ -185,7 +185,15 @@ public class editProfileInfo extends AppCompatActivity {
             return false;
         }
         if (newName.length()>20){
-            name.setError("the name length should be less than 20 charecters.");
+            name.setError("the name length should be less than 20 characters.");
+            return false;
+        }
+        if (stringContainsNumber(newName) || stringContainsSymbols(newName)){
+            name.setError("the full name contains only characters.");
+            return false;
+        }
+        if (newName.length() < 3){
+            name.setError("the full name length should be greater than 3 characters.");
             return false;
         }
 
@@ -216,5 +224,13 @@ return true;
 
         return matcher.matches();
 
+    }
+    public boolean stringContainsNumber( String s )
+    {
+        return Pattern.compile( "[0-9]" ).matcher( s ).find();
+    }
+    public boolean stringContainsSymbols( String s )
+    {
+        return Pattern.compile( "[@#$%^&+=]" ).matcher( s ).find();
     }
 }
