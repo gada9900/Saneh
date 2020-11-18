@@ -72,5 +72,9 @@ dependencies {
 
     implementation 'commons-net:commons-net:3.6'//hadeel
 
+    //onBoarding screen
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
 
 }
