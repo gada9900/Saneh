@@ -2,6 +2,7 @@ package com.example.saneh;
 
 import android.app.AppComponentFactory;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,8 +32,16 @@ public class SplashscreenActivity extends AppCompatActivity {
                 if(isFinishing())
                     return;
 
-                startActivity(new Intent(SplashscreenActivity.this,Login.class));
-                finish();
+                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                boolean firstStart = prefs.getBoolean("firstStart", true);
+
+                if(firstStart) {
+                    startActivity(new Intent(SplashscreenActivity.this,onBoarding.class));
+                    finish();
+                }else {
+                    startActivity(new Intent(SplashscreenActivity.this,Login.class));
+                    finish();
+                }
             }
         });
         splash.start();
