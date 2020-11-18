@@ -1170,7 +1170,7 @@ public class search extends AppCompatActivity {
 
                     final android.app.AlertDialog.Builder alert1 = new AlertDialog.Builder(search.this);
                     alert1.setTitle("Book Class");
-                    alert1.setMessage("Are you sure that you want to book this class ?");
+                    alert1.setMessage("Are you sure that you want to book class "+ClassID1+"?");
 
                     final String finalTime = time;
                     alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
@@ -1188,8 +1188,8 @@ public class search extends AppCompatActivity {
 
 
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
-                                alert2.setTitle("Google calander");
-                                alert2.setMessage("Do you want to save your reservation in your google calander ?");
+                                alert2.setTitle("Google calendar");
+                                alert2.setMessage("Do you want to save your reservation in your google calendar?");
 
                                 alert2.setPositiveButton("save", new DialogInterface.OnClickListener() {
                                     @Override
@@ -1450,7 +1450,7 @@ public class search extends AppCompatActivity {
             color = ((ColorDrawable) background).getColor();
         final int colour = color;
         if (color == -7628884) {
-            Toast.makeText(search.this, "This class is unavailable", Toast.LENGTH_LONG).show();
+            Toast.makeText(search.this, "This study room is unavailable", Toast.LENGTH_LONG).show();
 
         } else {
             // inflate the layout of the popup window
@@ -1530,8 +1530,9 @@ public class search extends AppCompatActivity {
 
 
                     final android.app.AlertDialog.Builder alert1 = new AlertDialog.Builder(search.this);
-                    alert1.setTitle("Book Class");
-                    alert1.setMessage("Are you sure that you want to book this class ?");
+
+                    alert1.setTitle("Book Study room");
+                    alert1.setMessage("Are you sure that you want to book room " + ClassID1 +"?");
 
                     final String finalTime = time;
                     alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
@@ -1549,8 +1550,8 @@ public class search extends AppCompatActivity {
 
 
                                 final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
-                                alert2.setTitle("Google calander");
-                                alert2.setMessage("Do you want to save your reservation in your google calander ?");
+                                alert2.setTitle("Google calendar");
+                                alert2.setMessage("Do you want to save your reservation in your google calendar?");
 
                                 alert2.setPositiveButton("save", new DialogInterface.OnClickListener() {
                                     @Override
@@ -1781,7 +1782,7 @@ public class search extends AppCompatActivity {
             int width = LinearLayout.LayoutParams.WRAP_CONTENT;
             int height = LinearLayout.LayoutParams.WRAP_CONTENT;
             boolean focusable = true; // lets taps outside the popup also dismiss it
-            popupWindow = new PopupWindow(popupView, 600, 1200, focusable);
+            popupWindow = new PopupWindow(popupView, 600, 1000, focusable);
             popupWindow.setTouchable(true);
 
 
@@ -2054,7 +2055,11 @@ public class search extends AppCompatActivity {
         newReservation.put("date", Date);
         newReservation.put("time", time);
         newReservation.put("userID", currentUserId);
-        newReservation.put("roomType", "classroom");
+
+        if (ClassID1.charAt(0) == 'S')
+            newReservation.put("roomType", "study room");
+        else
+            newReservation.put("roomType", "classroom");
 
         if(!checkDateAndTimebeforeBoikng(time,Date)){
 
@@ -2064,7 +2069,7 @@ public class search extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(search.this, "class booked successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(search.this, ClassID1 + " booked successfully", Toast.LENGTH_LONG).show();
                             refreshAfterBooking(date.getText().toString().trim());
 
 
