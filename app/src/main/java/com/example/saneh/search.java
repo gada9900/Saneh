@@ -1612,171 +1612,84 @@ public class search extends AppCompatActivity {
             });
             //here some attrbuite values which we have to fetch it form database
             ///////////////////////////
-            FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-            DocumentReference docRef = fStore.collection("reservations").document(view.getResources().getResourceEntryName(view.getId()));
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                            //Long capacity = document.getLong("capacity");
-                            //boolean proj = document.getBoolean("projector");
-                            //boolean activ = document.getBoolean("interactive");
-                            String selectedT = selectedTime.getSelectedItem().toString();
+            Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                    .collection("reservations")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @SuppressLint("ResourceAsColor")
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                int myListOfDocumentsLen = myListOfDocuments.size();
+                                RadioGroup classType = findViewById(R.id.radioGroupSearch2);
+
+                                for (int i = 0; i < myListOfDocumentsLen; i++) {
+                                    if (classType.getCheckedRadioButtonId() == R.id.studyRoomSearch){
+                                        _classID =  myListOfDocuments.get(i).getString("classID");
+                                        int id = getResources().getIdentifier(_classID, "id", getPackageName());
+                                        TextView room = (TextView) findViewById(id);
+                                        if(room != null) {
+                                            if(_classID.equals(view.getResources().getResourceEntryName(view.getId())))
+                                            if (date.getText().toString().equals(myListOfDocuments.get(i).getString("date"))) {
+                                                int timeIndex = -1;
+                                                String selectedTime = myListOfDocuments.get(i).getString("time").substring(0,myListOfDocuments.get(i).getString("time").indexOf(' '));
+                                                switch (selectedTime) {
+                                                    case "8:00":
+                                                        timeIndex = 0;
+                                                        break;
+
+                                                    case "9:00":
+                                                        timeIndex = 1;
+
+                                                        break;
+
+                                                    case "10:00":
+                                                        timeIndex = 2;
+
+                                                        break;
+
+                                                    case "11:00":
+                                                        timeIndex = 3;
+
+                                                        break;
+
+                                                    case "12:00":
+                                                        timeIndex = 4;
+
+                                                        break;
+
+                                                    case "1:00":
+                                                        timeIndex = 5;
+
+                                                        break;
+
+                                                    case "2:00":
+                                                        timeIndex = 6;
+                                                        break;
+
+                                                }//end switch
+
+                                                final int finalTimeIndex = timeIndex;
+                                               printTimeSF(popupView,timeIndex);
 
 
-                            //  projector.setText((proj) ? "Yes" : "No");
-                            // activity.setText((activ) ? "Yes" : "No");
-                            //capacityV.setText(": " + capacity);
-                            //final ImageView projectorimg = popupView.findViewById(R.id.textView9);
-                            //final ImageView activityimg = popupView.findViewById(R.id.textView10);///////////********************************************************************************************
-                            //projectorimg.setBackgroundResource((proj) ? R.drawable.yesprogector : R.drawable.noprojectorr);
-                            //activityimg.setBackgroundResource((activ) ? R.drawable.yesactivity : R.drawable.noactivity);
+                                            }
+                                        }
 
 
-                            String sdate;
-                            if (date.length() == 0) { // if the user did not enter a date it will be by default today's date for the user's device
-                                Date today = new Date();
-                                SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
-                                date.setText(simple.format(today));
-                                sdate = simple.format(today);
-                                //
-                            }
-                            sdate = date.getText().toString().trim();
-                            int year = Integer.parseInt(sdate.substring(6, 10));
-                            int month = Integer.parseInt(sdate.substring(3, 5));
-                            ;
-                            int day = Integer.parseInt(sdate.substring(0, 2));
-                            ;
+
+                                    }//end if
 
 
-                            Calendar cal = Calendar.getInstance();
-                            cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
-                            cal.set(Calendar.MONTH, month-1); //Set month, starts with JANUARY = 0
-                            cal.set(Calendar.YEAR, year); //Set year
-                            int day0 = cal.get(Calendar.DAY_OF_WEEK);
-                            String d = "s";
-
-                            switch (day0) {
-                                case 1:
-                                    d = "s";
-                                    break;
-                                case 2:
-                                    d = "m";
-                                    break;
-                                case 3:
-                                    d = "t";
-                                    break;
-                                case 4:
-                                    d = "w";
-                                    break;
-                                case 5:
-                                    d = "th";
-                                    break;
-                                case 6:
-                                    d = "f";
-                                    break;
-                                case 7:
-                                    d = "ss";
-                                    break;
-
-                            }
-
-                            final String finalDay = d;
-
-
-                            int timeIndex = -1;
-                            String timeNext = " ";
-                            switch (selectedT) {
-                                case "8:00 AM":
-                                    timeIndex = 0;
-                                    timeNext = "9:00 AM";
-                                    break;
-
-                                case "9:00 AM":
-                                    timeIndex = 1;
-                                    timeNext = "10:00 AM";
-
-                                    break;
-
-                                case "10:00 AM":
-                                    timeIndex = 2;
-                                    timeNext = "11:00 AM";
-
-                                    break;
-
-                                case "11:00 AM":
-                                    timeIndex = 3;
-                                    timeNext = "12:00 PM";
-
-                                    break;
-
-                                case "12:00 PM":
-                                    timeIndex = 4;
-                                    timeNext = "1:00 PM";
-
-                                    break;
-
-                                case "1:00 PM":
-                                    timeIndex = 5;
-                                    timeNext = "2:00 PM";
-
-                                    break;
-
-                                case "2:00 PM":
-                                    timeIndex = 6;
-                                    timeNext = "3:00 PM";
-                                    break;
-
-                            }//end switch
-
-                            final int finalTimeIndex = timeIndex;
-                            boolean b;
-
-                            if (finalDay.equals("s")) {
-                                s = (List<Boolean>) document.get("s");
-
-                                printTime(popupView, s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
-
-                            } else if (finalDay.equals("m")) {
-                                m = (List<Boolean>) document.get("m");
-
-                                printTime(popupView, m, finalTimeIndex, selectedT, timeNext, availableT);
-
-                            } else if (finalDay.equals("t")) {
-                                t = (List<Boolean>) document.get("t");
-
-                                printTime(popupView, t, finalTimeIndex, selectedT, timeNext, availableT);
-
-                            } else if (finalDay.equals("w")) {
-                                w = (List<Boolean>) document.get("w");
-
-                                printTime(popupView, w, finalTimeIndex, selectedT, timeNext, availableT);
-
-                            } else if (finalDay.equals("th")) {
-                                th = (List<Boolean>) document.get("th");
-
-                                printTime(popupView, th, finalTimeIndex, selectedT, timeNext, availableT);
-
+                                }//end for
 
                             }
-
-
-                        } else {
-                            Log.d(TAG, "No such document");
-
                         }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
+                    });
 
-
-                    }
-                }
-            });
 /////////////////////////////////////////////////////
-
+            strike(popupView);
             // create the popup window
             int width = LinearLayout.LayoutParams.WRAP_CONTENT;
             int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -2429,6 +2342,159 @@ public class search extends AppCompatActivity {
         classes.setBackgroundColor(getResources().getColor(R.color.grean));
     }
     }
+    public void printTimeSF(View popupView, int i ) {
+
+        TextView t8 = popupView.findViewById(R.id.viewInfoTime8);
+        TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
+        TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
+        TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
+        TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
+        TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
+        TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
+
+            switch (i) {
+                case 0:
+                        t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+
+                    break;
+
+                case 1:
+                        t9.setPaintFlags(t9.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+
+                    break;
+
+                case 2:
+                        t10.setPaintFlags(t10.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+                case 3:
+                        t11.setPaintFlags(t11.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+
+                    break;
+
+                case 4:
+                        t12.setPaintFlags(t12.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+                case 5:
+                        t1.setPaintFlags(t1.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    break;
+
+                case 6:
+                        t2.setPaintFlags(t2.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+
+                    break;
+
+
+            }//end switch
+    }
+public void strike(View popupView){
+            int i = 0;
+        String ftime2 = selectedTime.getSelectedItem().toString();
+        String d = date.getText().toString();
+        final SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH aa");
+         Date today = new Date();
+         String today2 = simple.format(today);
+        Date todayWithT = today ;
+        Date calen2 = today ;
+        int t = 0 ;
+        // subString for the time since the format is 00:00
+        if (ftime2.charAt(1) == ':') {
+            ftime2 = ftime2.substring(0, 1);
+            t = Integer.parseInt(ftime2);
+            if(t == 1 || t ==2 || t==3 )
+                t = t+12 ;
+        }else{
+            ftime2 = ftime2.substring(0, 2);
+            t = Integer.parseInt(ftime2);
+        }
+
+        TextView t8 = popupView.findViewById(R.id.viewInfoTime8);
+        TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
+        TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
+        TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
+        TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
+        TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
+        TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
+    for (i = 0; i < 7; i++) {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+        calendar.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(d.substring(0, 2)));
+        calendar.set(Calendar.HOUR_OF_DAY, i+8);
+        calendar.set(Calendar.MINUTE, 00);
+        try {
+            todayWithT = simple.parse(today2);
+            calen2 = simple.parse(simple.format(calendar.getTime()));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        switch (i) {
+            case 0:
+                if (calen2.getTime() < todayWithT.getTime())
+                    t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t8.setBackgroundColor(getResources().getColor(R.color.Yellow));
+                break;
+
+            case 1:
+                if ( calen2.getTime() < todayWithT.getTime())
+                    t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t9.setBackgroundColor(getResources().getColor(R.color.Yellow));
+
+                break;
+
+            case 2:
+                if ( calen2.getTime() < todayWithT.getTime())
+                    t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t10.setBackgroundColor(getResources().getColor(R.color.Yellow));
+                break;
+            case 3:
+                if (calen2.getTime() < todayWithT.getTime())
+                    t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t11.setBackgroundColor(getResources().getColor(R.color.Yellow));
+
+                break;
+
+            case 4:
+                if ( calen2.getTime() < todayWithT.getTime())
+                    t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t12.setBackgroundColor(getResources().getColor(R.color.Yellow));
+
+                break;
+
+            case 5:
+                if ( calen2.getTime() < todayWithT.getTime())
+                    t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t1.setBackgroundColor(getResources().getColor(R.color.Yellow));
+                break;
+
+            case 6:
+                if (calen2.getTime() < todayWithT.getTime())
+                    t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                if(t == (i+8))
+                    t2.setBackgroundColor(getResources().getColor(R.color.Yellow));
+
+                break;
+
+
+        }//end switch
+
+    }
+}
 
 
 }
