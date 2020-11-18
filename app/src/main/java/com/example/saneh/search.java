@@ -1011,14 +1011,15 @@ public class search extends AppCompatActivity {
                                                 _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                             int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                             TextView room = (TextView) findViewById(id);
-                                            if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
-                                                if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                                    room.setBackgroundColor(getResources().getColor(R.color.red));
+                                            if(room!=null) {
+                                                if (finalDate.equals(myListOfDocuments.get(i).getString("date"))) {
+                                                    if (finalTime.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
+                                                    }
                                                 }
                                             }
-
                                         }//end if
                                             else{
                                                 _classID =  myListOfDocuments.get(i).getString("classID");
@@ -1441,6 +1442,367 @@ public class search extends AppCompatActivity {
 
         }
     }
+    public void onButtonShowPopupWindowClickSR(final View view) {
+
+        int color = Color.TRANSPARENT;
+        Drawable background = view.getBackground();
+        if (background instanceof ColorDrawable)
+            color = ((ColorDrawable) background).getColor();
+        final int colour = color;
+        if (color == -7628884) {
+            Toast.makeText(search.this, "This class is unavailable", Toast.LENGTH_LONG).show();
+
+        } else {
+            // inflate the layout of the popup window
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View popupView = inflater.inflate(R.layout.viewinfo2, null);
+
+            //calling attrbuite which in class view info
+            final Button book = popupView.findViewById(R.id.bookINFO);
+            TextView roomN = popupView.findViewById(R.id.roomNViewInfo);
+           // final TextView capacityV = popupView.findViewById(R.id.CapacityViewInfo);
+            final TextView availableT = popupView.findViewById(R.id.availableTimeViewInfo);
+            final View view1 = view;
+
+            if (colour == -1754827) {//// this code to avoid delay to hide book button
+                availableT.setText("Booked up");
+                availableT.setTextColor(Color.parseColor("#E53935"));
+                book.setVisibility(View.GONE);
+
+
+                TextView t8 = popupView.findViewById(R.id.viewInfoTime8);
+                TextView t9 = popupView.findViewById(R.id.viewInfoTime9);
+                TextView t10 = popupView.findViewById(R.id.viewInfoTime10);
+                TextView t11 = popupView.findViewById(R.id.viewInfoTime11);
+                TextView t12 = popupView.findViewById(R.id.viewInfoTime12);
+                TextView t1 = popupView.findViewById(R.id.viewInfoTime1);
+                TextView t2 = popupView.findViewById(R.id.viewInfoTime2);
+
+                String stime = selectedTime.getSelectedItem().toString();
+
+                switch (stime) {
+                    case "8:00 AM":
+                        t8.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "9:00 AM":
+                        t9.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "10:00 AM":
+                        t10.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "11:00 AM":
+                        t11.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "12:00 PM":
+                        t12.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "1:00 PM":
+                        t1.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                    case "2:00 PM":
+                        t2.setPaintFlags(t8.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        break;
+
+                }//end switch
+
+
+                // TextView avai = popupView.findViewById(R.id.textView11);// here to make text view in view info layout "available time :" invisibale
+                // avai.setVisibility(View.INVISIBLE);
+            }/////
+            // change vlaues in class view info thats do not need a database
+            roomN.setText("" + view.getResources().getResourceEntryName(view.getId()));
+
+            final String ClassID1 = view.getResources().getResourceEntryName(view.getId());
+            book.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // H & SH code
+
+                    final String d = date.getText().toString().trim();
+                    String time = selectedTime.getSelectedItem().toString();
+
+
+                    final android.app.AlertDialog.Builder alert1 = new AlertDialog.Builder(search.this);
+                    alert1.setTitle("Book Class");
+                    alert1.setMessage("Are you sure that you want to book this class ?");
+
+                    final String finalTime = time;
+                    alert1.setPositiveButton("Book", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(bookClass(ClassID1, d, finalTime)){
+
+
+                                //notifications
+
+                                notificationBefore15min(finalTime,d,ClassID1);
+                                notificationBeforeDay(finalTime,d,ClassID1);
+
+                                //end notifications
+
+
+                                final android.app.AlertDialog.Builder alert2 = new AlertDialog.Builder(search.this);
+                                alert2.setTitle("Google calander");
+                                alert2.setMessage("Do you want to save your reservation in your google calander ?");
+
+                                alert2.setPositiveButton("save", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        String ftime2;
+                                        // subString for the time since the format is 00:00
+                                        if (finalTime.charAt(1) == ':')
+                                            ftime2 = finalTime.substring(0, 1);
+                                        else
+                                            ftime2 = finalTime.substring(0, 2);
+                                        // calendar so we can set the date in calendar to the day user want not today date
+                                        final Calendar calendar = Calendar.getInstance();
+                                        calendar.set(Calendar.YEAR, Integer.parseInt(d.substring(6)));
+                                        calendar.set(Calendar.MONTH, Integer.parseInt(d.substring(3, 5)) - 1);
+                                        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(d.substring(0, 2)));
+                                        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ftime2)==1 || Integer.parseInt(ftime2) == 2? Integer.parseInt(ftime2)+12 :Integer.parseInt(ftime2));
+                                        calendar.set(Calendar.MINUTE, 00);
+
+                                        // create an event then send it to google calendar
+                                        Intent intent = new Intent(Intent.ACTION_INSERT);
+                                        intent.setData(CalendarContract.Events.CONTENT_URI);
+                                        intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
+                                        intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked " + view1.getResources().getResourceEntryName(view1.getId()).substring(5) + " on " + date.getText().toString().trim() + " at " + selectedTime.getSelectedItem().toString() + " using Saneh application");
+                                        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                                        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calendar.getTimeInMillis());
+
+
+                                        //this if to check if the user have app can handel this action
+                                        if (intent.resolveActivity(getPackageManager()) != null) {
+
+                                            startActivity(intent);
+
+                                        } else {
+                                            alert.setVisibility(View.VISIBLE);
+                                            String msg = "your reservation did not save in your application app for some issues,";
+                                            alert.setText(msg);
+                                        }
+
+                                    }
+                                });
+                                alert2.setNegativeButton("Cancel", null);
+                                alert2.setCancelable(true);
+
+                                alert2.show();
+                                popupWindow.dismiss();
+                            }
+                        }
+                    });
+                    alert1.setNegativeButton("Cancel", null);
+
+                    alert1.setCancelable(true);
+
+                    alert1.show();
+
+
+                } // H & SH END code
+
+
+            });
+            //here some attrbuite values which we have to fetch it form database
+            ///////////////////////////
+            FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+            DocumentReference docRef = fStore.collection("reservations").document(view.getResources().getResourceEntryName(view.getId()));
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            //Long capacity = document.getLong("capacity");
+                            //boolean proj = document.getBoolean("projector");
+                            //boolean activ = document.getBoolean("interactive");
+                            String selectedT = selectedTime.getSelectedItem().toString();
+
+
+                            //  projector.setText((proj) ? "Yes" : "No");
+                            // activity.setText((activ) ? "Yes" : "No");
+                            //capacityV.setText(": " + capacity);
+                            //final ImageView projectorimg = popupView.findViewById(R.id.textView9);
+                            //final ImageView activityimg = popupView.findViewById(R.id.textView10);///////////********************************************************************************************
+                            //projectorimg.setBackgroundResource((proj) ? R.drawable.yesprogector : R.drawable.noprojectorr);
+                            //activityimg.setBackgroundResource((activ) ? R.drawable.yesactivity : R.drawable.noactivity);
+
+
+                            String sdate;
+                            if (date.length() == 0) { // if the user did not enter a date it will be by default today's date for the user's device
+                                Date today = new Date();
+                                SimpleDateFormat simple = new SimpleDateFormat("dd-MM-yyyy");
+                                date.setText(simple.format(today));
+                                sdate = simple.format(today);
+                                //
+                            }
+                            sdate = date.getText().toString().trim();
+                            int year = Integer.parseInt(sdate.substring(6, 10));
+                            int month = Integer.parseInt(sdate.substring(3, 5));
+                            ;
+                            int day = Integer.parseInt(sdate.substring(0, 2));
+                            ;
+
+
+                            Calendar cal = Calendar.getInstance();
+                            cal.set(Calendar.DAY_OF_MONTH, day); //Set Day of the Month, 1..31
+                            cal.set(Calendar.MONTH, month-1); //Set month, starts with JANUARY = 0
+                            cal.set(Calendar.YEAR, year); //Set year
+                            int day0 = cal.get(Calendar.DAY_OF_WEEK);
+                            String d = "s";
+
+                            switch (day0) {
+                                case 1:
+                                    d = "s";
+                                    break;
+                                case 2:
+                                    d = "m";
+                                    break;
+                                case 3:
+                                    d = "t";
+                                    break;
+                                case 4:
+                                    d = "w";
+                                    break;
+                                case 5:
+                                    d = "th";
+                                    break;
+                                case 6:
+                                    d = "f";
+                                    break;
+                                case 7:
+                                    d = "ss";
+                                    break;
+
+                            }
+
+                            final String finalDay = d;
+
+
+                            int timeIndex = -1;
+                            String timeNext = " ";
+                            switch (selectedT) {
+                                case "8:00 AM":
+                                    timeIndex = 0;
+                                    timeNext = "9:00 AM";
+                                    break;
+
+                                case "9:00 AM":
+                                    timeIndex = 1;
+                                    timeNext = "10:00 AM";
+
+                                    break;
+
+                                case "10:00 AM":
+                                    timeIndex = 2;
+                                    timeNext = "11:00 AM";
+
+                                    break;
+
+                                case "11:00 AM":
+                                    timeIndex = 3;
+                                    timeNext = "12:00 PM";
+
+                                    break;
+
+                                case "12:00 PM":
+                                    timeIndex = 4;
+                                    timeNext = "1:00 PM";
+
+                                    break;
+
+                                case "1:00 PM":
+                                    timeIndex = 5;
+                                    timeNext = "2:00 PM";
+
+                                    break;
+
+                                case "2:00 PM":
+                                    timeIndex = 6;
+                                    timeNext = "3:00 PM";
+                                    break;
+
+                            }//end switch
+
+                            final int finalTimeIndex = timeIndex;
+                            boolean b;
+
+                            if (finalDay.equals("s")) {
+                                s = (List<Boolean>) document.get("s");
+
+                                printTime(popupView, s, finalTimeIndex, selectedT, timeNext, availableT); // method that prints available time
+
+                            } else if (finalDay.equals("m")) {
+                                m = (List<Boolean>) document.get("m");
+
+                                printTime(popupView, m, finalTimeIndex, selectedT, timeNext, availableT);
+
+                            } else if (finalDay.equals("t")) {
+                                t = (List<Boolean>) document.get("t");
+
+                                printTime(popupView, t, finalTimeIndex, selectedT, timeNext, availableT);
+
+                            } else if (finalDay.equals("w")) {
+                                w = (List<Boolean>) document.get("w");
+
+                                printTime(popupView, w, finalTimeIndex, selectedT, timeNext, availableT);
+
+                            } else if (finalDay.equals("th")) {
+                                th = (List<Boolean>) document.get("th");
+
+                                printTime(popupView, th, finalTimeIndex, selectedT, timeNext, availableT);
+
+
+                            }
+
+
+                        } else {
+                            Log.d(TAG, "No such document");
+
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+
+
+                    }
+                }
+            });
+/////////////////////////////////////////////////////
+
+            // create the popup window
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            popupWindow = new PopupWindow(popupView, 600, 1200, focusable);
+            popupWindow.setTouchable(true);
+
+
+            // show the popup window
+            // which view you pass in doesn't matter, it is only used for the window tolken
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            // dismiss the popup window when touched
+            popupView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+
+                    popupWindow.dismiss();
+
+                    return true;
+                }
+            });
+
+
+        }
+    }
 
     public void init() {
         TextView classes;
@@ -1480,7 +1842,24 @@ public class search extends AppCompatActivity {
 
         }
 
+        TextView studyroom;
 
+        /////// initiate a clickable classes in floor 1
+        for (int i = 1; i < 7; i++) {
+
+
+            int id = getResources().getIdentifier("SR0" + i, "id", getPackageName());
+            studyroom = (TextView) findViewById(id);
+
+            studyroom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onButtonShowPopupWindowClickSR(view);
+
+                }
+            });
+
+        }
     }
 
     public void printTime(View popupView, List<Boolean> s, int finalTimeIndex, String selectedT, String timeNext, TextView availableT) {
@@ -1730,6 +2109,7 @@ public class search extends AppCompatActivity {
                                     _classID = "class" + myListOfDocuments.get(i).getString("classID");
                                 int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                 TextView room = (TextView) findViewById(id);
+                                if(room!=null){
                                 if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
                                     String finalT2;
                                     if (finalTime1.charAt(1) == ':') {
@@ -1750,7 +2130,7 @@ public class search extends AppCompatActivity {
 
 
                                     }
-                                }}else{
+                                }}}else{
                                     _classID =  myListOfDocuments.get(i).getString("classID");
                                     int id = getResources().getIdentifier(_classID, "id", getPackageName());
                                     TextView room = (TextView) findViewById(id);
