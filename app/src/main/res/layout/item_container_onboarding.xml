@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/imageOnboarding"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_margin="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="Saneh"/>
