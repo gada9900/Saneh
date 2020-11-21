@@ -10,7 +10,7 @@
 	<style name="OnboardingTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorAccent">@color/colorAccent</item>
+		<item name="colorAccent">@color/rectangle_2004_color</item>
 	</style>
 
 </resources>

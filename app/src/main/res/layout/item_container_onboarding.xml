@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/imageOnboarding"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_margin="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="Saneh"/>
@@ -22,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"/>
 
     <TextView
@@ -31,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"/>
 
 </LinearLayout>
