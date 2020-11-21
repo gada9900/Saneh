@@ -71,18 +71,18 @@ public class onBoarding extends AppCompatActivity {
         // change this
         OnboardingItem item1 = new OnboardingItem();
         item1.setTitle("Search");
-        item1.setDescription("Description 1");
-        item1.setImage(R.drawable.picture1);
+        item1.setDescription("\nsearch for available classrooms and filter your results based on what you need!");
+        item1.setImage(R.drawable.icon1);
 
         OnboardingItem item2 = new OnboardingItem();
         item2.setTitle("Book");
-        item2.setDescription("Description 2");
-        item2.setImage(R.drawable.picture2);
+        item2.setDescription("\nBook your preferred classroom with your preferred equipments!");
+        item2.setImage(R.drawable.icon2);
 
         OnboardingItem item3 = new OnboardingItem();
         item3.setTitle("Confirm");
-        item3.setDescription("Description 3");
-        item3.setImage(R.drawable.picture3);
+        item3.setDescription("\nDon't forget!\nConfirm your reservation within a few seconds.");
+        item3.setImage(R.drawable.icon3);
 
         onboardingItems.add(item1);
         onboardingItems.add(item2);
