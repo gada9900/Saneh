@@ -1585,8 +1585,8 @@ public class search extends AppCompatActivity {
                                         Intent intent = new Intent(Intent.ACTION_INSERT);
                                         intent.setData(CalendarContract.Events.CONTENT_URI);
                                         intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
-                                        intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked " + view1.getResources().getResourceEntryName(view1.getId()).substring(5) + " on " + date.getText().toString().trim() + " at " + selectedTime.getSelectedItem().toString() + " using Saneh application");
-                                        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                                        intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked " + view1.getResources().getResourceEntryName(view1.getId()) + " on " + date.getText().toString().trim() + " at " + selectedTime.getSelectedItem().toString() + " using Saneh application");
+                                        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()));
                                         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calendar.getTimeInMillis());
 
 
