@@ -137,6 +137,11 @@ public class search extends AppCompatActivity {
                     RadioGroup radioGroupSearch = findViewById(R.id.radioGroupSearch);
                     radioGroupSearch.setY(radioGroupSearch.getY() + -80);
                     search.setY(search.getY() + -60);
+                    TextView text1 = findViewById(R.id.textView37);
+                    TextView text2 = findViewById(R.id.textView38);
+                    text1.setY(text1.getY() + -80);
+                    text2.setY(text2.getY() + -80);
+
 
                 }
             }
@@ -152,6 +157,8 @@ public class search extends AppCompatActivity {
                 TextView filterTxt = findViewById(R.id.filterSearch);
                 TextView capacityTxt = findViewById(R.id.capacitySearch);
                 CheckBox checkB = findViewById(R.id.projectorSearch);
+                TextView text1 = findViewById(R.id.textView37);
+                TextView text2 = findViewById(R.id.textView38);
                 if(classType.getCheckedRadioButtonId() == R.id.studyRoomSearch){
                     proj.setVisibility(View.GONE);
                     inter.setVisibility(View.GONE);
@@ -163,6 +170,8 @@ public class search extends AppCompatActivity {
                     capacityTxt.setVisibility(View.GONE);
                     projectorImg.setVisibility(View.GONE);
                     InteractiveImg.setVisibility(View.GONE);
+                    text1.setVisibility(View.INVISIBLE);
+                    text2.setVisibility(View.INVISIBLE);
 
                 }else{
                     proj.setVisibility(View.VISIBLE);
@@ -175,6 +184,8 @@ public class search extends AppCompatActivity {
                     capacityTxt.setVisibility(View.VISIBLE);
                     projectorImg.setVisibility(View.VISIBLE);
                     InteractiveImg.setVisibility(View.VISIBLE);
+                    text1.setVisibility(View.VISIBLE);
+                    text2.setVisibility(View.VISIBLE);
 
                 }
             }
