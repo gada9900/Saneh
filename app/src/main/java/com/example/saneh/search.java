@@ -2065,8 +2065,24 @@ public class search extends AppCompatActivity {
                                     TextView room = (TextView) findViewById(id);
                                     if(room != null) {
                                         if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
-                                            if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                                room.setBackgroundColor(getResources().getColor(R.color.red));
+                                           // if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                             //   room.setBackgroundColor(getResources().getColor(R.color.red));
+                                            String finalT2;
+                                    if (finalTime1.charAt(1) == ':') {
+                                        finalT2 = "0" + finalTime1.substring(0, 1);
+                                    } else {
+                                        finalT2 = finalTime1.substring(0, 2);
+                                    }
+                                    String fromD;
+                                    String fromDataBase = myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' '));
+                                    if (fromDataBase.charAt(1) == ':') {
+                                        fromD = "0" + fromDataBase.substring(0, 1);
+                                    } else {
+                                        fromD = fromDataBase.substring(0, 2);
+                                    }
+
+                                    if (finalT2.equals(fromD)) {
+                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
                                             }
