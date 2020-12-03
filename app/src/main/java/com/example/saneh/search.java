@@ -137,6 +137,11 @@ public class search extends AppCompatActivity {
                     RadioGroup radioGroupSearch = findViewById(R.id.radioGroupSearch);
                     radioGroupSearch.setY(radioGroupSearch.getY() + -80);
                     search.setY(search.getY() + -60);
+                    TextView text1 = findViewById(R.id.textView37);
+                    TextView text2 = findViewById(R.id.textView38);
+                    text1.setY(text1.getY() + -80);
+                    text2.setY(text2.getY() + -80);
+
 
                 }
             }
@@ -152,6 +157,8 @@ public class search extends AppCompatActivity {
                 TextView filterTxt = findViewById(R.id.filterSearch);
                 TextView capacityTxt = findViewById(R.id.capacitySearch);
                 CheckBox checkB = findViewById(R.id.projectorSearch);
+                TextView text1 = findViewById(R.id.textView37);
+                TextView text2 = findViewById(R.id.textView38);
                 if(classType.getCheckedRadioButtonId() == R.id.studyRoomSearch){
                     proj.setVisibility(View.GONE);
                     inter.setVisibility(View.GONE);
@@ -163,6 +170,8 @@ public class search extends AppCompatActivity {
                     capacityTxt.setVisibility(View.GONE);
                     projectorImg.setVisibility(View.GONE);
                     InteractiveImg.setVisibility(View.GONE);
+                    text1.setVisibility(View.INVISIBLE);
+                    text2.setVisibility(View.INVISIBLE);
 
                 }else{
                     proj.setVisibility(View.VISIBLE);
@@ -175,6 +184,8 @@ public class search extends AppCompatActivity {
                     capacityTxt.setVisibility(View.VISIBLE);
                     projectorImg.setVisibility(View.VISIBLE);
                     InteractiveImg.setVisibility(View.VISIBLE);
+                    text1.setVisibility(View.VISIBLE);
+                    text2.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -1574,8 +1585,8 @@ public class search extends AppCompatActivity {
                                         Intent intent = new Intent(Intent.ACTION_INSERT);
                                         intent.setData(CalendarContract.Events.CONTENT_URI);
                                         intent.putExtra(CalendarContract.Events.TITLE, "My reservation in CCIS ");
-                                        intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked " + view1.getResources().getResourceEntryName(view1.getId()).substring(5) + " on " + date.getText().toString().trim() + " at " + selectedTime.getSelectedItem().toString() + " using Saneh application");
-                                        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()).substring(5));
+                                        intent.putExtra(CalendarContract.Events.DESCRIPTION, "I booked " + view1.getResources().getResourceEntryName(view1.getId()) + " on " + date.getText().toString().trim() + " at " + selectedTime.getSelectedItem().toString() + " using Saneh application");
+                                        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, view1.getResources().getResourceEntryName(view1.getId()));
                                         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calendar.getTimeInMillis());
 
 
@@ -2054,8 +2065,24 @@ public class search extends AppCompatActivity {
                                     TextView room = (TextView) findViewById(id);
                                     if(room != null) {
                                         if (fd.equals(myListOfDocuments.get(i).getString("date"))) {
-                                            if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
-                                                room.setBackgroundColor(getResources().getColor(R.color.red));
+                                           // if (finalTime1.equals(myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' ')))) {
+                                             //   room.setBackgroundColor(getResources().getColor(R.color.red));
+                                            String finalT2;
+                                    if (finalTime1.charAt(1) == ':') {
+                                        finalT2 = "0" + finalTime1.substring(0, 1);
+                                    } else {
+                                        finalT2 = finalTime1.substring(0, 2);
+                                    }
+                                    String fromD;
+                                    String fromDataBase = myListOfDocuments.get(i).getString("time").substring(0, myListOfDocuments.get(i).getString("time").indexOf(' '));
+                                    if (fromDataBase.charAt(1) == ':') {
+                                        fromD = "0" + fromDataBase.substring(0, 1);
+                                    } else {
+                                        fromD = fromDataBase.substring(0, 2);
+                                    }
+
+                                    if (finalT2.equals(fromD)) {
+                                        room.setBackgroundColor(getResources().getColor(R.color.red));
 
 
                                             }

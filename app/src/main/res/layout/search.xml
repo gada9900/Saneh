@@ -1248,10 +1248,11 @@
 
             <RadioGroup
                 android:id="@+id/radioGroupSearch"
-                android:layout_width="241dp"
-                android:layout_height="49dp"
+                android:layout_width="238dp"
+                android:layout_height="28dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginLeft="26dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toEndOf="@+id/capacitySearch"
                 app:layout_constraintTop_toBottomOf="@+id/imageView46">
@@ -1271,8 +1272,8 @@
 
                 <RadioButton
                     android:id="@+id/Search40"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="101dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="1-40" />
 
@@ -1306,7 +1307,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="36dp"
                 android:text="Capacity:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1470,6 +1471,27 @@
 
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="Projecter"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroupSearch"
+                app:layout_constraintEnd_toEndOf="@+id/imageView46"
+                app:layout_constraintStart_toStartOf="@+id/imageView46" />
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="Interactive class"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroupSearch"
+                app:layout_constraintEnd_toEndOf="@+id/imageView47"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="@+id/imageView47" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
