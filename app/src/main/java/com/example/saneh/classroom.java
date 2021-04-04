@@ -11,11 +11,11 @@ public class classroom {
     private long capacity;
     private boolean interactive;
     private boolean projector;
-    private List<Boolean> s;
-    private List<Boolean> m;
-    private List<Boolean> t;
-    private List<Boolean> w;
-    private List<Boolean> th;
+    private List<Boolean> sunday;
+    private List<Boolean> monday;
+    private List<Boolean> tuesday;
+    private List<Boolean> wednesday;
+    private List<Boolean> thursday;
 
     public classroom(){
 
@@ -24,17 +24,17 @@ public class classroom {
     }
 
     public classroom(String roomNum, long capacity, boolean interactive,boolean projector,
-                     List<Boolean> s,List<Boolean> m,List<Boolean> t,List<Boolean> w,List<Boolean> th){
+                     List<Boolean> sunday,List<Boolean> monday,List<Boolean> tuesday,List<Boolean> wednesday,List<Boolean> thursday){
 
         this.roomNum = roomNum;
         this.capacity=capacity;
         this.interactive=interactive;
         this.projector=projector;
-        this.s=s;
-        this.m=m;
-        this.t=t;
-        this.w=w;
-        this.th=th;
+        this.sunday=sunday;
+        this.monday=monday;
+        this.tuesday=tuesday;
+        this.wednesday=wednesday;
+        this.thursday=thursday;
 
     }
     //set
@@ -54,24 +54,24 @@ public class classroom {
     public void setInteractive(boolean interactive){
         this.interactive=interactive;
     }
-    public void setM(List<Boolean> m){
-        this.m=m;
+    public void setMonday(List<Boolean> monday){
+        this.monday=monday;
     }
 
-    public void setS(List<Boolean> s){
-        this.s=s;
+    public void setSunday(List<Boolean> sunday){
+        this.sunday=sunday;
     }
 
-    public void setT(List<Boolean> t){
-        this.t=t;
+    public void setTuesday(List<Boolean> tuesday){
+        this.tuesday=tuesday;
     }
 
-    public void setTh(List<Boolean> th){
-        this.th=th;
+    public void setThursday(List<Boolean> thursday){
+        this.thursday=thursday;
     }
 
-    public void setW(List<Boolean> w){
-        this.w=w;
+    public void setW(List<Boolean> wednesday){
+        this.wednesday=wednesday;
     }
     //get
     public String getRoomNum(){
@@ -90,29 +90,24 @@ public class classroom {
         return projector;
     }
 
-    public List<Boolean> getS(){
-        return s;
+    public List<Boolean> getSunday(){
+        return sunday;
     }
 
-  /*  public boolean getS(String index){
-        int ind = Integer.parseInt(index);
-        return s[ind];
-    } */
-
-    public List<Boolean> getM(){
-        return m;
+    public List<Boolean> getMonday(){
+        return monday;
     }
 
-    public List<Boolean> getT(){
-        return t;
+    public List<Boolean> getTuesday(){
+        return tuesday;
     }
 
-    public List<Boolean> getW(){
-        return w;
+    public List<Boolean> getWednesday(){
+        return wednesday;
     }
 
-    public List<Boolean> getTh(){
-        return th;
+    public List<Boolean> getThursday(){
+        return thursday;
     }
 
 
